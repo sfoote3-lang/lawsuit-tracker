@@ -1,0 +1,225 @@
+.back-btn {
+  all: unset;
+  cursor: pointer;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.45);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.4rem 0.9rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 100px;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+
+.back-btn:hover,
+.back-btn:focus-visible {
+  color: rgba(255, 255, 255, 0.9);
+  border-color: rgba(255, 255, 255, 0.2);
+  outline: none;
+}
+
+/* Issue hero */
+.issue-hero {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  margin-bottom: 4rem;
+  padding-top: 2.5rem;
+}
+
+.issue-hero-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  line-height: 1;
+}
+
+.issue-hero-title {
+  font-size: clamp(1.75rem, 4vw, 2.75rem);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: #fff;
+  margin-bottom: 1rem;
+}
+
+.issue-hero-desc {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.45);
+  max-width: 580px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+/* Cases */
+.cases-section {
+  position: relative;
+  z-index: 1;
+  margin-bottom: 5rem;
+}
+
+.cases-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.case-row {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  padding: 1.25rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  transition: background 0.15s ease, transform 0.15s ease;
+  width: 100%;
+  text-align: left;
+}
+
+.case-row--clickable {
+  all: unset;
+  box-sizing: border-box;
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  padding: 1.25rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  width: 100%;
+  text-align: left;
+  transition: background 0.15s ease, transform 0.15s ease;
+}
+
+.case-row--clickable:hover {
+  background: rgba(255, 255, 255, 0.07);
+  transform: translateX(2px);
+}
+
+.case-row--clickable:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.3);
+  outline-offset: 2px;
+}
+
+.case-row-main {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.case-row-right {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-shrink: 0;
+}
+
+.case-row-arrow {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.2);
+  transition: color 0.15s ease, transform 0.15s ease;
+}
+
+.case-row--clickable:hover .case-row-arrow {
+  color: rgba(255, 255, 255, 0.55);
+  transform: translateX(3px);
+}
+
+.case-id-label {
+  font-family: 'SF Mono', 'Fira Code', monospace;
+  font-size: 0.7rem !important;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 0.1rem 0.35rem;
+  border-radius: 3px;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.case-name {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.case-row-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.case-meta-item {
+  font-size: 0.78rem;
+  color: rgba(255, 255, 255, 0.35);
+}
+
+.case-meta-divider {
+  color: rgba(255, 255, 255, 0.15);
+  font-size: 0.78rem;
+}
+
+.case-description {
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.45);
+  line-height: 1.6;
+  margin-top: 0.25rem;
+}
+
+/* Status badges */
+.status-badge {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 0.25rem 0.6rem;
+  border-radius: 100px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.badge-active {
+  color: #457b9d;
+  background: rgba(69, 123, 157, 0.15);
+  border: 1px solid rgba(69, 123, 157, 0.3);
+}
+
+.badge-injunction {
+  color: #f4a261;
+  background: rgba(244, 162, 97, 0.15);
+  border: 1px solid rgba(244, 162, 97, 0.3);
+}
+
+.badge-closed-for {
+  color: #2a9d8f;
+  background: rgba(42, 157, 143, 0.15);
+  border: 1px solid rgba(42, 157, 143, 0.3);
+}
+
+.badge-closed-against {
+  color: #e63946;
+  background: rgba(230, 57, 70, 0.15);
+  border: 1px solid rgba(230, 57, 70, 0.3);
+}
+
+/* Not found */
+.issue-not-found {
+  position: relative;
+  z-index: 1;
+  padding: 8rem 2rem;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.45);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+@media (max-width: 600px) {
+  .case-row-main {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

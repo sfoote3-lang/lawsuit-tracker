@@ -1,0 +1,128 @@
+.court-map-section {
+  position: relative;
+  z-index: 1;
+  margin-bottom: 5rem;
+}
+
+.court-map-subtitle {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.4);
+  margin-bottom: 1.5rem;
+  line-height: 1.5;
+}
+
+.court-map-wrap {
+  position: relative;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 14px;
+  padding: 1.5rem 1rem 1rem;
+  overflow: hidden;
+}
+
+/* Legend */
+.court-map-legend {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  justify-content: center;
+  margin-top: 0.75rem;
+}
+
+.legend-label {
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.legend-swatch {
+  width: 28px;
+  height: 10px;
+  border-radius: 3px;
+}
+
+.legend-swatch--1 { background: rgba(56,  189, 248, 0.35); }
+.legend-swatch--2 { background: rgba(99,  102, 241, 0.50); }
+.legend-swatch--3 { background: rgba(139,  92, 246, 0.65); }
+.legend-swatch--4 { background: rgba(192, 132, 252, 0.82); }
+
+/* Tooltip */
+.court-map-tooltip {
+  position: fixed;
+  z-index: 9999;
+  background: rgba(18, 18, 26, 0.96);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 10px;
+  padding: 0.9rem 1.1rem;
+  pointer-events: none;
+  min-width: 200px;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+}
+
+.cmt-title {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 0.6rem;
+}
+
+.cmt-divider {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.08);
+  margin: 0.5rem 0;
+}
+
+.cmt-row {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.5);
+  margin-bottom: 0.25rem;
+}
+
+.cmt-row:last-child {
+  margin-bottom: 0;
+}
+
+.cmt-row strong {
+  margin-left: auto;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 0.78rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.cmt-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.cmt-dot--active         { background: #457b9d; }
+.cmt-dot--injunction     { background: #f4a261; }
+.cmt-dot--closed-for     { background: #2a9d8f; }
+.cmt-dot--closed-against { background: #e63946; }
+
+.cmt-click-hint {
+  margin-top: 0.6rem;
+  font-size: 0.67rem;
+  color: rgba(255, 255, 255, 0.3);
+  text-align: right;
+  letter-spacing: 0.03em;
+}
+
+@media (max-width: 600px) {
+  .court-map-wrap {
+    padding: 1rem 0.5rem 0.75rem;
+    border-radius: 10px;
+  }
+
+  .court-map-tooltip {
+    left: 50% !important;
+    transform: translateX(-50%);
+    top: auto !important;
+    bottom: 1rem;
+    position: fixed;
+  }
+}

@@ -1,0 +1,256 @@
+/* ── Loading skeleton ────────────────────────────────────────────── */
+.cl-loading {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding-top: 0.5rem;
+}
+
+@keyframes cl-shimmer {
+  0%   { background-position: -600px 0 }
+  100% { background-position:  600px 0 }
+}
+
+.cl-skeleton {
+  border-radius: 6px;
+  background: linear-gradient(
+    90deg,
+    rgba(255,255,255,0.04) 25%,
+    rgba(255,255,255,0.08) 50%,
+    rgba(255,255,255,0.04) 75%
+  );
+  background-size: 600px 100%;
+  animation: cl-shimmer 1.6s infinite linear;
+}
+
+.cl-skeleton--title  { height: 36px; width: 65%; border-radius: 8px; }
+.cl-skeleton--meta   { height: 16px; width: 45%; }
+.cl-skeleton--desc   { height: 14px; width: 80%; }
+
+.cl-loading-label {
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.28);
+  margin-top: 0.25rem;
+}
+
+/* ── Error block ─────────────────────────────────────────────────── */
+.cl-error-block {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.cl-error-msg {
+  font-size: 0.88rem;
+  color: rgba(230,57,70,0.85);
+  background: rgba(230,57,70,0.06);
+  border: 1px solid rgba(230,57,70,0.18);
+  border-radius: 8px;
+  padding: 0.85rem 1rem;
+  margin: 0;
+}
+
+.cl-error-links {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+/* ── Metadata tags (below description) ──────────────────────────── */
+.cl-meta-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.85rem;
+}
+
+.cl-tag {
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  padding: 0.2rem 0.55rem;
+  border-radius: 100px;
+  white-space: nowrap;
+}
+
+.cl-tag--suit  { color: #a8d8ea; background: rgba(168,216,234,0.1);  border: 1px solid rgba(168,216,234,0.2); }
+.cl-tag--cause { color: #f4a261; background: rgba(244,162,97,0.1);   border: 1px solid rgba(244,162,97,0.2); }
+.cl-tag--juris { color: rgba(255,255,255,0.42); background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); }
+.cl-tag--jury  { color: rgba(255,255,255,0.42); background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); }
+
+/* ── Judge info ──────────────────────────────────────────────────── */
+.cl-judges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.cl-judge {
+  display: flex;
+  align-items: baseline;
+  gap: 0.4rem;
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.55);
+}
+
+.cl-judge-label {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.25);
+}
+
+/* ── Parties ─────────────────────────────────────────────────────── */
+.cl-parties {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  margin-top: 1rem;
+}
+
+.cl-parties-list {
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.5);
+  line-height: 1.6;
+  word-break: break-word;
+}
+
+/* ── Curation section ────────────────────────────────────────────── */
+.cl-curation-section {
+  position: relative;
+  z-index: 1;
+  margin-bottom: 5rem;
+  padding: 1.75rem 2rem;
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 14px;
+}
+
+.cl-curation-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+  margin-bottom: 1.5rem;
+}
+
+.cl-curation-icon {
+  flex-shrink: 0;
+  width: 26px;
+  height: 26px;
+  color: #457b9d;
+  margin-top: 1px;
+}
+
+.cl-curation-icon svg { width: 100%; height: 100%; }
+
+.cl-curation-heading {
+  margin-bottom: 0.35rem !important;
+}
+
+.cl-curation-intro {
+  font-size: 0.82rem;
+  color: rgba(255,255,255,0.38);
+  line-height: 1.65;
+  margin: 0;
+  max-width: 600px;
+}
+
+/* ── Fields grid ─────────────────────────────────────────────────── */
+.cl-curation-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 0.65rem;
+  margin-bottom: 1.5rem;
+}
+
+.cl-field {
+  border-radius: 8px;
+  padding: 0.75rem 0.9rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.cl-field--wide {
+  grid-column: 1 / -1;
+}
+
+.cl-field--filled {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.07);
+}
+
+.cl-field--missing {
+  background: rgba(244,162,97,0.04);
+  border: 1px solid rgba(244,162,97,0.12);
+}
+
+.cl-field-label {
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.22);
+}
+
+.cl-field--missing .cl-field-label {
+  color: rgba(244,162,97,0.5);
+}
+
+.cl-field-value {
+  font-size: 0.82rem;
+  color: rgba(255,255,255,0.7);
+  line-height: 1.4;
+  word-break: break-word;
+}
+
+.cl-field-value--missing {
+  color: rgba(244,162,97,0.55);
+  font-style: italic;
+}
+
+/* ── External links ──────────────────────────────────────────────── */
+.cl-curation-links {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.cl-ext-btn {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: rgba(255,255,255,0.6);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+  background: rgba(255,255,255,0.04);
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+
+.cl-ext-btn:hover {
+  background: rgba(255,255,255,0.08);
+  color: rgba(255,255,255,0.9);
+  border-color: rgba(255,255,255,0.22);
+}
+
+.cl-ext-btn--secondary {
+  background: transparent;
+  color: rgba(255,255,255,0.35);
+  border-color: rgba(255,255,255,0.07);
+}
+
+.cl-ext-btn--secondary:hover {
+  background: rgba(255,255,255,0.04);
+  color: rgba(255,255,255,0.65);
+}
+
+@media (max-width: 600px) {
+  .cl-curation-section {
+    padding: 1.25rem 1rem;
+  }
+}

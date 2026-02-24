@@ -1,0 +1,997 @@
+.all-cases-header {
+  position: relative;
+  z-index: 1;
+  padding-top: 2rem;
+  margin-bottom: 2.5rem;
+}
+
+.all-cases-title {
+  font-size: clamp(1.6rem, 4vw, 2.25rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: #fff;
+  margin-bottom: 0.4rem;
+}
+
+.all-cases-sub {
+  font-size: 0.88rem;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+/* ── Status breakdown bar ─────────────────────────────────────────────── */
+.status-breakdown {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.65rem;
+  margin-bottom: 1.5rem;
+}
+
+.breakdown-stat {
+  all: unset;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.85rem 0.5rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 2px solid var(--chip-color, rgba(255,255,255,0.15));
+  border-radius: 10px;
+  transition: background 0.15s, border-color 0.15s;
+  text-align: center;
+}
+
+.breakdown-stat:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255,255,255,0.14);
+  border-bottom-color: var(--chip-color, rgba(255,255,255,0.3));
+}
+
+.breakdown-stat--on {
+  background: color-mix(in srgb, var(--chip-color, #fff) 12%, transparent);
+  border-color: color-mix(in srgb, var(--chip-color, #fff) 25%, transparent);
+  border-bottom-color: var(--chip-color, #fff);
+}
+
+.breakdown-count {
+  font-size: clamp(1.1rem, 3vw, 1.5rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--chip-color, rgba(255,255,255,0.85));
+  line-height: 1;
+}
+
+.breakdown-label {
+  font-size: 0.64rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.4);
+  white-space: nowrap;
+}
+
+@media (max-width: 500px) {
+  .status-breakdown {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.all-cases-body {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+  margin-bottom: 5rem;
+}
+
+/* ── Annotated section label ──────────────────────────────────────────── */
+.all-cases-body-heading {
+  position: relative;
+  z-index: 1;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.all-cases-section-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.3);
+  margin-bottom: 0.25rem;
+}
+
+.all-cases-section-sub {
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.35);
+}
+
+/* ── Live docket feed ─────────────────────────────────────────────────── */
+.live-feed-section {
+  position: relative;
+  z-index: 1;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 1.75rem 2rem;
+  margin-bottom: 2rem;
+}
+
+.live-feed-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.live-feed-header-left {
+  flex: 1;
+  min-width: 0;
+}
+
+.live-feed-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.35);
+  margin-bottom: 0.5rem;
+}
+
+/* Pulsing green "live" dot */
+.live-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.live-dot--on {
+  background: #4ade80;
+  box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.7);
+  animation: livePulse 2s infinite;
+}
+
+.live-dot--syncing {
+  background: #f4a261;
+  animation: livePulse 0.8s infinite;
+}
+
+@keyframes livePulse {
+  0%   { box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.7); }
+  70%  { box-shadow: 0 0 0 6px rgba(74, 222, 128, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(74, 222, 128, 0); }
+}
+
+.live-syncing-label {
+  font-size: 0.65rem;
+  color: #f4a261;
+  font-weight: 600;
+}
+
+.live-feed-title {
+  font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.4rem;
+}
+
+.live-count {
+  color: #4ade80;
+}
+
+.live-feed-sub {
+  font-size: 0.78rem;
+  color: rgba(255, 255, 255, 0.35);
+  margin: 0;
+}
+
+.live-feed-error {
+  font-size: 0.8rem;
+  color: #e63946;
+  margin: 0.25rem 0 0;
+}
+
+.live-refresh-btn {
+  all: unset;
+  cursor: pointer;
+  color: rgba(255, 255, 255, 0.55);
+  text-decoration: underline;
+  font-size: inherit;
+  transition: color 0.15s;
+}
+
+.live-refresh-btn:hover {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* Search within dockets */
+.live-search-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  width: 240px;
+}
+
+.live-search-icon {
+  position: absolute;
+  left: 0.6rem;
+  width: 13px;
+  height: 13px;
+  color: rgba(255, 255, 255, 0.3);
+  pointer-events: none;
+}
+
+.live-search-input {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 0.4rem 2rem 0.4rem 2rem;
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.85);
+  outline: none;
+  font-family: inherit;
+  transition: border-color 0.15s;
+}
+
+.live-search-input:focus {
+  border-color: rgba(255, 255, 255, 0.22);
+}
+
+.live-search-input::placeholder {
+  color: rgba(255, 255, 255, 0.25);
+}
+
+.live-search-clear {
+  all: unset;
+  cursor: pointer;
+  position: absolute;
+  right: 0.55rem;
+  display: flex;
+  align-items: center;
+}
+
+.live-search-clear svg {
+  width: 10px;
+  height: 10px;
+  color: rgba(255, 255, 255, 0.3);
+}
+
+/* Docket list */
+.live-docket-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.live-filter-note {
+  font-size: 0.72rem;
+  color: rgba(255, 255, 255, 0.3);
+  padding: 0 0 0.75rem;
+}
+
+.live-docket-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.55rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.live-docket-row:last-child {
+  border-bottom: none;
+}
+
+.live-docket-row--skeleton {
+  gap: 1rem;
+}
+
+.live-docket-main {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-width: 0;
+}
+
+.live-docket-number {
+  font-family: 'SF Mono', 'Fira Code', 'Courier New', monospace;
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.85);
+  letter-spacing: 0.02em;
+  flex-shrink: 0;
+}
+
+.live-docket-type {
+  font-size: 0.68rem;
+  font-weight: 600;
+  padding: 0.12rem 0.45rem;
+  border-radius: 100px;
+  white-space: nowrap;
+}
+
+.live-docket-type--district {
+  color: #457b9d;
+  background: rgba(69, 123, 157, 0.12);
+  border: 1px solid rgba(69, 123, 157, 0.25);
+}
+
+.live-docket-type--appellate {
+  color: #c77dff;
+  background: rgba(199, 125, 255, 0.1);
+  border: 1px solid rgba(199, 125, 255, 0.25);
+}
+
+.live-docket-type--unknown {
+  color: rgba(255, 255, 255, 0.35);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.live-docket-links {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+
+.live-docket-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 6px;
+  padding: 0.2rem 0.55rem;
+  text-decoration: none;
+  transition: color 0.15s, background 0.15s, border-color 0.15s;
+  white-space: nowrap;
+}
+
+.live-docket-link:hover {
+  color: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.18);
+}
+
+.live-ext-icon {
+  width: 9px;
+  height: 9px;
+  flex-shrink: 0;
+}
+
+/* Load more */
+.live-load-more {
+  all: unset;
+  cursor: pointer;
+  display: block;
+  width: 100%;
+  text-align: center;
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.4);
+  padding: 1rem 0 0.25rem;
+  transition: color 0.15s;
+}
+
+.live-load-more:hover {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.live-no-results {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.35);
+  padding: 1rem 0;
+}
+
+/* Skeletons */
+.live-skeleton {
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 4px;
+  animation: shimmer 1.4s infinite;
+}
+
+.live-skeleton--title  { width: 240px; height: 1.6rem; border-radius: 6px; }
+.live-skeleton--docket { width: 140px; height: 0.85rem; }
+.live-skeleton--type   { width: 60px;  height: 0.85rem; }
+
+@keyframes shimmer {
+  0%   { opacity: 0.6; }
+  50%  { opacity: 0.35; }
+  100% { opacity: 0.6; }
+}
+
+@media (max-width: 600px) {
+  .live-feed-section {
+    padding: 1.25rem 1.1rem;
+  }
+
+  .live-feed-header {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .live-search-wrap {
+    width: 100%;
+  }
+
+  .live-docket-links {
+    flex-direction: column;
+    gap: 0.3rem;
+    align-items: flex-end;
+  }
+}
+
+/* Issue group */
+.issue-group-header {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.6rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.issue-group-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+  flex-shrink: 0;
+}
+
+.issue-group-title {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.75);
+  letter-spacing: 0.01em;
+}
+
+.issue-group-count {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.25);
+  margin-left: auto;
+}
+
+/* Case rows — reuse IssuePage styles via shared classes */
+.cases-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+/* ── Filter bar ──────────────────────────────────────────────── */
+.filter-bar {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 12px;
+  padding: 1rem 1.1rem;
+  margin-bottom: 2rem;
+}
+
+/* Search within page */
+.filter-search-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.filter-search-icon {
+  position: absolute;
+  left: 0.65rem;
+  width: 13px;
+  height: 13px;
+  color: rgba(255, 255, 255, 0.28);
+  pointer-events: none;
+}
+
+.filter-search-input {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 7px;
+  padding: 0.45rem 2rem 0.45rem 2rem;
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.85);
+  font-family: inherit;
+  outline: none;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.filter-search-input::placeholder { color: rgba(255, 255, 255, 0.22); }
+.filter-search-input:focus {
+  border-color: rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.filter-search-clear {
+  all: unset;
+  cursor: pointer;
+  position: absolute;
+  right: 0.65rem;
+  display: flex;
+  align-items: center;
+}
+
+.filter-search-clear svg {
+  width: 10px;
+  height: 10px;
+  color: rgba(255, 255, 255, 0.28);
+}
+
+.filter-search-clear:hover svg { color: rgba(255, 255, 255, 0.65); }
+
+/* Filter row */
+.filter-row {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  min-width: 0;
+}
+
+.filter-row-label {
+  font-size: 0.67rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.25);
+  white-space: nowrap;
+  flex-shrink: 0;
+  width: 44px;
+}
+
+.filter-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.filter-chips--scroll {
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  padding-bottom: 2px;
+  scrollbar-width: none;
+}
+
+.filter-chips--scroll::-webkit-scrollbar { display: none; }
+
+/* Individual chip */
+.filter-chip {
+  all: unset;
+  cursor: pointer;
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.73rem;
+  font-weight: 500;
+  padding: 0.28rem 0.7rem;
+  border-radius: 100px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.04);
+  color: rgba(255, 255, 255, 0.55);
+  white-space: nowrap;
+  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+.filter-chip:hover {
+  color: rgba(255, 255, 255, 0.85);
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.18);
+}
+
+.filter-chip--on {
+  color: var(--chip-color, rgba(255,255,255,0.85));
+  background: color-mix(in srgb, var(--chip-color, white) 14%, transparent);
+  border-color: color-mix(in srgb, var(--chip-color, white) 35%, transparent);
+}
+
+.chip-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--chip-color, rgba(255,255,255,0.4));
+  flex-shrink: 0;
+}
+
+/* Clear all */
+.filter-clear-all {
+  all: unset;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.73rem;
+  color: rgba(255, 255, 255, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 100px;
+  padding: 0.28rem 0.7rem;
+  align-self: flex-start;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+
+.filter-clear-all:hover {
+  color: rgba(255, 255, 255, 0.75);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.filter-clear-all svg {
+  width: 9px;
+  height: 9px;
+}
+
+/* No results */
+.no-results {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: rgba(255, 255, 255, 0.35);
+  font-size: 0.88rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* Case name with issue dot (filtered view) */
+.case-name-wrap {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-width: 0;
+}
+
+.case-issue-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.case-issue-label {
+  color: rgba(255, 255, 255, 0.4) !important;
+  font-style: italic;
+}
+
+@media (max-width: 600px) {
+  .filter-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .filter-row-label {
+    width: auto;
+  }
+
+  .filter-chips--scroll {
+    width: 100%;
+  }
+}
+
+/* Import shared case-row styles by reusing same class names defined in IssuePage.css.
+   Since IssuePage.css is not imported here, we redeclare the minimal set needed. */
+
+.case-row--clickable {
+  all: unset;
+  box-sizing: border-box;
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  padding: 1rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  width: 100%;
+  text-align: left;
+  transition: background 0.15s ease, transform 0.15s ease;
+}
+
+.case-row--clickable:hover {
+  background: rgba(255, 255, 255, 0.07);
+  transform: translateX(2px);
+}
+
+.case-row--clickable:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.3);
+  outline-offset: 2px;
+}
+
+.case-row-main {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.case-name {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.case-row-right {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-shrink: 0;
+}
+
+.case-row-arrow {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.2);
+  transition: color 0.15s ease, transform 0.15s ease;
+}
+
+.case-row--clickable:hover .case-row-arrow {
+  color: rgba(255, 255, 255, 0.55);
+  transform: translateX(3px);
+}
+
+.case-row-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  flex-wrap: wrap;
+}
+
+.case-meta-item {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.32);
+}
+
+.case-meta-divider {
+  color: rgba(255, 255, 255, 0.12);
+  font-size: 0.75rem;
+}
+
+.case-id-label {
+  font-family: 'SF Mono', 'Fira Code', monospace;
+  font-size: 0.68rem !important;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 0.1rem 0.35rem;
+  border-radius: 3px;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.case-description {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.38);
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Status badges */
+.status-badge {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 0.22rem 0.55rem;
+  border-radius: 100px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.badge-active        { color: #457b9d; background: rgba(69,123,157,0.15); border: 1px solid rgba(69,123,157,0.3); }
+.badge-injunction    { color: #f4a261; background: rgba(244,162,97,0.15); border: 1px solid rgba(244,162,97,0.3); }
+.badge-closed-for    { color: #2a9d8f; background: rgba(42,157,143,0.15); border: 1px solid rgba(42,157,143,0.3); }
+.badge-closed-against{ color: #e63946; background: rgba(230,57,70,0.15);  border: 1px solid rgba(230,57,70,0.3); }
+
+/* ── CourtListener enrichment progress ──────────────────────────────────── */
+.enrich-progress-wrap {
+  margin: 0 0 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.enrich-progress-track {
+  width: 100%;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.07);
+  border-radius: 100px;
+  overflow: hidden;
+}
+
+.enrich-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #457b9d, #6fbde8);
+  border-radius: 100px;
+  transition: width 0.4s ease;
+}
+
+.enrich-progress-label {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.enrich-complete-note {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.35);
+  margin: 0 0 1rem;
+}
+
+.enrich-complete-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #2a9d8f;
+  flex-shrink: 0;
+}
+
+/* ── Enriched case card ──────────────────────────────────────────────────── */
+.enrich-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 0.85rem 1rem;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: rgba(255, 255, 255, 0.025);
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.enrich-card:hover {
+  background: rgba(255, 255, 255, 0.045);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.enrich-card--skeleton {
+  pointer-events: none;
+}
+
+.enrich-card--clickable {
+  cursor: pointer;
+}
+
+.enrich-card--clickable:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.13);
+}
+
+.enrich-card-main {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.enrich-card-name {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.88);
+  line-height: 1.4;
+  word-break: break-word;
+}
+
+.enrich-docket-fallback {
+  font-family: 'SF Mono', 'Fira Code', monospace;
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.enrich-card-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.38);
+}
+
+.enrich-court {
+  color: rgba(255, 255, 255, 0.6);
+  font-weight: 500;
+}
+
+.enrich-docket-num {
+  font-family: 'SF Mono', 'Fira Code', monospace;
+  font-size: 0.7rem;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 0.05rem 0.35rem;
+  border-radius: 3px;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  color: rgba(255, 255, 255, 0.35);
+}
+
+.meta-dot {
+  color: rgba(255, 255, 255, 0.14);
+}
+
+.enrich-card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+  margin-top: 0.1rem;
+}
+
+.enrich-tag {
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  padding: 0.15rem 0.45rem;
+  border-radius: 100px;
+  white-space: nowrap;
+}
+
+.enrich-tag--suit  { color: #a8d8ea; background: rgba(168, 216, 234, 0.1); border: 1px solid rgba(168,216,234,0.18); }
+.enrich-tag--cause { color: #f4a261; background: rgba(244,162,97,0.1);  border: 1px solid rgba(244,162,97,0.18); }
+.enrich-tag--juris { color: rgba(255,255,255,0.4); background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); }
+
+.enrich-card-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+
+.enrich-status {
+  font-size: 0.64rem;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  padding: 0.2rem 0.55rem;
+  border-radius: 100px;
+  white-space: nowrap;
+}
+
+.enrich-status--active    { color: #6fbde8; background: rgba(111,189,232,0.12); border: 1px solid rgba(111,189,232,0.25); }
+.enrich-status--closed    { color: rgba(255,255,255,0.35); background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.09); }
+.enrich-status--loading   { display: flex; align-items: center; }
+
+.enrich-card-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  align-items: flex-end;
+}
+
+/* ── Example badge ──────────────────────────────────────────────────── */
+.example-badge {
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.35);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  padding: 0.1rem 0.4rem;
+  margin-left: 0.5rem;
+  flex-shrink: 0;
+}
+
+/* ── CL case description fallback (nature of suit / cause) ──────────── */
+.case-description--meta {
+  color: rgba(255, 255, 255, 0.28);
+  font-style: normal;
+  font-size: 0.78rem;
+}

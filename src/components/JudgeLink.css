@@ -1,0 +1,132 @@
+/* ── JudgeLink — inline judge name with hover tooltip ──────────────────────── */
+
+.judge-link-item {
+  display: inline;
+}
+
+.judge-sep {
+  color: rgba(255, 255, 255, 0.35);
+  user-select: none;
+}
+
+/* Unmatched judge — plain text, same style as surroundings */
+.judge-plain {
+  display: inline;
+  color: inherit;
+}
+
+/* Matched judge — interactive span styled like a subtle link */
+.judge-link-wrap {
+  display: inline;
+  position: relative;
+}
+
+.judge-link {
+  display: inline;
+  color: #8ec3e6;
+  text-decoration: underline;
+  text-decoration-color: rgba(142, 195, 230, 0.35);
+  text-underline-offset: 2px;
+  cursor: pointer;
+  border-radius: 2px;
+  transition: color 0.15s, text-decoration-color 0.15s;
+  outline: none;
+}
+
+.judge-link:hover,
+.judge-link:focus-visible {
+  color: #b8d9f0;
+  text-decoration-color: rgba(184, 217, 240, 0.6);
+}
+
+.judge-link:focus-visible {
+  outline: 2px solid rgba(142, 195, 230, 0.5);
+  outline-offset: 2px;
+}
+
+/* ── Tooltip ──────────────────────────────────────────────────────────────── */
+
+.judge-tooltip {
+  /* Hidden by default */
+  display: none;
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 200;
+
+  /* Dark glass style */
+  background: rgba(14, 18, 28, 0.96);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 10px 13px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(6px);
+
+  /* Width */
+  min-width: 200px;
+  max-width: 280px;
+  white-space: normal;
+
+  /* Typography */
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.85);
+  pointer-events: none;
+
+  /* Arrow */
+  &::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 5px solid transparent;
+    border-top-color: rgba(14, 18, 28, 0.96);
+  }
+}
+
+/* Show on hover of the wrapping span */
+.judge-link-wrap:hover .judge-tooltip {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+/* Party row */
+.judge-tooltip-party {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--party-color, #888);
+}
+
+.judge-tooltip-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--party-color, #888);
+  flex-shrink: 0;
+}
+
+/* Court name */
+.judge-tooltip-court {
+  font-size: 0.72rem;
+  color: rgba(255, 255, 255, 0.9);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 100%;
+}
+
+/* Years of service */
+.judge-tooltip-service {
+  font-size: 0.68rem;
+  color: rgba(255, 255, 255, 0.55);
+}

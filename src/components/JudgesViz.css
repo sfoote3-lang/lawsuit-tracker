@@ -1,0 +1,316 @@
+.judges-section {
+  position: relative;
+  z-index: 1;
+  margin-bottom: 5rem;
+}
+
+.judges-subtitle {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.38);
+  line-height: 1.6;
+  max-width: 600px;
+  margin-bottom: 1.75rem;
+}
+
+/* ── Stage (dot field) ──────────────────────────── */
+.judges-stage {
+  position: relative;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 14px;
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+
+.judges-col-labels {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 1.25rem 0;
+  pointer-events: none;
+}
+
+.judges-col-label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+
+.judges-col-label.visible {
+  opacity: 1;
+}
+
+.judges-col-label--against { align-items: flex-start; }
+.judges-col-label--for     { align-items: flex-end; }
+
+.judges-col-count {
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+
+.judges-col-label--against .judges-col-count { color: #457b9d; }
+.judges-col-label--for     .judges-col-count { color: #e63946; }
+
+.judges-col-name {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.3);
+}
+
+/* ── Dot field ──────────────────────────────────── */
+.judges-field {
+  position: relative;
+  height: 280px;
+  margin: 0.5rem 0 1rem;
+}
+
+/* Center divider line */
+.judges-divider {
+  position: absolute;
+  left: 50%;
+  top: 5%;
+  height: 90%;
+  width: 1px;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    rgba(255, 255, 255, 0.1) 20%,
+    rgba(255, 255, 255, 0.1) 80%,
+    transparent
+  );
+  transform: translateX(-50%);
+  opacity: 0;
+  transition: opacity 0.5s ease 0.8s;
+}
+
+.judges-divider.visible {
+  opacity: 1;
+}
+
+/* ── Individual dots ────────────────────────────── */
+.judge-dot {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 2.5px solid;
+  cursor: pointer;
+  transform: translate(-50%, -50%);
+  /* smooth movement */
+  transition:
+    left  0.9s cubic-bezier(0.34, 1.2, 0.64, 1),
+    top   0.9s cubic-bezier(0.34, 1.2, 0.64, 1),
+    opacity 0.4s ease;
+}
+
+/* Party colors */
+.judge-dot--d {
+  background: rgba(69, 123, 157, 0.25);
+  border-color: #457b9d;
+}
+
+.judge-dot--r {
+  background: rgba(230, 57, 70, 0.22);
+  border-color: #e63946;
+}
+
+/* Pulsing glow on reveal */
+.judge-dot--placed {
+  animation: dotPop 0.35s ease forwards;
+  animation-delay: var(--delay, 0s);
+}
+
+@keyframes dotPop {
+  0%   { transform: translate(-50%, -50%) scale(0.6); }
+  60%  { transform: translate(-50%, -50%) scale(1.25); }
+  100% { transform: translate(-50%, -50%) scale(1); }
+}
+
+.judge-dot:hover {
+  transform: translate(-50%, -50%) scale(1.5);
+  z-index: 10 !important;
+}
+
+.judge-dot--d:hover { background: rgba(69, 123, 157, 0.55); }
+.judge-dot--r:hover { background: rgba(230, 57, 70, 0.5);  }
+
+/* ── Hover tooltip ──────────────────────────────── */
+.dot-tooltip {
+  position: absolute;
+  bottom: calc(100% + 10px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(14, 14, 20, 0.97);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  padding: 0.6rem 0.8rem;
+  min-width: 180px;
+  max-width: 240px;
+  pointer-events: none;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+  white-space: normal;
+  z-index: 100;
+}
+
+/* Keep tooltip inside stage on edges */
+.judge-dot:nth-child(-n+6) .dot-tooltip {
+  bottom: auto;
+  top: calc(100% + 10px);
+}
+
+.dot-tt-party {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.4);
+  margin-bottom: 0.25rem;
+}
+
+.dot-tt-court {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 0.2rem;
+}
+
+.dot-tt-note {
+  font-size: 0.72rem;
+  color: rgba(255, 255, 255, 0.48);
+  line-height: 1.5;
+}
+
+/* ── Breakdown stats ────────────────────────────── */
+.judges-breakdown {
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 1rem;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.5s ease 1.2s, transform 0.5s ease 1.2s;
+}
+
+.judges-breakdown.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.breakdown-group {
+  flex: 1;
+  padding: 1.1rem 1.4rem;
+}
+
+.breakdown-group--against { border-right: 1px solid rgba(255, 255, 255, 0.06); }
+
+.breakdown-label {
+  font-size: 0.67rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.25);
+  margin-bottom: 0.75rem;
+}
+
+.breakdown-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.breakdown-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.bd-count {
+  margin-left: auto;
+  font-size: 0.88rem;
+  color: rgba(255, 255, 255, 0.85);
+  font-variant-numeric: tabular-nums;
+}
+
+.bd-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: 2px solid;
+  flex-shrink: 0;
+}
+
+.bd-dot--dem { background: rgba(69,123,157,0.3); border-color: #457b9d; }
+.bd-dot--rep { background: rgba(230,57,70,0.25); border-color: #e63946; }
+
+.breakdown-divider {
+  width: 1px;
+  background: rgba(255, 255, 255, 0.06);
+  flex-shrink: 0;
+}
+
+/* ── Legend ─────────────────────────────────────── */
+.judges-legend {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: 0 0.25rem;
+}
+
+.jl-item {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.jl-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 2px solid;
+  flex-shrink: 0;
+}
+
+.jl-dot--dem { background: rgba(69,123,157,0.3); border-color: #457b9d; }
+.jl-dot--rep { background: rgba(230,57,70,0.25); border-color: #e63946; }
+
+.jl-note {
+  font-size: 0.68rem;
+  color: rgba(255, 255, 255, 0.2);
+  margin-left: auto;
+  font-style: italic;
+}
+
+/* ── Responsive ─────────────────────────────────── */
+@media (max-width: 600px) {
+  .judges-field {
+    height: 360px;
+  }
+
+  .judges-breakdown {
+    flex-direction: column;
+  }
+
+  .breakdown-group--against {
+    border-right: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  .jl-note {
+    margin-left: 0;
+    width: 100%;
+  }
+}
