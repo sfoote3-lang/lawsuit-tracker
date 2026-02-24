@@ -50,7 +50,7 @@ const router = createBrowserRouter([
     path: '/case/gemini-test',
     element: <GeminiCasePage />,
   },
-])
+], { basename: '/lawsuit-tracker' })
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>

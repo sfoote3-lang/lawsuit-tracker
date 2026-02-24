@@ -5,7 +5,17 @@
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Trump Administration Lawsuit Tracker</title>
-  <meta name="description" content="Tracking major federal lawsuits filed against the Trump administration since January 20, 2025." />
+    <meta name="description" content="Tracking major federal lawsuits filed against the Trump administration since January 20, 2025." />
+    <script>
+      // GitHub Pages SPA redirect handler: restore the route encoded by 404.html
+      (function () {
+        var p = window.location.search.slice(1);
+        if (p.indexOf('p=') === 0) {
+          var decoded = decodeURIComponent(p.slice(2).replace(/&q=/, '?'));
+          window.history.replaceState(null, null, '/' + decoded);
+        }
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>
