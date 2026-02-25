@@ -89,6 +89,13 @@ export default function NavBar() {
           {/* Plain nav links */}
           <button className="navbar-link" onClick={() => go('/news')}>News</button>
           <button className="navbar-link" onClick={() => go('/about')}>About</button>
+          <button className="navbar-link navbar-link--dict" onClick={() => go('/dictionary')}>
+            <svg viewBox="0 0 13 13" fill="none" className="navbar-dict-icon">
+              <path d="M2 10V2h7l2 2v6a1 1 0 01-1 1H3a1 1 0 01-1-1z" stroke="currentColor" strokeWidth="1.2" strokeLinejoin="round"/>
+              <path d="M5 5.5h3M5 7.5h2" stroke="currentColor" strokeWidth="1.1" strokeLinecap="round"/>
+            </svg>
+            Dictionary
+          </button>
 
           {/* Issues dropdown */}
           <div className="navbar-dropdown" ref={issueRef}>

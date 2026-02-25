@@ -62,6 +62,23 @@
   color: rgba(255, 255, 255, 0.9);
 }
 
+.navbar-link--dict {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  color: rgba(199, 125, 255, 0.6);
+}
+
+.navbar-link--dict:hover {
+  color: #c77dff;
+}
+
+.navbar-dict-icon {
+  width: 12px;
+  height: 12px;
+  flex-shrink: 0;
+}
+
 /* ── Issues dropdown ─────────────────────────────────────────── */
 .navbar-dropdown {
   position: relative;

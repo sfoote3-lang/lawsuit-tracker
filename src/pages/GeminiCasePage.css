@@ -1,3 +1,96 @@
+/* ── Header tags row (badges under the title) ────────────────── */
+.case-header-tags {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 0.65rem;
+}
+
+/* ── Court tag badge (header) ─────────────────────────────────── */
+.court-tag-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  color: rgba(255, 255, 255, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 100px;
+  padding: 0.22rem 0.6rem;
+  flex-shrink: 0;
+}
+
+.court-tag-icon {
+  width: 10px;
+  height: 10px;
+  flex-shrink: 0;
+  opacity: 0.7;
+}
+
+/* ── Judges row (header) ───────────────────────────────────────── */
+.case-judges-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.55rem;
+  margin-bottom: 0.25rem;
+}
+
+.case-judge-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.78rem;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 8px;
+  padding: 0.3rem 0.7rem;
+}
+
+.case-judge-role {
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.3);
+}
+
+/* ── Overall favorability badge (header) ─────────────────────── */
+.favorability-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.67rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  border-radius: 100px;
+  padding: 0.22rem 0.65rem;
+  flex-shrink: 0;
+  cursor: help;
+}
+
+.favorability-badge--plaintiff {
+  color: #2a9d8f;
+  border: 1px solid rgba(42, 157, 143, 0.35);
+  background: rgba(42, 157, 143, 0.1);
+}
+
+.favorability-badge--defendant {
+  color: #e63946;
+  border: 1px solid rgba(230, 57, 70, 0.35);
+  background: rgba(230, 57, 70, 0.1);
+}
+
+.favorability-badge--neutral {
+  color: rgba(255, 255, 255, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.05);
+}
+
 /* ── Gemini AI badge (header) ─────────────────────────────────── */
 .gemini-ai-badge {
   display: inline-flex;
@@ -12,8 +105,6 @@
   border-radius: 100px;
   padding: 0.25rem 0.65rem;
   flex-shrink: 0;
-  align-self: flex-start;
-  margin-top: 3px;
 }
 
 .gemini-ai-icon {
@@ -182,8 +273,10 @@
 /* ── Courts track: horizontal left-to-right layout ───────────── */
 .courts-section .courts-tiers {
   flex-direction: row;
-  align-items: center;
+  align-items: flex-start;
   display: flex;
+  flex-wrap: wrap;
+  gap: 0;
 }
 
 .courts-section .courts-tier-wrap {
@@ -196,12 +289,15 @@
   height: auto;
   width: 44px;
   flex-shrink: 0;
+  align-self: center;
 }
 
 .courts-section .courts-tier-arrow svg {
   width: 28px;
   height: 8px;
 }
+
+/* ── Courts track: clickable node styles ──────────────────────── */
 
 /* ── Background News Articles ─────────────────────────────────── */
 .gemini-news-section {
@@ -295,6 +391,75 @@
   margin-bottom: 3.5rem;
 }
 
+.parties-section-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.parties-expand-btn {
+  all: unset;
+  cursor: pointer;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: rgba(199, 125, 255, 0.7);
+  border: 1px solid rgba(199, 125, 255, 0.2);
+  border-radius: 6px;
+  padding: 0.22rem 0.6rem;
+  transition: color 0.15s, border-color 0.15s, background 0.15s;
+  flex-shrink: 0;
+}
+
+.parties-expand-btn:hover {
+  color: #c77dff;
+  border-color: rgba(199, 125, 255, 0.4);
+  background: rgba(199, 125, 255, 0.06);
+}
+
+.parties-col-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.55rem;
+  font-weight: 700;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 100px;
+  padding: 0.05rem 0.38rem;
+  margin-left: 0.4rem;
+  color: rgba(255, 255, 255, 0.45);
+  letter-spacing: 0;
+  vertical-align: middle;
+}
+
+.parties-more-btn {
+  all: unset;
+  cursor: pointer;
+  display: inline-block;
+  margin-top: 0.5rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.35);
+  border-bottom: 1px dashed rgba(255, 255, 255, 0.15);
+  transition: color 0.15s, border-color 0.15s;
+}
+
+.parties-more-btn:hover {
+  color: rgba(255, 255, 255, 0.65);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.parties-group-tag {
+  display: block;
+  font-size: 0.56rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 0.15rem;
+  opacity: 0.8;
+}
+
 .parties-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -309,6 +474,8 @@
 }
 
 .parties-col-label {
+  display: flex;
+  align-items: center;
   font-size: 0.58rem;
   font-weight: 700;
   letter-spacing: 0.1em;
@@ -380,7 +547,1119 @@
   color: rgba(255, 255, 255, 0.6);
 }
 
+/* ── Case status label chip ────────────────────────────────────── */
+.case-status-label-chip {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.67rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 100px;
+  padding: 0.22rem 0.65rem;
+  flex-shrink: 0;
+}
+
+/* ── Laws at Issue section ──────────────────────────────────────── */
+.laws-section {
+  position: relative;
+  z-index: 1;
+  margin-bottom: 3.5rem;
+}
+
+.laws-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.law-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-left: 3px solid rgba(199, 125, 255, 0.4);
+  border-radius: 0 10px 10px 0;
+  padding: 0.9rem 1.2rem;
+}
+
+.law-card-top {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  margin-bottom: 0.45rem;
+  flex-wrap: wrap;
+}
+
+.law-citation {
+  font-family: 'SF Mono', 'Fira Code', monospace;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #c77dff;
+  text-decoration: none;
+  letter-spacing: 0.02em;
+  border-bottom: 1px solid rgba(199, 125, 255, 0.25);
+  transition: color 0.15s, border-color 0.15s;
+}
+
+.law-citation:hover {
+  color: rgba(199, 125, 255, 0.85);
+  border-bottom-color: rgba(199, 125, 255, 0.5);
+}
+
+.law-short-name {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.38);
+  letter-spacing: 0.01em;
+}
+
+.law-claim {
+  font-size: 0.83rem;
+  color: rgba(255, 255, 255, 0.55);
+  line-height: 1.68;
+  margin: 0;
+}
+
+/* ── Courts hint ──────────────────────────────────────────────── */
+.courts-hint {
+  font-size: 0.73rem;
+  color: rgba(255, 255, 255, 0.28);
+  margin: -0.5rem 0 1rem;
+}
+
+/* ── Clickable court node ─────────────────────────────────────── */
+.court-node--clickable {
+  all: unset;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s, transform 0.1s;
+}
+
+.court-node--clickable:hover {
+  background: rgba(255, 255, 255, 0.06);
+  transform: translateY(-1px);
+}
+
+.court-node-filter-hint {
+  font-size: 0.58rem;
+  color: rgba(255, 255, 255, 0.2);
+  margin-top: 0.25rem;
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+
+.court-node--clickable:hover .court-node-filter-hint {
+  opacity: 1;
+}
+
+/* ── Badge doc hover popup ────────────────────────────────────── */
+.timeline-type-badge {
+  position: relative;
+}
+
+.badge-doc-popup {
+  position: absolute;
+  bottom: calc(100% + 6px);
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  background: #16141f;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 7px;
+  padding: 0.4rem 0.7rem;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  z-index: 50;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+  pointer-events: auto;
+}
+
+.badge-doc-popup::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid rgba(255, 255, 255, 0.12);
+}
+
+.bdp-icon {
+  width: 11px;
+  height: 11px;
+  color: rgba(255, 255, 255, 0.4);
+  flex-shrink: 0;
+}
+
+.bdp-link {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.65);
+  text-decoration: none;
+  transition: color 0.15s;
+}
+
+.bdp-link:hover {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* ── Defendant groups ─────────────────────────────────────────── */
+.parties-grid--wide {
+  grid-template-columns: 1fr 1.4fr;
+}
+
+.parties-col--defendants {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.def-group {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  padding-bottom: 0.6rem;
+}
+
+.def-group:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.def-group-label {
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  margin-bottom: 0.35rem;
+}
+
+/* ── Executive Action Status (highlighted box) ────────────────── */
+.exec-status-section {
+  position: relative;
+  z-index: 1;
+  margin-bottom: 3.5rem;
+}
+
+.exec-status-card {
+  border-radius: 14px;
+  border-width: 1px;
+  border-style: solid;
+  padding: 1.6rem 1.8rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.exec-status-card--blocking {
+  background: rgba(230, 57, 70, 0.07);
+  border-color: rgba(230, 57, 70, 0.3);
+}
+
+.exec-status-card--blocking::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(230, 57, 70, 0.05) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+/* Yellow / amber warning variant */
+.exec-status-card--warning {
+  background: rgba(255, 193, 7, 0.06);
+  border-color: rgba(255, 193, 7, 0.35);
+  box-shadow: 0 0 0 1px rgba(255, 193, 7, 0.07) inset;
+}
+
+.exec-status-card--warning::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255, 193, 7, 0.05) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.exec-status-card--stayed {
+  background: rgba(244, 162, 97, 0.07);
+  border-color: rgba(244, 162, 97, 0.3);
+}
+
+.exec-status-card--ongoing {
+  background: rgba(69, 123, 157, 0.07);
+  border-color: rgba(69, 123, 157, 0.3);
+}
+
+.exec-status-card--resolved {
+  background: rgba(42, 157, 143, 0.07);
+  border-color: rgba(42, 157, 143, 0.3);
+}
+
+.exec-status-top {
+  margin-bottom: 1rem;
+}
+
+.exec-status-label-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.exec-status-pill {
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  background: rgba(230, 57, 70, 0.18);
+  color: #e63946;
+  border: 1px solid rgba(230, 57, 70, 0.3);
+  border-radius: 100px;
+  padding: 0.18rem 0.65rem;
+}
+
+.exec-status-pill--warning {
+  background: rgba(255, 193, 7, 0.15);
+  color: #ffc107;
+  border-color: rgba(255, 193, 7, 0.3);
+}
+
+.exec-status-as-of {
+  font-size: 0.68rem;
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.exec-status-headline {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0;
+  line-height: 1.3;
+}
+
+.exec-status-summary {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.65);
+  line-height: 1.7;
+  margin: 0 0 0.85rem;
+}
+
+.exec-status-detail {
+  font-size: 0.83rem;
+  color: rgba(255, 255, 255, 0.45);
+  line-height: 1.7;
+  margin: 0 0 1.1rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.exec-status-next {
+  margin-bottom: 1.1rem;
+}
+
+.exec-status-next-label {
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.25);
+  margin-bottom: 0.45rem;
+}
+
+.exec-status-next-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.exec-status-next-list li {
+  font-size: 0.78rem;
+  color: rgba(255, 255, 255, 0.45);
+  padding-left: 1rem;
+  position: relative;
+}
+
+.exec-status-next-list li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: #ffc107;
+  font-size: 0.7rem;
+}
+
+.exec-status-cite {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.35);
+  text-decoration: none;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  padding: 0.25rem 0.65rem;
+  transition: color 0.15s, border-color 0.15s, background 0.15s;
+}
+
+.exec-status-cite:hover {
+  color: rgba(255, 255, 255, 0.75);
+  border-color: rgba(255, 255, 255, 0.22);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.exec-status-cite-icon {
+  width: 13px;
+  height: 13px;
+  flex-shrink: 0;
+}
+
+/* ── Timeline header row (with dictionary nav) ────────────────── */
+.timeline-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.timeline-tooltip-hint {
+  font-size: 0.73rem;
+  color: rgba(255, 255, 255, 0.28);
+  margin: 0 0 1.5rem;
+}
+
+.timeline-tooltip-sample {
+  border-bottom: 1px dotted rgba(199, 125, 255, 0.55);
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.dict-nav-btn {
+  all: unset;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: rgba(199, 125, 255, 0.65);
+  border: 1px solid rgba(199, 125, 255, 0.2);
+  border-radius: 6px;
+  padding: 0.28rem 0.7rem;
+  cursor: pointer;
+  transition: color 0.15s, border-color 0.15s, background 0.15s;
+}
+
+.dict-nav-btn:hover {
+  color: #c77dff;
+  border-color: rgba(199, 125, 255, 0.4);
+  background: rgba(199, 125, 255, 0.06);
+}
+
+.dict-nav-icon {
+  width: 12px;
+  height: 12px;
+  flex-shrink: 0;
+}
+
+/* ── Judicial Officers section ────────────────────────────────── */
+.judicial-section {
+  position: relative;
+  z-index: 1;
+  margin-bottom: 3.5rem;
+}
+
+.judicial-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.judicial-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 12px;
+  padding: 1.2rem 1.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.judicial-card--presiding {
+  border-color: rgba(199, 125, 255, 0.2);
+  background: rgba(199, 125, 255, 0.03);
+}
+
+.judicial-role {
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #c77dff;
+  margin-bottom: 0.2rem;
+}
+
+.judicial-name {
+  font-size: 1rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.judicial-title {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.5);
+  margin-bottom: 0.1rem;
+}
+
+.judicial-court {
+  font-size: 0.72rem;
+  color: rgba(255, 255, 255, 0.3);
+  margin-bottom: 0.25rem;
+}
+
+.judicial-appt {
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.35);
+  font-style: italic;
+  margin-bottom: 0.5rem;
+}
+
+.judicial-bio {
+  font-size: 0.78rem;
+  color: rgba(255, 255, 255, 0.42);
+  line-height: 1.6;
+  margin: 0.35rem 0 0.6rem;
+}
+
+.judicial-link {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: rgba(199, 125, 255, 0.55);
+  text-decoration: none;
+  align-self: flex-start;
+  transition: color 0.15s;
+}
+
+.judicial-link:hover {
+  color: #c77dff;
+}
+
+/* ── Action rows — title + classification ─────────────────────── */
+.action-title {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.82);
+  margin: 0.3rem 0 0.4rem;
+  line-height: 1.35;
+}
+
+.action-class-badge {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  border-radius: 4px;
+  padding: 0.1rem 0.45rem;
+}
+
+.action-class-badge--plaintiff {
+  color: #2a9d8f;
+  border: 1px solid rgba(42, 157, 143, 0.35);
+  background: rgba(42, 157, 143, 0.1);
+}
+
+.action-class-badge--defendant {
+  color: #e63946;
+  border: 1px solid rgba(230, 57, 70, 0.35);
+  background: rgba(230, 57, 70, 0.1);
+}
+
+.action-class-badge--neutral {
+  color: rgba(255, 255, 255, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.action-class-reason {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.35rem;
+  margin-top: 0.5rem;
+  font-size: 0.74rem;
+  line-height: 1.5;
+  border-radius: 6px;
+  padding: 0.45rem 0.65rem;
+}
+
+.action-class-reason--plaintiff {
+  color: rgba(42, 157, 143, 0.85);
+  background: rgba(42, 157, 143, 0.07);
+  border: 1px solid rgba(42, 157, 143, 0.15);
+}
+
+.action-class-reason--defendant {
+  color: rgba(230, 57, 70, 0.85);
+  background: rgba(230, 57, 70, 0.07);
+  border: 1px solid rgba(230, 57, 70, 0.15);
+}
+
+.acr-icon {
+  width: 12px;
+  height: 12px;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+/* ── Admin section ────────────────────────────────────────────── */
+/* ── Enrich from Sheets section ───────────────────────────────── */
+.enrich-section {
+  position: relative;
+  z-index: 1;
+  margin-bottom: 2rem;
+  background: rgba(42, 157, 143, 0.04);
+  border: 1px solid rgba(42, 157, 143, 0.18);
+  border-radius: 14px;
+  padding: 1.25rem 1.5rem;
+}
+
+.enrich-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.enrich-header-left {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  flex: 1;
+  min-width: 0;
+}
+
+.enrich-sheets-icon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.enrich-title {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.85);
+  margin-bottom: 0.25rem;
+}
+
+.enrich-subtitle {
+  font-size: 0.78rem;
+  color: rgba(255, 255, 255, 0.45);
+  line-height: 1.5;
+}
+
+.enrich-sheet-link {
+  color: #2a9d8f;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(42, 157, 143, 0.3);
+  transition: color 0.15s, border-color 0.15s;
+}
+.enrich-sheet-link:hover { color: #3bbfb0; border-color: #3bbfb0; }
+
+.enrich-btn {
+  all: unset;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #2a9d8f;
+  background: rgba(42, 157, 143, 0.1);
+  border: 1px solid rgba(42, 157, 143, 0.35);
+  border-radius: 8px;
+  padding: 0.45rem 0.9rem;
+  transition: background 0.15s, border-color 0.15s;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.enrich-btn:hover:not(:disabled) {
+  background: rgba(42, 157, 143, 0.18);
+  border-color: rgba(42, 157, 143, 0.55);
+}
+.enrich-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+
+.enrich-btn--running { color: rgba(255, 255, 255, 0.5); }
+
+.enrich-btn-icon {
+  width: 12px;
+  height: 12px;
+  flex-shrink: 0;
+}
+
+.enrich-spinner {
+  display: inline-block;
+  width: 11px;
+  height: 11px;
+  border: 1.5px solid rgba(255, 255, 255, 0.2);
+  border-top-color: rgba(255, 255, 255, 0.7);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  flex-shrink: 0;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.enrich-setup-note {
+  margin-top: 0.9rem;
+  font-size: 0.74rem;
+  color: rgba(255, 255, 255, 0.3);
+  line-height: 1.6;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  padding-top: 0.75rem;
+}
+
+.enrich-cmd {
+  font-family: 'SF Mono', 'Fira Code', monospace;
+  font-size: 0.7rem;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  padding: 0.1rem 0.35rem;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.enrich-sep { margin: 0 0.4rem; opacity: 0.4; }
+
+.enrich-log {
+  margin-top: 0.9rem;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 8px;
+  padding: 0.7rem 1rem;
+  max-height: 220px;
+  overflow-y: auto;
+  font-family: 'SF Mono', 'Fira Code', monospace;
+  font-size: 0.7rem;
+  line-height: 1.7;
+}
+
+.enrich-log-line { color: rgba(255, 255, 255, 0.45); }
+.enrich-log-line--ok  { color: rgba(42, 157, 143, 0.85); }
+.enrich-log-line--err { color: rgba(230, 57, 70, 0.85); }
+.enrich-log-line--pulse {
+  color: rgba(255, 255, 255, 0.5);
+  animation: blink 1s step-end infinite;
+}
+@keyframes blink { 50% { opacity: 0; } }
+
+.enrich-result {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  margin-top: 0.9rem;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  font-size: 0.78rem;
+}
+.enrich-result--ok  { background: rgba(42, 157, 143, 0.08); border: 1px solid rgba(42, 157, 143, 0.2); }
+.enrich-result--err { background: rgba(230, 57, 70, 0.08);  border: 1px solid rgba(230, 57, 70, 0.2); }
+
+.enrich-result-icon { width: 16px; height: 16px; flex-shrink: 0; margin-top: 1px; }
+
+.enrich-result-title {
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 0.2rem;
+}
+
+.enrich-result-meta { color: rgba(255, 255, 255, 0.45); line-height: 1.6; }
+
+/* ── Admin section ─────────────────────────────────────────────── */
+.admin-section {
+  position: relative;
+  z-index: 1;
+  margin-bottom: 3.5rem;
+}
+
+.admin-toggle {
+  all: unset;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0.85rem 1.1rem;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.admin-toggle:hover {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+.admin-toggle-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: rgba(255, 255, 255, 0.4);
+  font-family: 'SF Mono', 'Fira Code', monospace;
+}
+
+.admin-toggle-chevron {
+  font-size: 0.6rem;
+  color: rgba(255, 255, 255, 0.25);
+}
+
+.admin-icon {
+  width: 13px;
+  height: 13px;
+  flex-shrink: 0;
+}
+
+.admin-box {
+  margin-top: 0.5rem;
+  background: rgba(10, 10, 15, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  overflow: hidden;
+  font-family: 'SF Mono', 'Fira Code', monospace;
+}
+
+.admin-box-intro {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.3);
+  padding: 1rem 1.25rem 0;
+  line-height: 1.6;
+  font-family: inherit;
+}
+
+.admin-block {
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  padding: 1rem 1.25rem;
+}
+
+.admin-block:first-child {
+  border-top: none;
+}
+
+.admin-block--note {
+  background: rgba(255, 255, 255, 0.015);
+}
+
+.admin-block-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.75rem;
+}
+
+.admin-block-title {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.5);
+  margin-bottom: 0.55rem;
+}
+
+.admin-block-header .admin-block-title {
+  margin-bottom: 0;
+}
+
+.admin-block-note {
+  font-size: 0.72rem;
+  color: rgba(255, 255, 255, 0.3);
+  line-height: 1.65;
+  margin: 0 0 0.6rem;
+  font-family: inherit;
+}
+
+.admin-block-note strong {
+  color: rgba(255, 255, 255, 0.55);
+}
+
+/* Pricing reference bar */
+.admin-pricing-ref {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.5rem;
+  font-size: 0.66rem;
+  color: rgba(255, 255, 255, 0.3);
+  margin-bottom: 0.9rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.admin-pricing-ref strong {
+  color: rgba(255, 255, 255, 0.55);
+}
+
+/* Tier toggle */
+.admin-tier-toggle {
+  display: flex;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.admin-tier-seg {
+  all: unset;
+  padding: 0.2rem 0.6rem;
+  font-size: 0.64rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.28);
+  cursor: pointer;
+  transition: background 0.12s, color 0.12s;
+  font-family: 'SF Mono', 'Fira Code', monospace;
+}
+
+.admin-tier-seg + .admin-tier-seg {
+  border-left: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.admin-tier-seg--on {
+  background: rgba(255, 255, 255, 0.07);
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* Phase breakdown */
+.admin-phase {
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 6px;
+  padding: 0.7rem 0.85rem;
+  margin-bottom: 0.5rem;
+}
+
+.admin-phase-title {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.6);
+  margin-bottom: 0.15rem;
+}
+
+.admin-phase-desc {
+  font-size: 0.62rem;
+  color: rgba(255, 255, 255, 0.25);
+  margin-bottom: 0.55rem;
+  line-height: 1.45;
+  font-family: inherit;
+}
+
+.admin-phase-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.admin-phase-stat {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  gap: 0.5rem 1rem;
+  align-items: center;
+}
+
+.admin-phase-stat--subtotal {
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  padding-top: 0.15rem;
+  margin-top: 0.1rem;
+}
+
+.aps-label {
+  font-size: 0.62rem;
+  color: rgba(255, 255, 255, 0.28);
+}
+
+.aps-val {
+  font-size: 0.65rem;
+  color: rgba(255, 255, 255, 0.45);
+  text-align: right;
+  min-width: 80px;
+}
+
+.aps-cost {
+  font-size: 0.65rem;
+  color: rgba(255, 255, 255, 0.55);
+  text-align: right;
+  min-width: 60px;
+}
+
+/* Summary rows */
+.admin-row {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  gap: 0.5rem 1rem;
+  align-items: center;
+  padding: 0.28rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+  font-size: 0.65rem;
+}
+
+.admin-row--total {
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+  border-bottom: none;
+  padding-top: 0.4rem;
+}
+
+.admin-row--grand {
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  border-bottom: none;
+  padding-top: 0.4rem;
+  margin-top: 0.25rem;
+}
+
+.admin-row-label {
+  color: rgba(255, 255, 255, 0.38);
+}
+
+.admin-row--total .admin-row-label,
+.admin-row--grand .admin-row-label {
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.admin-row-val {
+  color: rgba(255, 255, 255, 0.45);
+  text-align: right;
+  min-width: 80px;
+}
+
+.admin-row-cost {
+  color: rgba(255, 255, 255, 0.55);
+  text-align: right;
+  min-width: 60px;
+}
+
+.admin-row-cost--free {
+  color: rgba(42, 157, 143, 0.7);
+}
+
+.admin-row-cost--highlight {
+  color: #c77dff;
+  font-weight: 700;
+}
+
+.admin-row-val--mono {
+  font-family: 'SF Mono', 'Fira Code', monospace;
+  font-size: 0.58rem;
+  color: rgba(255, 255, 255, 0.3);
+  text-align: right;
+  min-width: 0;
+  max-width: 220px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* PACER progress bar */
+.admin-pacer-bar {
+  height: 3px;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 2px;
+  margin: 0.5rem 0 0;
+  overflow: hidden;
+}
+
+.admin-pacer-fill {
+  height: 100%;
+  background: #2a9d8f;
+  border-radius: 2px;
+  min-width: 2px;
+  transition: width 0.5s ease;
+}
+
+/* PACER projections */
+.admin-projections {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.admin-proj-row {
+  display: grid;
+  grid-template-columns: 80px 90px 90px 1fr;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.63rem;
+}
+
+.apr-cases {
+  color: rgba(255, 255, 255, 0.5);
+  font-weight: 600;
+}
+
+.apr-reqs {
+  color: rgba(255, 255, 255, 0.38);
+  text-align: right;
+}
+
+.apr-pct {
+  color: rgba(255, 255, 255, 0.38);
+  text-align: right;
+}
+
+.apr-pct--warn {
+  color: #ffc107;
+}
+
+.apr-bar-wrap {
+  height: 3px;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.apr-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #2a9d8f, #f4a261, #e63946);
+  border-radius: 2px;
+  min-width: 2px;
+}
+
+.admin-footer {
+  padding: 0.75rem 1.25rem;
+  font-size: 0.62rem;
+  color: rgba(255, 255, 255, 0.2);
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  line-height: 1.55;
+}
+
 /* ── Responsive ──────────────────────────────────────────────── */
+@media (max-width: 700px) {
+  .judicial-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .timeline-header-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .admin-block-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .admin-pricing-ref {
+    gap: 0.4rem 1rem;
+  }
+}
+
 @media (max-width: 600px) {
   .gemini-context-row {
     padding: 1.25rem 1.25rem;
@@ -392,5 +1671,9 @@
 
   .parties-grid {
     grid-template-columns: 1fr;
+  }
+
+  .exec-status-card {
+    padding: 1.2rem 1.25rem;
   }
 }

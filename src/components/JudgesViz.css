@@ -185,6 +185,13 @@
   line-height: 1.5;
 }
 
+.dot-tt-cta {
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: rgba(199, 125, 255, 0.7);
+  margin-top: 0.3rem;
+}
+
 /* ── Breakdown stats ────────────────────────────── */
 .judges-breakdown {
   display: flex;

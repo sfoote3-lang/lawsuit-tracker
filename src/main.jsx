@@ -10,6 +10,7 @@ import AboutPage from './pages/AboutPage'
 import ClCasePage from './pages/ClCasePage'
 import JudgePage from './pages/JudgePage'
 import GeminiCasePage from './pages/GeminiCasePage'
+import DictionaryPage from './pages/DictionaryPage'
 import './App.css'
 
 const router = createBrowserRouter([
@@ -49,6 +50,10 @@ const router = createBrowserRouter([
   {
     path: '/case/gemini-test',
     element: <GeminiCasePage />,
+  },
+  {
+    path: '/dictionary',
+    element: <DictionaryPage />,
   },
 ])
 

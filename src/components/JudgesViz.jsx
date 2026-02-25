@@ -115,7 +115,7 @@ export default function JudgesViz() {
                 }}
                 onMouseEnter={() => setHovered(r.id)}
                 onMouseLeave={() => setHovered(null)}
-                onClick={() => navigate(`/cases?court=${encodeURIComponent(r.court)}`)}
+                onClick={() => navigate(r.caseHref ?? `/cases?court=${encodeURIComponent(r.court)}`)}
               >
                 {isHovered && (
                   <div className="dot-tooltip">
@@ -124,6 +124,9 @@ export default function JudgesViz() {
                     </div>
                     <div className="dot-tt-court">{r.court}</div>
                     <div className="dot-tt-note">{r.note}</div>
+                    <div className="dot-tt-cta">
+                      {r.caseHref?.startsWith('/case/') ? 'View case →' : 'View related cases →'}
+                    </div>
                   </div>
                 )}
               </div>
