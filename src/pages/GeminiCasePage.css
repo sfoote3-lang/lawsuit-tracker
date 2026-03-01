@@ -1,3 +1,104 @@
+/* ── Share widget ──────────────────────────────────────────────── */
+.share-wrap {
+  position: relative;
+  flex-shrink: 0;
+  align-self: flex-start;
+  margin-top: 3px;
+  margin-bottom: 0.6rem;
+}
+
+.share-btn {
+  all: unset;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.38rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 100px;
+  padding: 0.28rem 0.75rem 0.28rem 0.6rem;
+  transition: color 0.15s, border-color 0.15s, background 0.15s;
+  white-space: nowrap;
+}
+
+.share-btn:hover,
+.share-btn--open {
+  color: rgba(255, 255, 255, 0.85);
+  border-color: rgba(255, 255, 255, 0.22);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.share-btn-icon {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+}
+
+.share-popover {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  z-index: 300;
+  background: rgba(18, 18, 26, 0.98);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 12px;
+  padding: 0.5rem;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(12px);
+  min-width: 190px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.share-popover-title {
+  font-size: 0.67rem;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.25);
+  padding: 0.35rem 0.7rem 0.5rem;
+}
+
+.share-option {
+  all: unset;
+  cursor: pointer;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  width: 100%;
+  padding: 0.55rem 0.7rem;
+  border-radius: 7px;
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  transition: background 0.12s, color 0.12s;
+}
+
+.share-option:hover {
+  background: rgba(255, 255, 255, 0.07);
+  color: rgba(255, 255, 255, 0.95);
+}
+
+.share-option-icon {
+  width: 15px;
+  height: 15px;
+  flex-shrink: 0;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.share-option:hover .share-option-icon {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.share-option-icon--check {
+  color: #2a9d8f;
+}
+
 /* ── Header tags row (badges under the title) ────────────────── */
 .case-header-tags {
   display: flex;
@@ -287,14 +388,16 @@
 
 .courts-section .courts-tier-arrow {
   height: auto;
-  width: 44px;
+  width: 54px;
   flex-shrink: 0;
   align-self: center;
 }
 
 .courts-section .courts-tier-arrow svg {
-  width: 28px;
-  height: 8px;
+  width: 40px;
+  height: 12px;
+  color: #c77dff;
+  opacity: 0.75;
 }
 
 /* ── Courts track: clickable node styles ──────────────────────── */
@@ -1676,4 +1779,124 @@
   .exec-status-card {
     padding: 1.2rem 1.25rem;
   }
+}
+
+/* ── Sidebar navigation ─────────────────────────────────────────── */
+.case-sidebar {
+  position: fixed;
+  right: 1.25rem;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 100;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.case-sidebar-inner {
+  background: rgba(14, 14, 22, 0.92);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 12px;
+  padding: 0.65rem 0.4rem;
+  backdrop-filter: blur(14px);
+  min-width: 150px;
+}
+
+.case-sidebar-title {
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.22);
+  padding: 0.15rem 0.65rem 0.55rem;
+}
+
+.case-sidebar-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.case-sidebar-link {
+  display: block;
+  padding: 0.3rem 0.65rem;
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.4);
+  text-decoration: none;
+  border-radius: 6px;
+  border-left: 2px solid transparent;
+  transition: color 0.15s, background 0.15s, border-color 0.15s;
+  white-space: nowrap;
+  line-height: 1.4;
+}
+
+.case-sidebar-link:hover {
+  color: rgba(255, 255, 255, 0.75);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.case-sidebar-link--active {
+  color: #c77dff;
+  border-left-color: #c77dff;
+  background: rgba(199, 125, 255, 0.08);
+}
+
+@media (max-width: 1280px) {
+  .case-sidebar {
+    display: none;
+  }
+}
+
+/* ── Favorability row in Current Status ─────────────────────────── */
+.exec-status-favorability {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 8px;
+  padding: 0.55rem 0.75rem;
+  margin: 0.75rem 0 0.25rem;
+  border-left: 3px solid rgba(255, 255, 255, 0.1);
+}
+
+.exec-status-favorability--plaintiff {
+  border-left-color: #2a9d8f;
+  background: rgba(42, 157, 143, 0.07);
+}
+
+.exec-status-favorability--defendant {
+  border-left-color: #e63946;
+  background: rgba(230, 57, 70, 0.07);
+}
+
+.exec-status-favorability--neutral {
+  border-left-color: rgba(255, 255, 255, 0.2);
+}
+
+.exec-status-fav-icon {
+  font-size: 0.9rem;
+  line-height: 1.5;
+  flex-shrink: 0;
+}
+
+.exec-status-fav-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.exec-status-fav-label {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.exec-status-fav-reasoning {
+  font-size: 0.76rem;
+  color: rgba(255, 255, 255, 0.45);
+  line-height: 1.5;
+}
+
+/* ── Why It Matters label accent ────────────────────────────────── */
+.why-it-matters-label {
+  color: #f4a261 !important;
 }

@@ -5,13 +5,39 @@ import JudgeLink from '../components/JudgeLink'
 import { ISSUES, ALL_CASES } from '../data/issues'
 import { CL_CASES } from '../data/clCases'
 import { GEMINI_CASES } from '../data/geminiCaseData'
+import { GEMINI_CASES_ALL, CASES_REGISTRY } from '../data/casesRegistry'
 import { COURT_TO_CIRCUIT, CIRCUIT_NAMES } from '../data/courtCircuits'
 import './AllCasesPage.css'
 
 const PAGE_SIZE = 50
 
+// Derive normalized status from a Gemini CASE_STATUS_LABEL string
+function deriveStatusInfo(label) {
+  if (!label) return { value: 'active', text: 'Active', cls: 'badge-active' }
+  const l = label.toLowerCase()
+  if (l.includes('dismiss')) {
+    return { value: 'closed-against', text: 'Dismissed', cls: 'badge-closed-against' }
+  }
+  if (l.includes('decided for plaintiff') || l.includes('ruling for plaintiff')) {
+    return { value: 'closed-for', text: 'Closed — For', cls: 'badge-closed-for' }
+  }
+  if (l.includes('injunction') && !l.includes('denied') && !l.includes('appeal')) {
+    return { value: 'injunction', text: 'Injunction', cls: 'badge-injunction' }
+  }
+  return { value: 'active', text: 'Active', cls: 'badge-active' }
+}
+
+// Normalize GEMINI_CASES_ALL status values from their CASE_STATUS_LABEL
+const GEMINI_CASES_NORMALIZED = GEMINI_CASES_ALL.map(entry => {
+  const mod = CASES_REGISTRY[entry.id]
+  if (!mod?.CASE_STATUS_LABEL) return entry
+  const si = deriveStatusInfo(mod.CASE_STATUS_LABEL)
+  if (si.value === entry.status) return entry
+  return { ...entry, status: si.value }
+})
+
 // All cases: example (annotated) + CL-synced + Gemini-analyzed
-const COMBINED_CASES = [...ALL_CASES, ...CL_CASES, ...GEMINI_CASES]
+const COMBINED_CASES = [...ALL_CASES, ...CL_CASES, ...GEMINI_CASES, ...GEMINI_CASES_NORMALIZED]
 
 const STATUS_OPTIONS = [
   { value: 'active',         label: 'Active',            color: '#457b9d' },
@@ -45,6 +71,11 @@ const COURT_OPTIONS = (() => {
     .slice(0, 20) // top 20 courts only to keep filter bar manageable
 })()
 
+const ASSIGNEE_ORDER = ['Collin', 'Spencer', 'James', 'Manouny', 'Yusur', 'Quinlen']
+const ASSIGNEE_OPTIONS = ASSIGNEE_ORDER.filter(
+  name => COMBINED_CASES.some(c => c.assignee === name)
+)
+
 function formatDate(dateStr) {
   if (!dateStr) return '—'
   const [year, month, day] = dateStr.split('-')
@@ -66,6 +97,7 @@ function CaseRow({ c, onClick }) {
           <span className="case-issue-dot" style={{ background: c.issueColor }} />
           <span className="case-name">{c.name}</span>
           {c.example && <span className="example-badge">Example</span>}
+          {c.geminiCase && <span className="gemini-list-badge">✦ Gemini</span>}
         </div>
         <div className="case-row-right">
           <span className={`status-badge ${cfg.cls}`}>{cfg.label}</span>
@@ -113,14 +145,15 @@ export default function AllCasesPage() {
 
   useEffect(() => { window.scrollTo(0, 0) }, [])
 
-  const activeStatus  = params.get('status')  ?? ''
-  const activeTopic   = params.get('topic')   ?? ''
-  const activeCourt   = params.get('court')   ?? ''
-  const activeCircuit = params.get('circuit') ?? ''
-  const activeLevel   = params.get('level')   ?? ''
-  const searchQ       = params.get('q')       ?? ''
+  const activeStatus   = params.get('status')   ?? ''
+  const activeTopic    = params.get('topic')    ?? ''
+  const activeCourt    = params.get('court')    ?? ''
+  const activeCircuit  = params.get('circuit')  ?? ''
+  const activeLevel    = params.get('level')    ?? ''
+  const activeAssignee = params.get('assignee') ?? ''
+  const searchQ        = params.get('q')        ?? ''
 
-  const hasFilters = activeStatus || activeTopic || activeCourt || activeCircuit || activeLevel || searchQ
+  const hasFilters = activeStatus || activeTopic || activeCourt || activeCircuit || activeLevel || activeAssignee || searchQ
 
   function setFilter(key, value) {
     const next = new URLSearchParams(params)
@@ -148,11 +181,12 @@ export default function AllCasesPage() {
   // Filtered flat list across all cases
   const filtered = useMemo(() => {
     let list = COMBINED_CASES
-    if (activeStatus)  list = list.filter(c => c.status === activeStatus)
-    if (activeTopic)   list = list.filter(c => c.issueSlug === activeTopic)
-    if (activeCourt)   list = list.filter(c => c.court === activeCourt)
-    if (activeCircuit) list = list.filter(c => COURT_TO_CIRCUIT[c.court] === activeCircuit)
-    if (activeLevel)   list = list.filter(c => courtLevel(c.court) === activeLevel)
+    if (activeStatus)   list = list.filter(c => c.status === activeStatus)
+    if (activeTopic)    list = list.filter(c => c.issueSlug === activeTopic)
+    if (activeCourt)    list = list.filter(c => c.court === activeCourt)
+    if (activeCircuit)  list = list.filter(c => COURT_TO_CIRCUIT[c.court] === activeCircuit)
+    if (activeLevel)    list = list.filter(c => courtLevel(c.court) === activeLevel)
+    if (activeAssignee) list = list.filter(c => c.assignee === activeAssignee)
     if (searchQ) {
       const q = searchQ.toLowerCase()
       list = list.filter(c =>
@@ -163,11 +197,12 @@ export default function AllCasesPage() {
         (c.description || '').toLowerCase().includes(q) ||
         (c.issueTitle || '').toLowerCase().includes(q) ||
         (c.judge || '').toLowerCase().includes(q) ||
-        (c.natureOfSuit || '').toLowerCase().includes(q)
+        (c.natureOfSuit || '').toLowerCase().includes(q) ||
+        (c.assignee || '').toLowerCase().includes(q)
       )
     }
     return list
-  }, [activeStatus, activeTopic, activeCourt, activeCircuit, activeLevel, searchQ])
+  }, [activeStatus, activeTopic, activeCourt, activeCircuit, activeLevel, activeAssignee, searchQ])
 
   // Grouped by issue (for unfiltered view)
   const grouped = useMemo(() => {
@@ -207,6 +242,8 @@ export default function AllCasesPage() {
   function handleCaseClick(c) {
     if (c.example) {
       navigate(`/case/${c.id}`)
+    } else if (c.geminiCase) {
+      navigate(`/case/gemini/${c.id}`)
     } else if (c.docketNumber) {
       navigate(`/docket?n=${encodeURIComponent(c.docketNumber)}`)
     }
@@ -360,6 +397,24 @@ export default function AllCasesPage() {
             ))}
           </div>
         </div>
+
+        {ASSIGNEE_OPTIONS.length > 0 && (
+          <div className="filter-row">
+            <span className="filter-row-label">Assigned To</span>
+            <div className="filter-chips">
+              {ASSIGNEE_OPTIONS.map(name => (
+                <button
+                  key={name}
+                  className={`filter-chip ${activeAssignee === name ? 'filter-chip--on' : ''}`}
+                  style={{ '--chip-color': '#c77dff' }}
+                  onClick={() => setFilter('assignee', name)}
+                >
+                  {name}
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
 
         {hasFilters && (
           <button className="filter-clear-all" onClick={clearAll}>

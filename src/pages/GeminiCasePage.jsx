@@ -1,26 +1,127 @@
-import { useState, useEffect, useRef } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useState, useEffect, useRef, useCallback } from 'react'
+import { useNavigate, useParams } from 'react-router-dom'
 import NavBar from '../components/NavBar'
 import JudgeLink from '../components/JudgeLink'
 import { AnnotatedText, LegalTooltip } from '../components/LegalTooltip'
-import { GEMINI_CASE, GENERATED_AT } from '../data/geminiCaseData'
+import { GEMINI_CASE as _GEMINI_CASE_TEST, GENERATED_AT as _GENERATED_AT_TEST } from '../data/geminiCaseData'
 import {
-  CASE_STATUS_LABEL,
-  OVERALL_FAVORABILITY,
-  LAWS_AT_ISSUE,
-  DEFENDANT_GROUPS,
-  JUDICIAL_INFO,
-  EXECUTIVE_STATUS,
-  ACTION_CLASSIFICATIONS,
-  ACTION_ENRICHMENTS,
-  TIMELINE_DOCS,
-  TOKEN_USAGE,
-  GEMINI_PRICING,
-  PACER_USAGE,
+  CASE_STATUS_LABEL as _CASE_STATUS_LABEL_TEST,
+  OVERALL_FAVORABILITY as _OVERALL_FAVORABILITY_TEST,
+  LAWS_AT_ISSUE as _LAWS_AT_ISSUE_TEST,
+  DEFENDANT_GROUPS as _DEFENDANT_GROUPS_TEST,
+  JUDICIAL_INFO as _JUDICIAL_INFO_TEST,
+  EXECUTIVE_STATUS as _EXECUTIVE_STATUS_TEST,
+  ACTION_CLASSIFICATIONS as _ACTION_CLASSIFICATIONS_TEST,
+  ACTION_ENRICHMENTS as _ACTION_ENRICHMENTS_TEST,
+  TIMELINE_DOCS as _TIMELINE_DOCS_TEST,
+  TOKEN_USAGE as _TOKEN_USAGE_TEST,
+  GEMINI_PRICING as _GEMINI_PRICING_TEST,
+  PACER_USAGE as _PACER_USAGE_TEST,
 } from '../data/geminiCaseEnrichments'
+import { CASES_REGISTRY } from '../data/casesRegistry'
 import { LEGAL_TERMS } from '../data/legalTerms'
 import './CasePage.css'
 import './GeminiCasePage.css'
+
+function useOutsideClick(ref, handler) {
+  useEffect(() => {
+    const fn = e => { if (ref.current && !ref.current.contains(e.target)) handler() }
+    document.addEventListener('mousedown', fn)
+    return () => document.removeEventListener('mousedown', fn)
+  }, [ref, handler])
+}
+
+function ShareWidget({ caseData }) {
+  const [open, setOpen]     = useState(false)
+  const [copied, setCopied] = useState(false)
+  const ref = useRef(null)
+  useOutsideClick(ref, useCallback(() => setOpen(false), []))
+
+  const url   = window.location.href
+  const title = `${caseData.name} | Legal Challenges Tracker`
+  const text  = `Track this case: ${caseData.name} — ${caseData.court}`
+
+  function handleNativeShare() {
+    if (navigator.share) {
+      navigator.share({ title, text, url }).catch(() => {})
+    } else {
+      setOpen(o => !o)
+    }
+  }
+
+  function copyLink() {
+    navigator.clipboard.writeText(url).then(() => {
+      setCopied(true)
+      setTimeout(() => setCopied(false), 2000)
+    })
+  }
+
+  const emailHref   = `mailto:?subject=${encodeURIComponent(title)}&body=${encodeURIComponent(`${text}\n\n${url}`)}`
+  const smsHref     = `sms:?body=${encodeURIComponent(`${text}\n${url}`)}`
+  const twitterHref = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`
+
+  return (
+    <div className="share-wrap" ref={ref}>
+      <button
+        className={`share-btn ${open ? 'share-btn--open' : ''}`}
+        onClick={handleNativeShare}
+        aria-label="Share this case"
+      >
+        <svg viewBox="0 0 18 18" fill="none" className="share-btn-icon">
+          <circle cx="14" cy="4"  r="2.5" stroke="currentColor" strokeWidth="1.5"/>
+          <circle cx="14" cy="14" r="2.5" stroke="currentColor" strokeWidth="1.5"/>
+          <circle cx="4"  cy="9"  r="2.5" stroke="currentColor" strokeWidth="1.5"/>
+          <path d="M6.3 7.8L11.7 5.2M6.3 10.2L11.7 12.8" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round"/>
+        </svg>
+        Share
+      </button>
+
+      {open && (
+        <div className="share-popover">
+          <div className="share-popover-title">Share this case</div>
+
+          <button className="share-option" onClick={copyLink}>
+            {copied ? (
+              <svg viewBox="0 0 16 16" fill="none" className="share-option-icon share-option-icon--check">
+                <path d="M3 8l4 4 6-6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            ) : (
+              <svg viewBox="0 0 16 16" fill="none" className="share-option-icon">
+                <rect x="5" y="2" width="9" height="11" rx="2" stroke="currentColor" strokeWidth="1.4"/>
+                <path d="M3 5H2a1 1 0 00-1 1v8a1 1 0 001 1h8a1 1 0 001-1v-1" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round"/>
+              </svg>
+            )}
+            <span>{copied ? 'Copied!' : 'Copy link'}</span>
+          </button>
+
+          <a className="share-option" href={emailHref} target="_blank" rel="noopener noreferrer" onClick={() => setOpen(false)}>
+            <svg viewBox="0 0 16 16" fill="none" className="share-option-icon">
+              <rect x="1" y="3" width="14" height="10" rx="2" stroke="currentColor" strokeWidth="1.4"/>
+              <path d="M1 5.5l6.3 4.5a1 1 0 001.4 0L15 5.5" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round"/>
+            </svg>
+            <span>Email</span>
+          </a>
+
+          <a className="share-option" href={smsHref} target="_blank" rel="noopener noreferrer" onClick={() => setOpen(false)}>
+            <svg viewBox="0 0 16 16" fill="none" className="share-option-icon">
+              <rect x="1" y="1" width="14" height="11" rx="3" stroke="currentColor" strokeWidth="1.4"/>
+              <path d="M4 13l2-2h5a2 2 0 002-2V4" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round"/>
+              <path d="M5 6h6M5 8.5h4" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round"/>
+            </svg>
+            <span>Text / SMS</span>
+          </a>
+
+          <a className="share-option" href={twitterHref} target="_blank" rel="noopener noreferrer" onClick={() => setOpen(false)}>
+            <svg viewBox="0 0 16 16" fill="none" className="share-option-icon">
+              <path d="M12.6 2h2.4l-5.2 5.9L16 14h-4.8L7.6 9.9 3.4 14H1l5.6-6.3L0 2h4.9l3.5 4.6L12.6 2z" fill="currentColor"/>
+            </svg>
+            <span>Post on X</span>
+          </a>
+        </div>
+      )}
+    </div>
+  )
+}
 
 const TYPE_CONFIG = {
   'admin-action':   { label: 'Admin Action', color: '#e63946' },
@@ -55,12 +156,12 @@ const COURT_STATUS_LABEL = {
 const TIER_TYPES = ['District Court', 'Court of Appeals', 'Supreme Court']
 
 // ── Cost helpers ─────────────────────────────────────────────────
-function calcGeminiCosts(calls, tier) {
+function calcGeminiCosts(calls, tier, pricing) {
   const key = tier === '>200k' ? 'gt200k' : 'lte200k'
   return calls.map(c => ({
     ...c,
-    inputCost:  (c.inputTokens  / 1_000_000) * GEMINI_PRICING.input[key],
-    outputCost: (c.outputTokens / 1_000_000) * GEMINI_PRICING.output[key],
+    inputCost:  (c.inputTokens  / 1_000_000) * pricing.input[key],
+    outputCost: (c.outputTokens / 1_000_000) * pricing.output[key],
     get total() { return this.inputCost + this.outputCost },
   }))
 }
@@ -74,8 +175,8 @@ function fmtTokens(n) { return n.toLocaleString() }
 function fmtPct(n, cap) { return ((n / cap) * 100).toFixed(3) + '%' }
 
 // ── Defendant grouping helper ─────────────────────────────────────
-function groupDefendants(defendants) {
-  const grouped = DEFENDANT_GROUPS.map(g => ({ ...g, members: [] }))
+function groupDefendants(defendants, defGroups) {
+  const grouped = defGroups.map(g => ({ ...g, members: [] }))
   const ungrouped = []
 
   defendants.forEach(d => {
@@ -187,11 +288,52 @@ function formatDate(dateStr) {
   })
 }
 
+// ── Status badge derivation ───────────────────────────────────────
+function deriveStatusInfo(label) {
+  if (!label) return { text: 'Active', cls: 'badge-active' }
+  const l = label.toLowerCase()
+  if (l.includes('dismiss')) return { text: 'Dismissed', cls: 'badge-closed-against' }
+  if (l.includes('decided for plaintiff') || l.includes('ruling for plaintiff')) return { text: 'Closed — For', cls: 'badge-closed-for' }
+  if (l.includes('injunction') && !l.includes('denied') && !l.includes('appeal')) return { text: 'Injunction', cls: 'badge-injunction' }
+  return { text: 'Active', cls: 'badge-active' }
+}
+
+// ── Sidebar section definitions ───────────────────────────────────
+const SIDEBAR_DEFS = [
+  { id: 'sec-parties',    label: 'Parties' },
+  { id: 'sec-background', label: 'Case Background' },
+  { id: 'sec-status',     label: 'Current Status' },
+  { id: 'sec-laws',       label: 'Laws Challenged' },
+  { id: 'sec-news',       label: 'In the News' },
+  { id: 'sec-appeals',    label: 'Appeals Tracker' },
+  { id: 'sec-timeline',   label: 'Key Moments' },
+  { id: 'sec-actions',    label: 'Key Actions' },
+]
+
 // ── Main page ────────────────────────────────────────────────────
 const PARTIES_PREVIEW = 3
 
 export default function GeminiCasePage() {
   const navigate = useNavigate()
+  const { caseId } = useParams()
+
+  // Resolve data: prefer registry entry if caseId present, else fall back to test data
+  const caseData = caseId ? CASES_REGISTRY[caseId] : null
+  const GEMINI_CASE           = caseData?.GEMINI_CASE           ?? _GEMINI_CASE_TEST
+  const GENERATED_AT          = caseData?.GENERATED_AT          ?? _GENERATED_AT_TEST
+  const CASE_STATUS_LABEL     = caseData?.CASE_STATUS_LABEL     ?? _CASE_STATUS_LABEL_TEST
+  const OVERALL_FAVORABILITY  = caseData?.OVERALL_FAVORABILITY  ?? _OVERALL_FAVORABILITY_TEST
+  const LAWS_AT_ISSUE         = caseData?.LAWS_AT_ISSUE         ?? _LAWS_AT_ISSUE_TEST
+  const DEFENDANT_GROUPS      = caseData?.DEFENDANT_GROUPS      ?? _DEFENDANT_GROUPS_TEST
+  const JUDICIAL_INFO         = caseData?.JUDICIAL_INFO         ?? _JUDICIAL_INFO_TEST
+  const EXECUTIVE_STATUS      = caseData?.EXECUTIVE_STATUS      ?? _EXECUTIVE_STATUS_TEST
+  const ACTION_CLASSIFICATIONS = caseData?.ACTION_CLASSIFICATIONS ?? _ACTION_CLASSIFICATIONS_TEST
+  const ACTION_ENRICHMENTS    = caseData?.ACTION_ENRICHMENTS    ?? _ACTION_ENRICHMENTS_TEST
+  const TIMELINE_DOCS         = caseData?.TIMELINE_DOCS         ?? _TIMELINE_DOCS_TEST
+  const TOKEN_USAGE           = caseData?.TOKEN_USAGE           ?? _TOKEN_USAGE_TEST
+  const GEMINI_PRICING        = caseData?.GEMINI_PRICING        ?? _GEMINI_PRICING_TEST
+  const PACER_USAGE           = caseData?.PACER_USAGE           ?? _PACER_USAGE_TEST
+
   const [showAll, setShowAll] = useState(false)
   const [adminOpen, setAdminOpen] = useState(false)
   const [costTier, setCostTier] = useState('<=200k')
@@ -200,6 +342,22 @@ export default function GeminiCasePage() {
   const [enrichLog, setEnrichLog] = useState([])
   const [enrichResult, setEnrichResult] = useState(null)
   const [enrichError, setEnrichError] = useState(null)
+  const [activeSection, setActiveSection] = useState('')
+
+  // Not found — caseId given but not in registry
+  if (caseId && !caseData) {
+    return (
+      <div className="app">
+        <NavBar />
+        <div style={{ padding: '3rem', textAlign: 'center', color: 'var(--text-muted)' }}>
+          <h2 style={{ color: 'var(--text-primary)' }}>Case Not Found</h2>
+          <p>No enriched data available for case <code>{caseId}</code>.</p>
+          <p>Run <code>python src/gemini_enrich_cases.py --cases {caseId}</code> to generate it.</p>
+        </div>
+      </div>
+    )
+  }
+
   const c = GEMINI_CASE
 
   const SHEETS_URL = 'https://docs.google.com/spreadsheets/d/1tcE8yJ6TZxGklxOAAPOvaNrwbWG_CmpSgVC9hIf9Xi0/edit#gid=0'
@@ -250,17 +408,29 @@ export default function GeminiCasePage() {
 
   useEffect(() => { window.scrollTo(0, 0) }, [])
 
+  useEffect(() => {
+    const els = SIDEBAR_DEFS.map(s => document.getElementById(s.id)).filter(Boolean)
+    if (!els.length) return
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) setActiveSection(entry.target.id)
+      })
+    }, { rootMargin: '-10% 0px -80% 0px', threshold: 0 })
+    els.forEach(el => obs.observe(el))
+    return () => obs.disconnect()
+  }, [caseId])
+
   const keyEntries     = c.docketEntries.filter(e => e.isKey)
   const visibleEntries = showAll ? c.docketEntries : keyEntries
 
   // Cost calculations
-  const costs       = calcGeminiCosts(TOKEN_USAGE.gemini.calls, costTier)
+  const costs       = calcGeminiCosts(TOKEN_USAGE.gemini.calls, costTier, GEMINI_PRICING)
   const totalInput  = TOKEN_USAGE.gemini.calls.reduce((s, x) => s + x.inputTokens, 0)
   const totalOutput = TOKEN_USAGE.gemini.calls.reduce((s, x) => s + x.outputTokens, 0)
   const totalCost   = costs.reduce((s, x) => s + x.total, 0)
 
   // Defendant grouping
-  const { grouped: defGroups, ungrouped: defUngrouped } = groupDefendants(c.defendants ?? [])
+  const { grouped: defGroups, ungrouped: defUngrouped } = groupDefendants(c.defendants ?? [], DEFENDANT_GROUPS)
   const allDefFlat = [
     ...defGroups.flatMap(g => g.members.map(m => ({ ...m, _group: g.label, _color: g.color }))),
     ...defUngrouped.map(m => ({ ...m, _group: null, _color: null })),
@@ -270,10 +440,45 @@ export default function GeminiCasePage() {
   const hiddenPCount = Math.max(0, plaintiffs.length - PARTIES_PREVIEW)
   const hiddenDCount = Math.max(0, allDefFlat.length - PARTIES_PREVIEW)
 
+  const statusInfo = deriveStatusInfo(CASE_STATUS_LABEL)
+
+  const sidebarSections = SIDEBAR_DEFS.filter(s => {
+    if (s.id === 'sec-parties')    return plaintiffs.length > 0 || allDefFlat.length > 0
+    if (s.id === 'sec-laws')       return LAWS_AT_ISSUE.length > 0
+    if (s.id === 'sec-news')       return c.backgroundArticles?.length > 0
+    if (s.id === 'sec-appeals')    return c.courts?.length > 0
+    if (s.id === 'sec-timeline')   return c.timeline?.length > 0
+    if (s.id === 'sec-actions')    return keyEntries.length > 0
+    return true
+  })
+
   return (
     <div className="app">
       <div className="bg-gradient" />
       <NavBar />
+
+      {/* ── Sidebar navigation ──────────────────────────────────── */}
+      <nav className="case-sidebar" aria-label="Page sections">
+        <div className="case-sidebar-inner">
+          <div className="case-sidebar-title">On This Page</div>
+          <ul className="case-sidebar-list">
+            {sidebarSections.map(s => (
+              <li key={s.id}>
+                <a
+                  href={`#${s.id}`}
+                  className={`case-sidebar-link${activeSection === s.id ? ' case-sidebar-link--active' : ''}`}
+                  onClick={e => {
+                    e.preventDefault()
+                    document.getElementById(s.id)?.scrollIntoView({ behavior: 'smooth' })
+                  }}
+                >
+                  {s.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </nav>
 
       <div className="issue-back-row">
         <button className="back-btn" onClick={() => navigate('/cases')}>← All Cases</button>
@@ -283,7 +488,7 @@ export default function GeminiCasePage() {
       <header className="case-header">
         <h1 className="case-title">{c.case_name}</h1>
         <div className="case-header-tags">
-          <span className="status-badge badge-active">Active</span>
+          <span className={`status-badge ${statusInfo.cls}`}>{statusInfo.text}</span>
           <span className="case-status-label-chip">{CASE_STATUS_LABEL}</span>
           {OVERALL_FAVORABILITY && (
             <span className={`favorability-badge favorability-badge--${OVERALL_FAVORABILITY.side}`}
@@ -333,12 +538,13 @@ export default function GeminiCasePage() {
             </span>
           )}
         </div>
+        <ShareWidget caseData={{ name: c.case_name, court: c.court }} />
         <p className="case-description">{c.plaintiff_summary}</p>
       </header>
 
       {/* ── Parties: Plaintiffs & Grouped Defendants ──────────────── */}
       {(plaintiffs.length > 0 || allDefFlat.length > 0) && (
-        <section className="parties-section">
+        <section id="sec-parties" className="parties-section">
           <div className="parties-section-header">
             <h2 className="section-heading" style={{ margin: 0 }}>Parties</h2>
             {(hiddenPCount > 0 || hiddenDCount > 0) && (
@@ -445,30 +651,8 @@ export default function GeminiCasePage() {
         </section>
       )}
 
-      {/* ── Laws at Issue ─────────────────────────────────────────── */}
-      <section className="laws-section">
-        <h2 className="section-heading">Laws Being Challenged</h2>
-        <div className="laws-grid">
-          {LAWS_AT_ISSUE.map((law, i) => (
-            <div key={i} className="law-card">
-              <div className="law-card-top">
-                <a href={law.url} target="_blank" rel="noopener noreferrer" className="law-citation">
-                  {law.citation}
-                </a>
-                <span className="law-short-name">{law.shortName}</span>
-              </div>
-              <p className="law-claim">
-                {law.termKey
-                  ? <LegalTooltip termKey={law.termKey}>{law.claim}</LegalTooltip>
-                  : law.claim}
-              </p>
-            </div>
-          ))}
-        </div>
-      </section>
-
       {/* ── Case Background ─────────────────────────────────────── */}
-      <section className="gemini-context-section">
+      <section id="sec-background" className="gemini-context-section">
         <h2 className="section-heading">Case Background</h2>
         <div className="gemini-context-card">
           <div className="gemini-context-row">
@@ -485,11 +669,22 @@ export default function GeminiCasePage() {
               <AnnotatedText text={c.constitutional_stakes} />
             </p>
           </div>
+          {c.citizen_stakes && (
+            <>
+              <div className="gemini-context-divider" />
+              <div className="gemini-context-row">
+                <div className="gemini-context-label why-it-matters-label">Why It Matters</div>
+                <p className="gemini-context-text">
+                  <AnnotatedText text={c.citizen_stakes} />
+                </p>
+              </div>
+            </>
+          )}
         </div>
       </section>
 
       {/* ── Executive Action Status — YELLOW HIGHLIGHT ────────────── */}
-      <section className="exec-status-section">
+      <section id="sec-status" className="exec-status-section">
         <div className="exec-status-card exec-status-card--warning">
           <div className="exec-status-top">
             <div className="exec-status-label-row">
@@ -498,6 +693,20 @@ export default function GeminiCasePage() {
             </div>
             <h3 className="exec-status-headline">{EXECUTIVE_STATUS.headline}</h3>
           </div>
+
+          {OVERALL_FAVORABILITY && (
+            <div className={`exec-status-favorability exec-status-favorability--${OVERALL_FAVORABILITY.side}`}>
+              <span className="exec-status-fav-icon">
+                {OVERALL_FAVORABILITY.side === 'plaintiff' ? '▲' : OVERALL_FAVORABILITY.side === 'defendant' ? '▼' : '—'}
+              </span>
+              <div className="exec-status-fav-content">
+                <span className="exec-status-fav-label">{OVERALL_FAVORABILITY.label}</span>
+                {OVERALL_FAVORABILITY.reasoning && (
+                  <span className="exec-status-fav-reasoning">{OVERALL_FAVORABILITY.reasoning}</span>
+                )}
+              </div>
+            </div>
+          )}
 
           <p className="exec-status-summary">
             <AnnotatedText text={EXECUTIVE_STATUS.summary} />
@@ -530,9 +739,31 @@ export default function GeminiCasePage() {
         </div>
       </section>
 
+      {/* ── Laws at Issue ─────────────────────────────────────────── */}
+      <section id="sec-laws" className="laws-section">
+        <h2 className="section-heading">Laws Being Challenged</h2>
+        <div className="laws-grid">
+          {LAWS_AT_ISSUE.map((law, i) => (
+            <div key={i} className="law-card">
+              <div className="law-card-top">
+                <a href={law.url} target="_blank" rel="noopener noreferrer" className="law-citation">
+                  {law.citation}
+                </a>
+                <span className="law-short-name">{law.shortName}</span>
+              </div>
+              <p className="law-claim">
+                {law.termKey
+                  ? <LegalTooltip termKey={law.termKey}>{law.claim}</LegalTooltip>
+                  : law.claim}
+              </p>
+            </div>
+          ))}
+        </div>
+      </section>
+
       {/* ── Background News Articles ─────────────────────────────── */}
       {c.backgroundArticles && c.backgroundArticles.length > 0 && (
-        <section className="gemini-news-section">
+        <section id="sec-news" className="gemini-news-section">
           <h2 className="section-heading">In the News</h2>
           <p className="gemini-news-sub">Background on the events that led to this case</p>
           <div className="gemini-news-grid">
@@ -559,8 +790,8 @@ export default function GeminiCasePage() {
 
       {/* ── Court progression — clickable by level ───────────────── */}
       {c.courts && c.courts.length > 0 && (
-        <section className="courts-section">
-          <h2 className="section-heading">Appeals Track</h2>
+        <section id="sec-appeals" className="courts-section">
+          <h2 className="section-heading">Appeals Tracker</h2>
           <p className="courts-hint">Click a court to filter all cases at that level.</p>
           <CourtsTierTrack courts={c.courts} />
         </section>
@@ -568,7 +799,7 @@ export default function GeminiCasePage() {
 
       {/* ── Timeline — key moments ────────────────────────────────── */}
       {c.timeline.length > 0 && (
-        <section className="timeline-section">
+        <section id="sec-timeline" className="timeline-section">
           <div className="timeline-header-row">
             <h2 className="section-heading" style={{ margin: 0 }}>Key Moments</h2>
             <button className="dict-nav-btn" onClick={() => navigate('/dictionary')}>
@@ -628,7 +859,7 @@ export default function GeminiCasePage() {
       )}
 
       {/* ── Docket Entry Summaries: Key / All Actions ─────────────── */}
-      <section className="actions-section">
+      <section id="sec-actions" className="actions-section">
         <div className="actions-header">
           <h2 className="section-heading">
             {showAll ? 'All Actions' : 'Key Actions'}
@@ -850,6 +1081,7 @@ export default function GeminiCasePage() {
                 />
               </div>
 
+              {PACER_USAGE.projections && (<>
               <div className="admin-block-title" style={{ marginTop: '1rem' }}>Projected Usage at Scale</div>
               <div className="admin-projections">
                 {PACER_USAGE.projections.map((p, i) => (
@@ -868,24 +1100,27 @@ export default function GeminiCasePage() {
                   </div>
                 ))}
               </div>
+              </>)}
             </div>
 
             {/* ── CourtListener tokens ── */}
-            <div className="admin-block">
-              <div className="admin-block-title">CourtListener Raw Data (Tokens)</div>
-              {TOKEN_USAGE.courtListener.calls.map((call, i) => (
-                <div key={i} className="admin-row">
-                  <span className="admin-row-label">{call.label}</span>
-                  <span className="admin-row-val">{fmtTokens(call.tokens)} tokens</span>
-                  <span className="admin-row-cost admin-row-cost--free">Free</span>
+            {TOKEN_USAGE.courtListener && (
+              <div className="admin-block">
+                <div className="admin-block-title">CourtListener Raw Data (Tokens)</div>
+                {TOKEN_USAGE.courtListener.calls.map((call, i) => (
+                  <div key={i} className="admin-row">
+                    <span className="admin-row-label">{call.label}</span>
+                    <span className="admin-row-val">{fmtTokens(call.tokens)} tokens</span>
+                    <span className="admin-row-cost admin-row-cost--free">Free</span>
+                  </div>
+                ))}
+                <div className="admin-row admin-row--total">
+                  <span className="admin-row-label">Total fetched</span>
+                  <span className="admin-row-val">{fmtTokens(TOKEN_USAGE.courtListener.totalTokens)} tokens</span>
+                  <span className="admin-row-cost admin-row-cost--free">$0.0000</span>
                 </div>
-              ))}
-              <div className="admin-row admin-row--total">
-                <span className="admin-row-label">Total fetched</span>
-                <span className="admin-row-val">{fmtTokens(TOKEN_USAGE.courtListener.totalTokens)} tokens</span>
-                <span className="admin-row-cost admin-row-cost--free">$0.0000</span>
               </div>
-            </div>
+            )}
 
             {/* ── Gemini calls ── */}
             <div className="admin-block">
@@ -956,16 +1191,18 @@ export default function GeminiCasePage() {
             </div>
 
             {/* ── Caching note ── */}
-            <div className="admin-block admin-block--note">
-              <div className="admin-block-title">Context Caching Potential</div>
-              <p className="admin-block-note">
-                If the full docket ({fmtTokens(TOKEN_USAGE.courtListener.totalTokens)} tokens) were stored in Gemini context cache
-                for one hour, the storage cost would be approximately {fmtDollar((TOKEN_USAGE.courtListener.totalTokens / 1_000_000) * GEMINI_PRICING.cacheStorageHour)} per hour.
-                Subsequent reads of cached content would cost {fmtDollar((TOKEN_USAGE.courtListener.totalTokens / 1_000_000) * (costTier === '<=200k' ? GEMINI_PRICING.cacheRead.lte200k : GEMINI_PRICING.cacheRead.gt200k))} per read
-                vs. {fmtDollar((TOKEN_USAGE.courtListener.totalTokens / 1_000_000) * (costTier === '<=200k' ? GEMINI_PRICING.input.lte200k : GEMINI_PRICING.input.gt200k))} for a standard input read —
-                a <strong>{Math.round((1 - GEMINI_PRICING.cacheRead[costTier === '<=200k' ? 'lte200k' : 'gt200k'] / GEMINI_PRICING.input[costTier === '<=200k' ? 'lte200k' : 'gt200k']) * 100)}%</strong> reduction.
-              </p>
-            </div>
+            {TOKEN_USAGE.courtListener && (
+              <div className="admin-block admin-block--note">
+                <div className="admin-block-title">Context Caching Potential</div>
+                <p className="admin-block-note">
+                  If the full docket ({fmtTokens(TOKEN_USAGE.courtListener.totalTokens)} tokens) were stored in Gemini context cache
+                  for one hour, the storage cost would be approximately {fmtDollar((TOKEN_USAGE.courtListener.totalTokens / 1_000_000) * GEMINI_PRICING.cacheStorageHour)} per hour.
+                  Subsequent reads of cached content would cost {fmtDollar((TOKEN_USAGE.courtListener.totalTokens / 1_000_000) * (costTier === '<=200k' ? GEMINI_PRICING.cacheRead.lte200k : GEMINI_PRICING.cacheRead.gt200k))} per read
+                  vs. {fmtDollar((TOKEN_USAGE.courtListener.totalTokens / 1_000_000) * (costTier === '<=200k' ? GEMINI_PRICING.input.lte200k : GEMINI_PRICING.input.gt200k))} for a standard input read —
+                  a <strong>{Math.round((1 - GEMINI_PRICING.cacheRead[costTier === '<=200k' ? 'lte200k' : 'gt200k'] / GEMINI_PRICING.input[costTier === '<=200k' ? 'lte200k' : 'gt200k']) * 100)}%</strong> reduction.
+                </p>
+              </div>
+            )}
 
             <div className="admin-footer">
               Generated {new Date(GENERATED_AT).toLocaleString('en-US', { month: 'long', day: 'numeric', year: 'numeric', hour: '2-digit', minute: '2-digit', timeZoneName: 'short' })} by Gemini AI.

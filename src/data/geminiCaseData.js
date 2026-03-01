@@ -29,72 +29,84 @@ export const GEMINI_CASE = {
       "status": "anticipated"
     }
   ],
-  "timeline": {
-    "timeline": [
-      {
-        "entry_number": "1",
-        "date": "2026-01-24",
-        "type": "filed",
-        "title": "Plaintiffs File Complaint Against Noem and Federal Agencies",
-        "description": "The Hennepin County Attorney's Office and the Minnesota Bureau of Criminal Apprehension filed a complaint against Kristi Noem and several U.S. federal agencies and officials, initiating the lawsuit. This is the foundational document of the case, outlining the plaintiffs' claims.",
-        "doc_url": "https://storage.courtlistener.com/recap/gov.uscourts.mnd.230788/gov.uscourts.mnd.230788.1.0_2.pdf"
-      },
-      {
-        "entry_number": "2",
-        "date": "2026-01-24",
-        "type": "filed",
-        "title": "Plaintiffs Seek Expedited Temporary Restraining Order",
-        "description": "Immediately after filing the complaint, the plaintiffs moved for a Temporary Restraining Order (TRO) with expedited handling. This urgent request indicates the plaintiffs sought immediate injunctive relief to prevent alleged ongoing harm.",
-        "doc_url": "https://storage.courtlistener.com/recap/gov.uscourts.mnd.230788/gov.uscourts.mnd.230788.2.0.pdf"
-      },
-      {
-        "entry_number": "10",
-        "date": "2026-01-24",
-        "type": "tro",
-        "title": "Court Grants Temporary Restraining Order to Plaintiffs",
-        "description": "Judge Eric C. Tostrud granted the plaintiffs' motion for a Temporary Restraining Order on the same day it was filed. This immediate judicial action imposed restrictions or requirements on the defendants, signaling the court found potential irreparable harm without it.",
-        "doc_url": "https://storage.courtlistener.com/recap/gov.uscourts.mnd.230788/gov.uscourts.mnd.230788.10.0_6.pdf"
-      },
-      {
-        "entry_number": "14",
-        "date": "2026-01-26",
-        "type": "filed",
-        "title": "Defendants Oppose TRO, File Brief and Declarations",
-        "description": "The named defendants, including Kristi Noem and federal entities, filed a brief in opposition to the Temporary Restraining Order. This marked their first substantive response to the lawsuit and the TRO, challenging the plaintiffs' request for injunctive relief.",
-        "doc_url": "https://storage.courtlistener.com/recap/gov.uscourts.mnd.230788/gov.uscourts.mnd.230788.14.0_3.pdf"
-      },
-      {
-        "entry_number": "20",
-        "date": "2026-01-26",
-        "type": "hearing",
-        "title": "Oral Arguments Held on Temporary Restraining Order Motion",
-        "description": "An oral arguments motion hearing was held before Judge Eric C. Tostrud regarding the TRO. This hearing allowed both parties to present their arguments directly to the judge, a critical step for judicial review of the injunctive relief sought.",
-        "doc_url": null
-      },
-      {
-        "entry_number": "24",
-        "date": "2026-02-02",
-        "type": "ruling-against",
-        "title": "Court Dissolves TRO, Denies Further Injunctive Relief",
-        "description": "Judge Tostrud issued an Opinion and Order dissolving the previously granted Temporary Restraining Order and denying the plaintiffs' request for further injunctive relief. This ruling represents a significant setback for the plaintiffs, removing the immediate protections they had secured.",
-        "doc_url": "https://storage.courtlistener.com/recap/gov.uscourts.mnd.230788/gov.uscourts.mnd.230788.24.0_2.pdf"
-      },
-      {
-        "entry_number": "25",
-        "date": "2026-02-02",
-        "type": "admin-action",
-        "title": "Judgment Entered Following TRO Dissolution Order",
-        "description": "A judgment was entered following the court's order dissolving the TRO and denying further relief. While not a final judgment on the entire case, this entry formally concludes the TRO phase and often marks a point from which appeal periods may run for that specific order.",
-        "doc_url": "https://storage.courtlistener.com/recap/gov.uscourts.mnd.230788/gov.uscourts.mnd.230788.25.0.pdf"
-      }
-    ]
-  },
+  "timeline": [
+    {
+      "entry_number": "1",
+      "date": "2026-01-24",
+      "type": "filed",
+      "title": "Lawsuit Filed by Minnesota BCA and Hennepin County",
+      "description": "The Minnesota Bureau of Criminal Apprehension and the Hennepin County Attorney's Office initiate the lawsuit by filing a formal complaint against federal agencies and officers. This action legally establishes their claims regarding federal interference at a state crime scene."
+    },
+    {
+      "entry_number": "2",
+      "date": "2026-01-24",
+      "type": "filed",
+      "title": "Plaintiffs File for Emergency Temporary Restraining Order",
+      "description": "Simultaneously with the complaint, the plaintiffs file an emergency motion for a Temporary Restraining Order (TRO). This legally significant motion asks the court for immediate intervention to prevent federal agents from altering or removing evidence from the crime scene."
+    },
+    {
+      "entry_number": "8",
+      "date": "2026-01-24",
+      "type": "admin-action",
+      "title": "Court Issues Summons to Federal Defendants",
+      "description": "The Clerk of Court issues summonses to the named defendants, including the Department of Homeland Security and various federal officers. This is a critical administrative step that formally notifies the defendants of the lawsuit and compels their response."
+    },
+    {
+      "entry_number": "10",
+      "date": "2026-01-24",
+      "type": "tro",
+      "title": "Court Grants Ex Parte Temporary Restraining Order",
+      "description": "Judge Eric C. Tostrud grants the plaintiffs' emergency motion. This order provides immediate, temporary relief and represents a significant initial victory for the state plaintiffs by legally compelling the federal defendants to comply with specific restrictions."
+    },
+    {
+      "entry_number": "13",
+      "date": "2026-01-26",
+      "type": "filed",
+      "title": "Federal Government Attorneys Appear in Case",
+      "description": "Attorneys for the U.S. government file notices of appearance on behalf of the federal agencies and individual defendants. This marks the defendants' official engagement in the legal proceedings and preparation to contest the TRO."
+    },
+    {
+      "entry_number": "14",
+      "date": "2026-01-26",
+      "type": "filed",
+      "title": "Federal Defendants File Opposition to Restraining Order",
+      "description": "The federal defendants file a formal brief in opposition to the TRO. This document lays out their legal arguments for why the court's emergency order was improper and should be lifted."
+    },
+    {
+      "entry_number": "20",
+      "date": "2026-01-26",
+      "type": "hearing",
+      "title": "Court Holds Oral Argument Hearing on TRO",
+      "description": "The court convenes a hearing where lawyers for both sides present their arguments regarding the TRO. This adversarial proceeding allows the judge to probe the legal and factual issues before making a more informed ruling on whether the order should continue."
+    },
+    {
+      "entry_number": "21",
+      "date": "2026-01-27",
+      "type": "filed",
+      "title": "Plaintiffs File Additional Declaration in Support of TRO",
+      "description": "Following the hearing, the plaintiffs submit an additional declaration with new exhibits to the court. This filing attempts to further strengthen their case and rebut arguments made by the defendants during the oral argument."
+    },
+    {
+      "entry_number": "24",
+      "date": "2026-02-02",
+      "type": "ruling-against",
+      "title": "Court Dissolves Temporary Restraining Order",
+      "description": "Judge Tostrud issues a formal Opinion and Order dissolving the TRO and denying the plaintiffs' request for further relief. This ruling is a decisive legal victory for the federal defendants and effectively ends the plaintiffs' attempt to secure the crime scene through court order."
+    },
+    {
+      "entry_number": "25",
+      "date": "2026-02-02",
+      "type": "admin-action",
+      "title": "Clerk of Court Enters Final Judgment",
+      "description": "Pursuant to the judge's order, the Clerk of Court enters a final judgment in the case. This administrative action officially closes the case at the district court level, solidifying the dissolution of the TRO as the final outcome."
+    }
+  ],
   "docketEntries": [
     {
       "entryNumber": 1,
       "date": "1/24/26",
       "description": "COMPLAINT against All Defendants (filing fee $ 405, receipt number AMNDC-12575332) filed by Hennepin County Attorney's Office, Minnesota Bureau of Criminal Apprehension. Filer requests summons issued. (Attachments: # 1 Civil Cover Sheet) (Farrell, Peter) (Entered: 01/24/2026)",
-      "summary": "The Hennepin County Attorney's Office and the Minnesota Bureau of Criminal Apprehension officially started a lawsuit by filing a complaint against all identified defendants, including Kristi Noem and federal agencies. They also asked the court to officially notify the defendants of the lawsuit.",
+      "summary": "This is the initial complaint filed by the Minnesota Bureau of Criminal Apprehension and the Hennepin County Attorney's Office. It formally initiates the lawsuit against DHS Secretary Kristi Noem and other federal officials for interfering with a state-led homicide investigation. This document establishes the court's jurisdiction and outlines the legal claims, including violations of the Tenth Amendment, which form the foundation of the case.",
       "isKey": true,
       "pdfUrl": "https://storage.courtlistener.com/recap/gov.uscourts.mnd.230788/gov.uscourts.mnd.230788.1.0_2.pdf"
     },
@@ -102,7 +114,7 @@ export const GEMINI_CASE = {
       "entryNumber": 2,
       "date": "1/24/26",
       "description": "MOTION for Temporary Restraining Order - Expedited Handling Requested filed by Hennepin County Attorney's Office, Minnesota Bureau of Criminal Apprehension. (Farrell, Peter) (Entered: 01/24/2026)",
-      "summary": "The plaintiffs asked the court for an emergency order, called a Temporary Restraining Order (TRO), to immediately stop the defendants from taking certain actions. They specifically requested that the court handle this request very quickly.",
+      "summary": "The Minnesota state agencies filed an emergency motion for a Temporary Restraining Order (TRO). It asks the court to immediately compel federal defendants to stop interfering with the state's investigation, turn over seized evidence, and provide access to witnesses. This motion seeks urgent judicial intervention to preserve the integrity of the crime scene and evidence before it can be lost or altered.",
       "isKey": true,
       "pdfUrl": "https://storage.courtlistener.com/recap/gov.uscourts.mnd.230788/gov.uscourts.mnd.230788.2.0.pdf"
     },
@@ -110,7 +122,7 @@ export const GEMINI_CASE = {
       "entryNumber": 3,
       "date": "1/24/26",
       "description": "NOTICE OF HEARING ON MOTION 2 MOTION for Temporary Restraining Order - Expedited Handling Requested : Date and time to be determined. (Farrell, Peter) (Entered: 01/24/2026)",
-      "summary": "The court issued a notice stating that a hearing would be held to consider the plaintiffs' emergency request for a Temporary Restraining Order. However, the exact date and time for this hearing were not yet specified in this notice.",
+      "summary": "This is an official court notice regarding the plaintiffs' motion for a Temporary Restraining Order. It formally acknowledges the motion has been filed and states that a hearing on the matter will be scheduled. This entry is a standard procedural step indicating the court's receipt of the emergency request, with a specific hearing date to be determined shortly.",
       "isKey": true,
       "pdfUrl": "https://storage.courtlistener.com/recap/gov.uscourts.mnd.230788/gov.uscourts.mnd.230788.3.0.pdf"
     },
@@ -118,7 +130,7 @@ export const GEMINI_CASE = {
       "entryNumber": 4,
       "date": "1/24/26",
       "description": "MEMORANDUM in Support re 2 MOTION for Temporary Restraining Order - Expedited Handling Requested filed by Hennepin County Attorney's Office, Minnesota Bureau of Criminal Apprehension. (Attachments: # 1 LR7.1/LR72.2 Word Count Compliance Certificate)(Farrell, Peter) (Entered: 01/24/2026)",
-      "summary": "The plaintiffs filed a legal document explaining their reasons and arguments for why the court should grant their emergency request for a Temporary Restraining Order. This memorandum provides the legal basis and facts supporting their motion.",
+      "summary": "The plaintiffs filed a legal brief, or memorandum of law, providing detailed support for their TRO motion. The brief presents the legal arguments and factual basis explaining why the court should grant the emergency order to prevent irreparable harm. This document is crucial as it provides the detailed reasoning intended to persuade the judge that immediate action is necessary and legally justified.",
       "isKey": true,
       "pdfUrl": "https://storage.courtlistener.com/recap/gov.uscourts.mnd.230788/gov.uscourts.mnd.230788.4.0_1.pdf"
     },
@@ -126,7 +138,7 @@ export const GEMINI_CASE = {
       "entryNumber": 5,
       "date": "1/24/26",
       "description": "Declaration of Drew Evans in Support of 2 MOTION for Temporary Restraining Order - Expedited Handling Requested filed by Hennepin County Attorney's Office, Minnesota Bureau of Criminal Apprehension. (Attachments: # 1 Exhibit(s) A)(Farrell, Peter) (Entered: 01/24/2026)",
-      "summary": "A sworn statement from Drew Evans was filed to support the plaintiffs' emergency request for a Temporary Restraining Order. This declaration likely includes factual information and evidence relevant to the urgent relief sought.",
+      "summary": "This is a sworn declaration from Drew Evans, the Superintendent of the Minnesota Bureau of Criminal Apprehension (BCA), filed by the plaintiffs. Evans provides a firsthand factual account of how federal agents allegedly obstructed the state's investigation at the crime scene. This declaration serves as key evidence for the TRO motion, offering a factual record under penalty of perjury to support the plaintiffs' claims.",
       "isKey": true,
       "pdfUrl": "https://storage.courtlistener.com/recap/gov.uscourts.mnd.230788/gov.uscourts.mnd.230788.5.0.pdf"
     },
@@ -134,7 +146,7 @@ export const GEMINI_CASE = {
       "entryNumber": 6,
       "date": "1/24/26",
       "description": "PROPOSED ORDER TO JUDGE re 2 MOTION for Temporary Restraining Order - Expedited Handling Requested filed by Hennepin County Attorney's Office, Minnesota Bureau of Criminal Apprehension.(Farrell, Peter) (Entered: 01/24/2026)",
-      "summary": "The plaintiffs submitted a draft order for the judge to consider signing, which would grant their request for a Temporary Restraining Order. This proposed document outlines the specific actions they want the court to mandate.",
+      "summary": "The plaintiffs submitted a proposed order for the judge's consideration regarding their TRO motion. This document contains the specific language of the order they want the court to issue, detailing exactly what the federal defendants would be required to do. Submitting a proposed order helps streamline the process if the judge grants the motion by providing a ready-to-sign template reflecting the relief sought.",
       "isKey": true,
       "pdfUrl": "https://storage.courtlistener.com/recap/gov.uscourts.mnd.230788/gov.uscourts.mnd.230788.6.0.pdf"
     },
@@ -142,7 +154,7 @@ export const GEMINI_CASE = {
       "entryNumber": 7,
       "date": "1/24/26",
       "description": "(Text-Only) CLERK'S NOTICE OF INITIAL CASE ASSIGNMENT. Case assigned to Judge Eric C. Tostrud per Civil (3rd, 4th - Master) list, referred to Magistrate Judge David T. Schultz. Please use case number 26-cv-628 ECT/DTS.Notice: All Nongovernmental Corporate Parties must file a Rule 7.1 Corporate Disclosure Statement. (ACH) (Entered: 01/24/2026)",
-      "summary": "The court clerk formally announced that the case has been assigned to Judge Eric C. Tostrud for primary oversight and referred to Magistrate Judge David T. Schultz for certain matters. This notice also included instructions for corporate parties regarding required disclosures.",
+      "summary": "This is a standard text-only notice from the court clerk regarding case assignment. It officially assigns the lawsuit to U.S. District Judge Eric C. Tostrud and Magistrate Judge David T. Schultz. This administrative entry determines which judges will preside over all proceedings for the duration of the case.",
       "isKey": false,
       "pdfUrl": null
     },
@@ -150,7 +162,7 @@ export const GEMINI_CASE = {
       "entryNumber": 8,
       "date": "1/24/26",
       "description": "Summons Issued as to Gregory Bovino, Marcos Charles, John Condon, Todd Lyons, Kristi Noem, Rodney Scott, U.S. Border Patrol, U.S. Customs and Border Protection, U.S. Department of Homeland Security, U.S. Immigration and Customs Enforcement. (ACH) (Entered: 01/24/2026)",
-      "summary": "The court officially issued formal notices, called summonses, for several defendants including Kristi Noem and various U.S. federal agencies. These summonses are intended to formally inform these parties that they are being sued and must respond to the complaint.",
+      "summary": "This entry confirms that the court clerk has issued official summonses for DHS Secretary Noem and other named federal officials and agencies. A summons is a legal document that formally notifies defendants they have been sued and requires them to respond to the complaint. This is a critical procedural step that begins the process of bringing the defendants under the court's jurisdiction.",
       "isKey": false,
       "pdfUrl": "https://storage.courtlistener.com/recap/gov.uscourts.mnd.230788/gov.uscourts.mnd.230788.8.0.pdf"
     },
@@ -158,7 +170,7 @@ export const GEMINI_CASE = {
       "entryNumber": 9,
       "date": "1/24/26",
       "description": "Summons Issued as to Pamela Bondi, David Easterwood, Kashyap Patel. (ACH) (Entered: 01/24/2026)",
-      "summary": "The court also issued official summonses for additional defendants, specifically Pamela Bondi, David Easterwood, and Kashyap Patel. This action serves to formally notify these individuals of the lawsuit filed against them.",
+      "summary": "This is a continuation of the previous entry, confirming that summonses have been issued for additional named defendants, including Pamela Bondi and Kashyap Patel. This ensures that all parties named in the lawsuit receive formal legal notice to appear and respond. It completes the initial step of officially notifying all defendants of the legal action against them.",
       "isKey": false,
       "pdfUrl": "https://storage.courtlistener.com/recap/gov.uscourts.mnd.230788/gov.uscourts.mnd.230788.9.0.pdf"
     },
@@ -166,7 +178,7 @@ export const GEMINI_CASE = {
       "entryNumber": 10,
       "date": "1/24/26",
       "description": "ORDER: Plaintiffs' Motion for a Temporary Restraining Order 2 is GRANTED. See Order for specifics and deadlines. Signed by Judge Eric C. Tostrud on 1/24/2026. (RMM) (Entered: 01/24/2026)",
-      "summary": "The judge reviewed the plaintiffs' emergency request and issued an order approving their Motion for a Temporary Restraining Order. This means the court has temporarily ordered the defendants to take or refrain from certain actions, with specific details outlined in the order.",
+      "summary": "This is an order from Judge Eric C. Tostrud directly ruling on the plaintiffs' motion. The order grants the state agencies' request for an emergency Temporary Restraining Order against the federal defendants. This represents a significant initial victory for the plaintiffs, as the court has temporarily compelled the federal government to stop interfering with the state investigation.",
       "isKey": true,
       "pdfUrl": "https://storage.courtlistener.com/recap/gov.uscourts.mnd.230788/gov.uscourts.mnd.230788.10.0_6.pdf"
     },
@@ -174,7 +186,7 @@ export const GEMINI_CASE = {
       "entryNumber": 11,
       "date": "1/25/26",
       "description": "LETTER TO DISTRICT JUDGE by Minnesota Bureau of Criminal Apprehension . (Richie, Joseph) (Entered: 01/25/2026)",
-      "summary": "The Minnesota Bureau of Criminal Apprehension, one of the plaintiffs, sent a letter to the District Judge. The content of this letter is not specified in the docket entry but likely relates to the ongoing case or recent orders.",
+      "summary": "This entry shows that the Minnesota Bureau of Criminal Apprehension filed a letter directly with District Judge Tostrud. The specific contents are not detailed, but such communications often relate to case logistics or provide status updates. This filing represents an informal communication from one of the plaintiffs to the court after the TRO was granted.",
       "isKey": false,
       "pdfUrl": "https://storage.courtlistener.com/recap/gov.uscourts.mnd.230788/gov.uscourts.mnd.230788.11.0_3.pdf"
     },
@@ -182,7 +194,7 @@ export const GEMINI_CASE = {
       "entryNumber": 12,
       "date": "1/26/26",
       "description": "MOTION for Admission Pro Hac Vice for U.S. Government Attorney Andrew I. Warden filed by Pamela Bondi, Gregory Bovino, Marcos Charles, John Condon, David Easterwood, Todd Lyons, Kristi Noem, Kashyap Patel, Rodney Scott, U.S. Border Patrol, U.S. Customs and Border Protection, U.S. Department of Homeland Security, U.S. Immigration and Customs Enforcement. (Warden, Andrew) (Entered: 01/26/2026)",
-      "summary": "The defendants filed a request for Andrew I. Warden, a U.S. Government Attorney, to be allowed to represent them in this case, even though he is not ordinarily admitted to practice law in this specific court. This is a standard procedure for out-of-state attorneys.",
+      "summary": "This is a motion filed by the federal defendants' legal team. It asks the court to grant special permission, known as 'pro hac vice,' for U.S. Government Attorney Andrew I. Warden to practice in this case. This is a routine procedural filing required for an out-of-state attorney to formally represent a client in the District of Minnesota.",
       "isKey": false,
       "pdfUrl": "https://storage.courtlistener.com/recap/gov.uscourts.mnd.230788/gov.uscourts.mnd.230788.12.0_1.pdf"
     },
@@ -190,7 +202,7 @@ export const GEMINI_CASE = {
       "entryNumber": 13,
       "date": "1/26/26",
       "description": "NOTICE of Appearance by Friedrich A. P. Siekert on behalf of Pamela Bondi, Gregory Bovino, Marcos Charles, John Condon, David Easterwood, Todd Lyons, Kristi Noem, Kashyap Patel, Rodney Scott, U.S. Border Patrol, U.S. Customs and Border Protection, U.S. Department of Homeland Security, U.S. Immigration and Customs Enforcement. (Siekert, Friedrich) (Entered: 01/26/2026)",
-      "summary": "Attorney Friedrich A. P. Siekert formally informed the court that he is representing numerous defendants in the case, including Kristi Noem and several U.S. federal agencies. This notice establishes his official role as their legal counsel.",
+      "summary": "This is a formal notice of appearance filed by attorney Friedrich A. P. Siekert. The document informs the court and all parties that Siekert is officially representing all federal defendants in this lawsuit. This filing formally adds another lawyer to the defendants' legal team.",
       "isKey": false,
       "pdfUrl": "https://storage.courtlistener.com/recap/gov.uscourts.mnd.230788/gov.uscourts.mnd.230788.13.0.pdf"
     },
@@ -198,7 +210,7 @@ export const GEMINI_CASE = {
       "entryNumber": 14,
       "date": "1/26/26",
       "description": "BRIEF In Opposition re 2 Motion For Temporary Restraining Order filed by Pamela Bondi, Gregory Bovino, Marcos Charles, John Condon, David Easterwood, Todd Lyons, Kristi Noem, Kashyap Patel, Rodney Scott, U.S. Border Patrol, U.S. Customs and Border Protection, U.S. Department of Homeland Security, U.S. Immigration and Customs Enforcement. (Warden, Andrew) Modified text on 1/26/2026 (ACH). (Entered: 01/26/2026)",
-      "summary": "The defendants filed a legal brief to argue against the plaintiffs' request for a Temporary Restraining Order. In this document, they present their legal reasons and factual arguments explaining why the emergency order should not be granted or should be dissolved.",
+      "summary": "The federal defendants filed a formal legal brief arguing against the Temporary Restraining Order. This document presents the federal government's legal and factual arguments for why the TRO should be dissolved. This is the defendants' primary written response, aiming to persuade the judge to reverse the initial emergency order.",
       "isKey": true,
       "pdfUrl": "https://storage.courtlistener.com/recap/gov.uscourts.mnd.230788/gov.uscourts.mnd.230788.14.0_3.pdf"
     },
@@ -206,7 +218,7 @@ export const GEMINI_CASE = {
       "entryNumber": 15,
       "date": "1/26/26",
       "description": "EXHIBIT LIST & SUPPORTING DECLARATIONS re 14 Brief, filed by Pamela Bondi, Gregory Bovino, Marcos Charles, John Condon, David Easterwood, Todd Lyons, Kristi Noem, Kashyap Patel, Rodney Scott, U.S. Border Patrol, U.S. Customs and Border Protection, U.S. Department of Homeland Security, U.S. Immigration and Customs Enforcement. (Attachments: # 1 Zito Declaration, # 2 Egerton Declaration, # 3 FBI Declaration)(Warden, Andrew) (Entered: 01/26/2026)",
-      "summary": "In support of their brief opposing the Temporary Restraining Order, the defendants submitted a list of exhibits and several sworn declarations. These documents provide factual evidence and testimony to bolster their arguments against the emergency order.",
+      "summary": "The federal defendants filed a list of exhibits and supporting sworn declarations to accompany their opposition brief. These include statements from federal personnel and the FBI intended to provide a factual basis for the arguments made in their brief. This evidence is meant to counter the plaintiffs' claims and justify the federal agents' actions.",
       "isKey": true,
       "pdfUrl": "https://storage.courtlistener.com/recap/gov.uscourts.mnd.230788/gov.uscourts.mnd.230788.15.0_1.pdf"
     },
@@ -214,7 +226,7 @@ export const GEMINI_CASE = {
       "entryNumber": 16,
       "date": "1/26/26",
       "description": "LR7.1/LR72.2 WORD COUNT COMPLIANCE CERTIFICATE by Pamela Bondi, Gregory Bovino, Marcos Charles, John Condon, David Easterwood, Todd Lyons, Kristi Noem, Kashyap Patel, Rodney Scott, U.S. Border Patrol, U.S. Customs and Border Protection, U.S. Department of Homeland Security, U.S. Immigration and Customs Enforcement re 14 Brief,. (Warden, Andrew) (Entered: 01/26/2026)",
-      "summary": "The defendants filed a certificate confirming that their legal brief complies with the court's rules regarding word count limits. This is a routine procedural filing.",
+      "summary": "This is a procedural certificate filed by the federal defendants' attorneys. It attests that their opposition brief complies with the court's local rules regarding maximum document length. This is a standard administrative filing required to ensure that legal briefs adhere to court-mandated limits.",
       "isKey": false,
       "pdfUrl": null
     },
@@ -222,7 +234,7 @@ export const GEMINI_CASE = {
       "entryNumber": 17,
       "date": "1/26/26",
       "description": "TEXT ONLY ENTRY: ORDER granting 12 Motion for Admission Pro Hac Vice of U.S. Government Attorney Andrew Warden for Pamela Bondi, for Gregory Bovino, for Marcos Charles, for John Condon, for David Easterwood, for Todd Lyons, for Kristi Noem, for Kashyap Patel, for Rodney Scott, for U.S. Border Patrol, for U.S. Customs and Border Protection, for U.S. Department of Homeland Security, for U.S. Immigration and Customs Enforcement.Approved by Magistrate Judge David T. Schultz on 1/26/2026. (CNO) (Entered: 01/26/2026)",
-      "summary": "The court issued an order approving the defendants' request to allow U.S. Government Attorney Andrew Warden to represent them in this case. This grants him permission to participate in the proceedings.",
+      "summary": "This is a text-only order from Magistrate Judge David T. Schultz. It grants the defendants' motion to admit attorney Andrew Warden 'pro hac vice,' allowing him to officially represent them in this case. This procedural order finalizes the addition of Warden to the federal government's legal team.",
       "isKey": false,
       "pdfUrl": null
     },
@@ -230,7 +242,7 @@ export const GEMINI_CASE = {
       "entryNumber": 18,
       "date": "1/26/26",
       "description": "Motion Regarding Continued Sealing 19 filed by Pamela Bondi, Gregory Bovino, Marcos Charles, John Condon, David Easterwood, Todd Lyons, Kristi Noem, Kashyap Patel, Rodney Scott, U.S. Border Patrol, U.S. Customs and Border Protection, U.S. Department of Homeland Security, U.S. Immigration and Customs Enforcement. (Warden, Andrew) Modified text on 1/27/2026 (CLK). (Entered: 01/26/2026)",
-      "summary": "The defendants filed a motion asking the court to keep certain documents or information confidential and not publicly accessible. This motion relates to the ongoing sealing of an exhibit.",
+      "summary": "The federal defendants filed a motion asking the court to keep an exhibit under seal. The motion specifically requests that the FBI declaration, submitted as evidence, remain confidential and out of the public record. This action suggests the declaration contains sensitive information the government believes should not be publicly disclosed.",
       "isKey": true,
       "pdfUrl": "https://storage.courtlistener.com/recap/gov.uscourts.mnd.230788/gov.uscourts.mnd.230788.18.0_2.pdf"
     },
@@ -238,7 +250,7 @@ export const GEMINI_CASE = {
       "entryNumber": 19,
       "date": "1/26/26",
       "description": "SEALED EXHIBIT - FBI Declaration re 14 Brief, filed by Federal Defendants.(Warden, Andrew) (Entered: 01/26/2026)",
-      "summary": "The federal defendants filed a sworn statement from the FBI, which was submitted under seal, meaning it is not publicly accessible. This declaration supports their brief opposing the Temporary Restraining Order, but its contents are confidential.",
+      "summary": "This is a sealed declaration from the FBI filed by the federal defendants in support of their brief. Because it is sealed, its contents are not available to the public. The document was filed under seal to protect what is likely classified, law enforcement sensitive, or otherwise confidential information.",
       "isKey": true,
       "pdfUrl": null
     },
@@ -246,7 +258,7 @@ export const GEMINI_CASE = {
       "entryNumber": 20,
       "date": "1/26/26",
       "description": "(Text-Only) MINUTE ENTRY for proceedings held before Judge Eric C. Tostrud on 1/26/2026: Oral Arguments Motion Hearing.Court Reporter: Tim WilletteSt. Paul Courthouse, Courtroom 7DTime: 2:00 PM - 2:59 PMTotal Time: 59 MinutesAPPEARANCES:For Plaintiff(s): Peter Farrell, Joseph Richie and Clare DiegelFor Defendant(s): Fredrich Siekert PROCEEDINGS: Hearing on: 2 MOTION for Temporary Restraining Order filed by Hennepin County Attorney's Office, Minnesota Bureau of Criminal Apprehension. The motion was moved, argued and taken under advisement. Order to follow. (RMM) (Entered: 01/26/2026)",
-      "summary": "A hearing was held before Judge Eric C. Tostrud where lawyers for both sides presented oral arguments on a motion. This hearing lasted for 59 minutes and allowed the judge to hear directly from the attorneys.",
+      "summary": "This entry summarizes a 59-minute court hearing held before Judge Tostrud. Attorneys for both the state plaintiffs and federal defendants presented oral arguments regarding the Temporary Restraining Order. After hearing from both sides, the judge took the matter under advisement, meaning he would consider the arguments and issue a written decision later.",
       "isKey": true,
       "pdfUrl": null
     },
@@ -254,7 +266,7 @@ export const GEMINI_CASE = {
       "entryNumber": 21,
       "date": "1/27/26",
       "description": "Declaration of Peter J. Farrell in Support of 2 MOTION for Temporary Restraining Order - Expedited Handling Requested filed by Hennepin County Attorney's Office, Minnesota Bureau of Criminal Apprehension. (Attachments: # 1 Exhibit(s) A (X Post), # 2 Exhibit(s) B (X Post), # 3 Exhibit(s) C (Quote), # 4 Exhibit(s) D (NY Times), # 5 Exhibit(s) E (Truth Social), # 6 Exhibit(s) F (Article), # 7 Exhibit(s) G (Article))(Farrell, Peter) (Entered: 01/27/2026)",
-      "summary": "The plaintiffs filed another sworn statement from Peter J. Farrell, along with several exhibits, to further support their original emergency request for a Temporary Restraining Order. This additional declaration provides more factual information or evidence, including social media posts, to strengthen their arguments.",
+      "summary": "This is a sworn declaration from Peter J. Farrell, an attorney for the plaintiffs. It provides additional exhibits, including social media posts and news articles, to support the plaintiffs' request for a TRO. This filing aims to bolster the plaintiffs' case by introducing public statements and media reports that corroborate their claims about the defendants' actions.",
       "isKey": true,
       "pdfUrl": "https://storage.courtlistener.com/recap/gov.uscourts.mnd.230788/gov.uscourts.mnd.230788.21.0_8.pdf"
     },
@@ -262,7 +274,7 @@ export const GEMINI_CASE = {
       "entryNumber": 22,
       "date": "1/29/26",
       "description": "CERTIFICATE OF SERVICE by Hennepin County Attorney's Office, Minnesota Bureau of Criminal Apprehension re 1 Complaint, 2 MOTION for Temporary Restraining Order - Expedited Handling Requested, 8 Summons Issued, 9 Summons Issued, 3 Notice of Hearing on Motion, 6 Proposed Order to Judge, 5 Declaration in Support, 4 Memorandum in Support of Motion, (Richie, Joseph) (Entered: 01/29/2026)",
-      "summary": "The plaintiffs filed a document confirming that they formally delivered copies of several key court documents, including the complaint and the motion for a Temporary Restraining Order, to all necessary parties. This ensures everyone involved has received proper notice.",
+      "summary": "This is a certificate of service filed by the plaintiffs' legal team. It formally declares to the court that copies of the initial complaint, TRO motion, summons, and other key documents have been properly delivered to the defendants. This is a mandatory procedural step to prove that the defendants have received official notice of the lawsuit.",
       "isKey": false,
       "pdfUrl": "https://storage.courtlistener.com/recap/gov.uscourts.mnd.230788/gov.uscourts.mnd.230788.22.0.pdf"
     },
@@ -270,7 +282,7 @@ export const GEMINI_CASE = {
       "entryNumber": 23,
       "date": "1/29/26",
       "description": "CERTIFICATE OF SERVICE by Hennepin County Attorney's Office, Minnesota Bureau of Criminal Apprehension re 1 Complaint, 2 MOTION for Temporary Restraining Order - Expedited Handling Requested, 8 Summons Issued, 9 Summons Issued, 3 Notice of Hearing on Motion, 6 Proposed Order to Judge, 5 Declaration in Support, 4 Memorandum in Support of Motion, (Richie, Joseph) (Entered: 01/29/2026)",
-      "summary": "The plaintiffs filed another certificate confirming that they officially served copies of various important court documents, such as the complaint and the TRO motion, to the relevant parties. This re-confirms that proper notification was provided.",
+      "summary": "This is a second, identical certificate of service filed by the plaintiffs. It reaffirms that the defendants were properly served with the initial lawsuit documents. This redundant filing may be a clerical correction or intended to certify service on a different set of defendants to ensure the record is complete.",
       "isKey": false,
       "pdfUrl": "https://storage.courtlistener.com/recap/gov.uscourts.mnd.230788/gov.uscourts.mnd.230788.23.0.pdf"
     },
@@ -278,7 +290,7 @@ export const GEMINI_CASE = {
       "entryNumber": 24,
       "date": "2/2/26",
       "description": "OPINION AND ORDER: The Temporary Restraining Order dated January 24, 2026 10 is DISSOLVED. To the extent Plaintiffs seek further relief through their Motion for a Temporary Restraining Order 2 , Plaintiffs' request is DENIED. This denial i s without prejudice to any future motion Plaintiffs may file should they believe circumstances have changed or narrower relief is required. Defendants' Motion to Seal FBI Declaration 18 is GRANTED. LET JUDGMENT BE ENTERED ACCORDINGLY. See Order for specifics. (Written Opinion). Signed by Judge Eric C. Tostrud on 2/2/2026. (RMM)",
-      "summary": "The judge issued a formal opinion and order, dissolving (ending) the Temporary Restraining Order that was previously granted on January 24, 2026. The judge also denied any further requests for relief under the plaintiffs' initial motion for a TRO, though this denial does not prevent them from filing new motions in the future.",
+      "summary": "This is the judge's final opinion and order on the plaintiffs' emergency motion. Judge Tostrud dissolves the previously granted Temporary Restraining Order and denies the plaintiffs' request for any further preliminary relief. This ruling is a major victory for the federal defendants and a significant setback for the state agencies, and it also grants the motion to keep the FBI declaration sealed.",
       "isKey": true,
       "pdfUrl": "https://storage.courtlistener.com/recap/gov.uscourts.mnd.230788/gov.uscourts.mnd.230788.24.0_2.pdf"
     },
@@ -286,7 +298,7 @@ export const GEMINI_CASE = {
       "entryNumber": 25,
       "date": "2/2/26",
       "description": "JUDGMENT (Attachments: # 1 Civil Notice - appeal)(ACH) (Entered: 02/02/2026)",
-      "summary": "A formal judgment was entered in the case, which often signifies a final decision on certain aspects of the litigation or confirms the outcome of a major ruling. This entry also included a notice about the possibility of appeal.",
+      "summary": "This is the formal entry of judgment by the court clerk, based on the judge's preceding order. It officially closes the case at the district court level. This action finalizes the court's decision, making it appealable and concluding the litigation unless a party files an appeal.",
       "isKey": true,
       "pdfUrl": "https://storage.courtlistener.com/recap/gov.uscourts.mnd.230788/gov.uscourts.mnd.230788.25.0.pdf"
     },
@@ -294,7 +306,7 @@ export const GEMINI_CASE = {
       "entryNumber": 26,
       "date": "2/4/26",
       "description": "TRANSCRIPT REQUEST for an Expedited 3-Day Transcript of 20 Motion Hearing, to Court Reporter Tim Willette. (ACO) (Entered: 02/04/2026)",
-      "summary": "A request was made to the court reporter for a quick, expedited copy of the transcript from the motion hearing held on January 26, 2026. This means a party wants a written record of what was said during the hearing quickly.",
+      "summary": "This entry is a request for a written transcript of the January 26th motion hearing. The filing party asks the court reporter to produce the transcript on an expedited 3-day timeline. An expedited request often signifies that a party is quickly preparing for an appeal where a precise record of the hearing is needed.",
       "isKey": false,
       "pdfUrl": null
     },
@@ -302,7 +314,7 @@ export const GEMINI_CASE = {
       "entryNumber": 27,
       "date": "2/5/26",
       "description": "TRANSCRIPT of Hearing on Temporary Restraining Order held on 1/26/2026 before Judge Eric C. Tostrud. (43 pages). Court Reporter: Tim Willette. For a copy of the transcript, please file a Transcript Request under Other Filings/Other Documents.Parties have 21 days to file a Statement of Redaction. In accordance with Judicial Conference policy and Local Rule 80.1, the transcript may be released and made remotely electronically available to the public in 90 days. For further information on redaction procedures, please review Local Rule 5.5 and Case Information >Transcripts, Court Reporters and Digital Audio Recordings. Statement of Redaction due 2/26/2026. Redacted Transcript Deadline set for 3/9/2026. Release of Transcript Restriction set for 5/6/2026. (TJW) (Entered: 02/05/2026)",
-      "summary": "The official written record, or transcript, of the Temporary Restraining Order hearing held on January 26, 2026, has been filed and is now available. This transcript details all verbal proceedings from that hearing. Parties have 21 days to request redactions to the transcript.",
+      "summary": "This is the official, 43-page transcript of the hearing on the TRO motion held on January 26. It provides a verbatim written record of the oral arguments made by the attorneys and any statements from the judge. This document becomes part of the official case record and is crucial for any potential appeal.",
       "isKey": false,
       "pdfUrl": null
     },
@@ -310,7 +322,7 @@ export const GEMINI_CASE = {
       "entryNumber": 28,
       "date": "2/5/26",
       "description": "TRANSCRIPT REQUEST. (Farrell, Peter) (Entered: 02/05/2026)",
-      "summary": "Peter Farrell, an attorney for the plaintiffs, filed a request for a transcript. This indicates he desires a written record of specific court proceedings.",
+      "summary": "This is a formal request filed by the plaintiffs' attorney, Peter Farrell, to obtain a copy of the official hearing transcript. The filing confirms the plaintiffs are securing the official record of the oral arguments. This action is a strong indicator that the plaintiffs are reviewing the proceedings, likely in preparation for an appeal of the court's decision.",
       "isKey": false,
       "pdfUrl": null
     },

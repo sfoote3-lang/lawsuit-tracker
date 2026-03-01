@@ -125,64 +125,116 @@ export const ACTION_CLASSIFICATIONS = {
 // ── Enriched action descriptions ──────────────────────────────────
 export const ACTION_ENRICHMENTS = {
   "1": {
-    "title": "Docket Entry #1",
-    "description": "The Hennepin County Attorney's Office and the Minnesota Bureau of Criminal Apprehension officially started a lawsuit by filing a complaint against all identified defendants, including Kristi Noem and federal agencies. They also asked the court to officially notify the defendants of the lawsuit."
+    "title": "State Agencies File Lawsuit Against Federal Officials",
+    "description": "This is the initial complaint filed by the Minnesota Bureau of Criminal Apprehension and the Hennepin County Attorney's Office. It formally initiates the lawsuit against DHS Secretary Kristi Noem and other federal officials for interfering with a state-led homicide investigation. This document establishes the court's jurisdiction and outlines the legal claims, including violations of the Tenth Amendment, which form the foundation of the case."
   },
   "2": {
-    "title": "Docket Entry #2",
-    "description": "The plaintiffs asked the court for an emergency order, called a Temporary Restraining Order (TRO), to immediately stop the defendants from taking certain actions. They specifically requested that the court handle this request very quickly."
+    "title": "Plaintiffs Request Emergency Temporary Restraining Order",
+    "description": "The Minnesota state agencies filed an emergency motion for a Temporary Restraining Order (TRO). It asks the court to immediately compel federal defendants to stop interfering with the state's investigation, turn over seized evidence, and provide access to witnesses. This motion seeks urgent judicial intervention to preserve the integrity of the crime scene and evidence before it can be lost or altered."
   },
   "3": {
-    "title": "Docket Entry #3",
-    "description": "The court issued a notice stating that a hearing would be held to consider the plaintiffs' emergency request for a Temporary Restraining Order. However, the exact date and time for this hearing were not yet specified in this notice."
+    "title": "Court Acknowledges TRO Motion, Hearing Pending",
+    "description": "This is an official court notice regarding the plaintiffs' motion for a Temporary Restraining Order. It formally acknowledges the motion has been filed and states that a hearing on the matter will be scheduled. This entry is a standard procedural step indicating the court's receipt of the emergency request, with a specific hearing date to be determined shortly."
   },
   "4": {
-    "title": "Docket Entry #4",
-    "description": "The plaintiffs filed a legal document explaining their reasons and arguments for why the court should grant their emergency request for a Temporary Restraining Order. This memorandum provides the legal basis and facts supporting their motion."
+    "title": "Plaintiffs File Brief Supporting Emergency TRO",
+    "description": "The plaintiffs filed a legal brief, or memorandum of law, providing detailed support for their TRO motion. The brief presents the legal arguments and factual basis explaining why the court should grant the emergency order to prevent irreparable harm. This document is crucial as it provides the detailed reasoning intended to persuade the judge that immediate action is necessary and legally justified."
   },
   "5": {
-    "title": "Docket Entry #5",
-    "description": "A sworn statement from Drew Evans was filed to support the plaintiffs' emergency request for a Temporary Restraining Order. This declaration likely includes factual information and evidence relevant to the urgent relief sought."
+    "title": "BCA Superintendent Declares Facts Supporting TRO",
+    "description": "This is a sworn declaration from Drew Evans, the Superintendent of the Minnesota Bureau of Criminal Apprehension (BCA), filed by the plaintiffs. Evans provides a firsthand factual account of how federal agents allegedly obstructed the state's investigation at the crime scene. This declaration serves as key evidence for the TRO motion, offering a factual record under penalty of perjury to support the plaintiffs' claims."
   },
   "6": {
-    "title": "Docket Entry #6",
-    "description": "The plaintiffs submitted a draft order for the judge to consider signing, which would grant their request for a Temporary Restraining Order. This proposed document outlines the specific actions they want the court to mandate."
+    "title": "Plaintiffs Submit Proposed TRO Wording to Judge",
+    "description": "The plaintiffs submitted a proposed order for the judge's consideration regarding their TRO motion. This document contains the specific language of the order they want the court to issue, detailing exactly what the federal defendants would be required to do. Submitting a proposed order helps streamline the process if the judge grants the motion by providing a ready-to-sign template reflecting the relief sought."
+  },
+  "7": {
+    "title": "Court Assigns Case to Judge Tostrud",
+    "description": "This is a standard text-only notice from the court clerk regarding case assignment. It officially assigns the lawsuit to U.S. District Judge Eric C. Tostrud and Magistrate Judge David T. Schultz. This administrative entry determines which judges will preside over all proceedings for the duration of the case."
+  },
+  "8": {
+    "title": "Court Issues Summonses to Federal Defendants",
+    "description": "This entry confirms that the court clerk has issued official summonses for DHS Secretary Noem and other named federal officials and agencies. A summons is a legal document that formally notifies defendants they have been sued and requires them to respond to the complaint. This is a critical procedural step that begins the process of bringing the defendants under the court's jurisdiction."
+  },
+  "9": {
+    "title": "Court Issues More Summonses to Defendants",
+    "description": "This is a continuation of the previous entry, confirming that summonses have been issued for additional named defendants, including Pamela Bondi and Kashyap Patel. This ensures that all parties named in the lawsuit receive formal legal notice to appear and respond. It completes the initial step of officially notifying all defendants of the legal action against them."
   },
   "10": {
-    "title": "Docket Entry #10",
-    "description": "The judge reviewed the plaintiffs' emergency request and issued an order approving their Motion for a Temporary Restraining Order. This means the court has temporarily ordered the defendants to take or refrain from certain actions, with specific details outlined in the order."
+    "title": "Court Grants Plaintiffs' Emergency TRO Motion",
+    "description": "This is an order from Judge Eric C. Tostrud directly ruling on the plaintiffs' motion. The order grants the state agencies' request for an emergency Temporary Restraining Order against the federal defendants. This represents a significant initial victory for the plaintiffs, as the court has temporarily compelled the federal government to stop interfering with the state investigation."
+  },
+  "11": {
+    "title": "BCA Files Letter with Presiding Judge",
+    "description": "This entry shows that the Minnesota Bureau of Criminal Apprehension filed a letter directly with District Judge Tostrud. The specific contents are not detailed, but such communications often relate to case logistics or provide status updates. This filing represents an informal communication from one of the plaintiffs to the court after the TRO was granted."
+  },
+  "12": {
+    "title": "Federal Attorney Seeks Special Court Admission",
+    "description": "This is a motion filed by the federal defendants' legal team. It asks the court to grant special permission, known as 'pro hac vice,' for U.S. Government Attorney Andrew I. Warden to practice in this case. This is a routine procedural filing required for an out-of-state attorney to formally represent a client in the District of Minnesota."
+  },
+  "13": {
+    "title": "New Attorney Appears for Federal Defendants",
+    "description": "This is a formal notice of appearance filed by attorney Friedrich A. P. Siekert. The document informs the court and all parties that Siekert is officially representing all federal defendants in this lawsuit. This filing formally adds another lawyer to the defendants' legal team."
   },
   "14": {
-    "title": "Docket Entry #14",
-    "description": "The defendants filed a legal brief to argue against the plaintiffs' request for a Temporary Restraining Order. In this document, they present their legal reasons and factual arguments explaining why the emergency order should not be granted or should be dissolved."
+    "title": "Federal Defendants File Brief Opposing TRO",
+    "description": "The federal defendants filed a formal legal brief arguing against the Temporary Restraining Order. This document presents the federal government's legal and factual arguments for why the TRO should be dissolved. This is the defendants' primary written response, aiming to persuade the judge to reverse the initial emergency order."
   },
   "15": {
-    "title": "Docket Entry #15",
-    "description": "In support of their brief opposing the Temporary Restraining Order, the defendants submitted a list of exhibits and several sworn declarations. These documents provide factual evidence and testimony to bolster their arguments against the emergency order."
+    "title": "Defendants Submit Declarations Opposing TRO",
+    "description": "The federal defendants filed a list of exhibits and supporting sworn declarations to accompany their opposition brief. These include statements from federal personnel and the FBI intended to provide a factual basis for the arguments made in their brief. This evidence is meant to counter the plaintiffs' claims and justify the federal agents' actions."
+  },
+  "16": {
+    "title": "Defendants Certify Word Count of Opposition Brief",
+    "description": "This is a procedural certificate filed by the federal defendants' attorneys. It attests that their opposition brief complies with the court's local rules regarding maximum document length. This is a standard administrative filing required to ensure that legal briefs adhere to court-mandated limits."
+  },
+  "17": {
+    "title": "Court Admits Defendants' Out-of-State Attorney",
+    "description": "This is a text-only order from Magistrate Judge David T. Schultz. It grants the defendants' motion to admit attorney Andrew Warden 'pro hac vice,' allowing him to officially represent them in this case. This procedural order finalizes the addition of Warden to the federal government's legal team."
   },
   "18": {
-    "title": "Docket Entry #18",
-    "description": "The defendants filed a motion asking the court to keep certain documents or information confidential and not publicly accessible. This motion relates to the ongoing sealing of an exhibit."
+    "title": "Defendants Move to Keep FBI Declaration Sealed",
+    "description": "The federal defendants filed a motion asking the court to keep an exhibit under seal. The motion specifically requests that the FBI declaration, submitted as evidence, remain confidential and out of the public record. This action suggests the declaration contains sensitive information the government believes should not be publicly disclosed."
   },
   "19": {
-    "title": "Docket Entry #19",
-    "description": "The federal defendants filed a sworn statement from the FBI, which was submitted under seal, meaning it is not publicly accessible. This declaration supports their brief opposing the Temporary Restraining Order, but its contents are confidential."
+    "title": "Defendants File Sealed FBI Declaration as Evidence",
+    "description": "This is a sealed declaration from the FBI filed by the federal defendants in support of their brief. Because it is sealed, its contents are not available to the public. The document was filed under seal to protect what is likely classified, law enforcement sensitive, or otherwise confidential information."
   },
   "20": {
-    "title": "Docket Entry #20",
-    "description": "A hearing was held before Judge Eric C. Tostrud where lawyers for both sides presented oral arguments on a motion. This hearing lasted for 59 minutes and allowed the judge to hear directly from the attorneys."
+    "title": "Court Holds Oral Arguments on TRO Motion",
+    "description": "This entry summarizes a 59-minute court hearing held before Judge Tostrud. Attorneys for both the state plaintiffs and federal defendants presented oral arguments regarding the Temporary Restraining Order. After hearing from both sides, the judge took the matter under advisement, meaning he would consider the arguments and issue a written decision later."
   },
   "21": {
-    "title": "Docket Entry #21",
-    "description": "The plaintiffs filed another sworn statement from Peter J. Farrell, along with several exhibits, to further support their original emergency request for a Temporary Restraining Order. This additional declaration provides more factual information or evidence, including social media posts, to strengthen their arguments."
+    "title": "Plaintiffs' Attorney Submits Supporting Declaration",
+    "description": "This is a sworn declaration from Peter J. Farrell, an attorney for the plaintiffs. It provides additional exhibits, including social media posts and news articles, to support the plaintiffs' request for a TRO. This filing aims to bolster the plaintiffs' case by introducing public statements and media reports that corroborate their claims about the defendants' actions."
+  },
+  "22": {
+    "title": "Plaintiffs Certify Service of Initial Lawsuit Documents",
+    "description": "This is a certificate of service filed by the plaintiffs' legal team. It formally declares to the court that copies of the initial complaint, TRO motion, summons, and other key documents have been properly delivered to the defendants. This is a mandatory procedural step to prove that the defendants have received official notice of the lawsuit."
+  },
+  "23": {
+    "title": "Plaintiffs File Second Certificate of Service",
+    "description": "This is a second, identical certificate of service filed by the plaintiffs. It reaffirms that the defendants were properly served with the initial lawsuit documents. This redundant filing may be a clerical correction or intended to certify service on a different set of defendants to ensure the record is complete."
   },
   "24": {
-    "title": "Docket Entry #24",
-    "description": "The judge issued a formal opinion and order, dissolving (ending) the Temporary Restraining Order that was previously granted on January 24, 2026. The judge also denied any further requests for relief under the plaintiffs' initial motion for a TRO, though this denial does not prevent them from filing new motions in the future."
+    "title": "Court Dissolves TRO, Denies Further Relief",
+    "description": "This is the judge's final opinion and order on the plaintiffs' emergency motion. Judge Tostrud dissolves the previously granted Temporary Restraining Order and denies the plaintiffs' request for any further preliminary relief. This ruling is a major victory for the federal defendants and a significant setback for the state agencies, and it also grants the motion to keep the FBI declaration sealed."
   },
   "25": {
-    "title": "Docket Entry #25",
-    "description": "A formal judgment was entered in the case, which often signifies a final decision on certain aspects of the litigation or confirms the outcome of a major ruling. This entry also included a notice about the possibility of appeal."
+    "title": "Court Enters Final Judgment in Case",
+    "description": "This is the formal entry of judgment by the court clerk, based on the judge's preceding order. It officially closes the case at the district court level. This action finalizes the court's decision, making it appealable and concluding the litigation unless a party files an appeal."
+  },
+  "26": {
+    "title": "Party Requests Expedited Hearing Transcript",
+    "description": "This entry is a request for a written transcript of the January 26th motion hearing. The filing party asks the court reporter to produce the transcript on an expedited 3-day timeline. An expedited request often signifies that a party is quickly preparing for an appeal where a precise record of the hearing is needed."
+  },
+  "27": {
+    "title": "Official Transcript of TRO Hearing Filed",
+    "description": "This is the official, 43-page transcript of the hearing on the TRO motion held on January 26. It provides a verbatim written record of the oral arguments made by the attorneys and any statements from the judge. This document becomes part of the official case record and is crucial for any potential appeal."
+  },
+  "28": {
+    "title": "Plaintiffs' Attorney Requests Hearing Transcript",
+    "description": "This is a formal request filed by the plaintiffs' attorney, Peter Farrell, to obtain a copy of the official hearing transcript. The filing confirms the plaintiffs are securing the official record of the oral arguments. This action is a strong indicator that the plaintiffs are reviewing the proceedings, likely in preparation for an appeal of the court's decision."
   }
 }
 
