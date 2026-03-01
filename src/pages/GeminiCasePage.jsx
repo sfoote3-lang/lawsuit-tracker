@@ -836,7 +836,7 @@ export default function GeminiCasePage() {
                       className="timeline-dot"
                       style={{
                         background: (TYPE_CONFIG[event.type] || {}).color || 'rgba(255,255,255,0.3)',
-                        boxShadow: `0 0 0 3px rgba(10,10,15,1), 0 0 0 4px ${(TYPE_CONFIG[event.type] || {}).color || 'rgba(255,255,255,0.3)'}40`,
+                        boxShadow: `0 0 0 3px var(--bg), 0 0 0 4px ${(TYPE_CONFIG[event.type] || {}).color || 'rgba(255,255,255,0.3)'}40`,
                       }}
                     />
                     {!isLast && <div className="timeline-line" />}

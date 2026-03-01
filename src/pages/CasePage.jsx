@@ -255,7 +255,7 @@ export default function CasePage() {
                   <div className="timeline-left">
                     <div
                       className="timeline-dot"
-                      style={{ background: cfg.color, boxShadow: `0 0 0 3px rgba(10,10,15,1), 0 0 0 4px ${cfg.color}40` }}
+                      style={{ background: cfg.color, boxShadow: `0 0 0 3px var(--bg), 0 0 0 4px ${cfg.color}40` }}
                     />
                     {!isLast && <div className="timeline-line" />}
                   </div>

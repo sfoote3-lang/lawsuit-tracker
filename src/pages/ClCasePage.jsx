@@ -297,7 +297,7 @@ export default function ClCasePage() {
               <div className="timeline-left">
                 <div
                   className="timeline-dot"
-                  style={{ background: '#457b9d', boxShadow: '0 0 0 3px rgba(10,10,15,1), 0 0 0 4px #457b9d40' }}
+                  style={{ background: '#457b9d', boxShadow: '0 0 0 3px var(--bg), 0 0 0 4px #457b9d40' }}
                 />
               </div>
               <div className="timeline-content">

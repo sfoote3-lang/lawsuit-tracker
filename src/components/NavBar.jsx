@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { ISSUES, ALL_CASES } from '../data/issues'
+import { useTheme } from '../hooks/useTheme'
 import './NavBar.css'
 
 const STATUS_LABELS = {
@@ -48,16 +49,51 @@ function searchAll(query) {
   return { issues: matchedIssues, cases: matchedCases }
 }
 
+const THEME_OPTIONS = [
+  {
+    id: 'dark',
+    label: 'Dark',
+    icon: (
+      <svg viewBox="0 0 16 16" fill="none">
+        <path d="M13.5 9.5a6 6 0 01-7-7 6 6 0 108 7.5 5.97 5.97 0 01-1-.5z" fill="currentColor"/>
+      </svg>
+    ),
+  },
+  {
+    id: 'light',
+    label: 'Light',
+    icon: (
+      <svg viewBox="0 0 16 16" fill="none">
+        <circle cx="8" cy="8" r="3" stroke="currentColor" strokeWidth="1.4"/>
+        <path d="M8 1.5v2M8 12.5v2M1.5 8h2M12.5 8h2M3.6 3.6l1.4 1.4M11 11l1.4 1.4M3.6 12.4l1.4-1.4M11 5l1.4-1.4" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round"/>
+      </svg>
+    ),
+  },
+  {
+    id: 'official',
+    label: 'Official',
+    icon: (
+      <svg viewBox="0 0 16 16" fill="none">
+        <path d="M8 1.5L13.5 3.5V8.5C13.5 11.5 11 13.5 8 14.5C5 13.5 2.5 11.5 2.5 8.5V3.5L8 1.5Z" stroke="currentColor" strokeWidth="1.3" strokeLinejoin="round"/>
+      </svg>
+    ),
+  },
+]
+
 export default function NavBar() {
   const navigate = useNavigate()
-  const [issueOpen, setIssueOpen] = useState(false)
-  const [query, setQuery]         = useState('')
+  const [theme, setTheme]           = useTheme()
+  const [issueOpen, setIssueOpen]   = useState(false)
+  const [themeOpen, setThemeOpen]   = useState(false)
+  const [query, setQuery]           = useState('')
   const [searchOpen, setSearchOpen] = useState(false)
 
   const issueRef  = useRef(null)
+  const themeRef  = useRef(null)
   const searchRef = useRef(null)
 
   useOutsideClick(issueRef,  () => setIssueOpen(false))
+  useOutsideClick(themeRef,  () => setThemeOpen(false))
   useOutsideClick(searchRef, () => { setSearchOpen(false); setQuery('') })
 
   const results    = searchAll(query)
@@ -120,6 +156,34 @@ export default function NavBar() {
                   >
                     <span className="dropdown-item-dot" />
                     {issue.title}
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
+
+          {/* Theme picker */}
+          <div className="navbar-dropdown" ref={themeRef}>
+            <button
+              className={`navbar-theme-btn ${themeOpen ? 'open' : ''}`}
+              onClick={() => setThemeOpen(o => !o)}
+              title="Change theme"
+              aria-label="Change theme"
+            >
+              {THEME_OPTIONS.find(o => o.id === theme)?.icon}
+            </button>
+
+            {themeOpen && (
+              <div className="dropdown-menu theme-menu">
+                {THEME_OPTIONS.map(opt => (
+                  <button
+                    key={opt.id}
+                    className={`dropdown-item ${theme === opt.id ? 'theme-option--active' : ''}`}
+                    onClick={() => { setTheme(opt.id); setThemeOpen(false) }}
+                  >
+                    <span className="theme-option-icon">{opt.icon}</span>
+                    {opt.label}
+                    {theme === opt.id && <span className="theme-option-check">✓</span>}
                   </button>
                 ))}
               </div>

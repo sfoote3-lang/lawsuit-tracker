@@ -12,6 +12,494 @@
   --muted: rgba(255,255,255,0.45);
 }
 
+/* ── Light theme ──────────────────────────────────────────── */
+[data-theme="light"] {
+  --bg: #eef1f6;
+  --surface: rgba(0,0,0,0.03);
+  --border: rgba(0,0,0,0.09);
+  --text: #111827;
+  --muted: rgba(17,24,39,0.48);
+}
+
+[data-theme="light"] .bg-gradient {
+  background:
+    radial-gradient(ellipse 80% 50% at 20% -10%, rgba(230,57,70,0.07) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 40% at 80% 110%, rgba(69,123,157,0.07) 0%, transparent 60%);
+}
+
+[data-theme="light"] .bottom-banner {
+  background: rgba(238,241,246,0.95);
+  border-color: rgba(0,0,0,0.09);
+  color: rgba(0,0,0,0.45);
+}
+
+/* ── Light mode: global text & card overrides ─────────────── *
+ * Almost every component uses hardcoded rgba(255,255,255,X)   *
+ * for text and rgba(255,255,255,0.04) for card backgrounds.   *
+ * We override them all here rather than touching each file.   *
+ * ----------------------------------------------------------  */
+
+/* Page titles */
+[data-theme="light"] .hero-title,
+[data-theme="light"] .all-cases-title,
+[data-theme="light"] .live-feed-title,
+[data-theme="light"] .issue-hero-title,
+[data-theme="light"] .section-heading { color: #111827; }
+
+[data-theme="light"] .hero-subtitle,
+[data-theme="light"] .stats-heading,
+[data-theme="light"] .issue-hero-desc  { color: rgba(0,0,0,0.5); }
+
+/* Stat cards */
+[data-theme="light"] .stat-card {
+  background: #fff;
+  border-color: rgba(0,0,0,0.09);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+}
+[data-theme="light"] .stat-label   { color: rgba(0,0,0,0.88); }
+[data-theme="light"] .stat-sublabel{ color: rgba(0,0,0,0.48); }
+[data-theme="light"] .stat-bar     { background: rgba(0,0,0,0.07); }
+
+/* Home page CTAs */
+[data-theme="light"] .primary-stat-cta  { color: rgba(0,0,0,0.38); }
+[data-theme="light"] .primary-stat-btn:hover .primary-stat-cta { color: rgba(0,0,0,0.65); }
+[data-theme="light"] .stat-filter-cta   { color: rgba(0,0,0,0.3); }
+[data-theme="light"] .stat-filter-btn:hover .stat-filter-cta   { color: rgba(0,0,0,0.6); }
+
+/* Home news section */
+[data-theme="light"] .home-news-more-btn        { color: rgba(0,0,0,0.38); }
+[data-theme="light"] .home-news-more-btn:hover  { color: rgba(0,0,0,0.75); }
+[data-theme="light"] .home-news-card            { background: #fff; border-color: rgba(0,0,0,0.08); }
+[data-theme="light"] .home-news-card:hover      { background: rgba(0,0,0,0.015); border-color: rgba(0,0,0,0.14); }
+[data-theme="light"] .home-news-title           { color: rgba(0,0,0,0.85); }
+[data-theme="light"] .home-news-date            { color: rgba(0,0,0,0.35); }
+[data-theme="light"] .home-news-summary         { color: rgba(0,0,0,0.45); }
+
+/* Issue cards */
+[data-theme="light"] .issue-card              { background: #fff; border-color: rgba(0,0,0,0.09); box-shadow: 0 2px 12px rgba(0,0,0,0.05); }
+[data-theme="light"] .issue-card:hover        { background: rgba(0,0,0,0.01); box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+[data-theme="light"] .issue-card-title        { color: rgba(0,0,0,0.88); }
+[data-theme="light"] .issue-card-count        { color: rgba(0,0,0,0.45); }
+
+/* Back button (IssuePage / CasePage) */
+[data-theme="light"] .back-btn              { color: rgba(0,0,0,0.5); border-color: rgba(0,0,0,0.12); }
+[data-theme="light"] .back-btn:hover        { color: rgba(0,0,0,0.85); border-color: rgba(0,0,0,0.22); }
+
+/* AllCasesPage — status breakdown */
+[data-theme="light"] .breakdown-stat       { background: #fff; border-color: rgba(0,0,0,0.09); }
+[data-theme="light"] .breakdown-stat:hover { background: rgba(0,0,0,0.02); border-color: rgba(0,0,0,0.15); }
+[data-theme="light"] .breakdown-label      { color: rgba(0,0,0,0.45); }
+
+/* AllCasesPage — section headers */
+[data-theme="light"] .all-cases-sub            { color: rgba(0,0,0,0.45); }
+[data-theme="light"] .all-cases-section-label  { color: rgba(0,0,0,0.32); }
+[data-theme="light"] .all-cases-section-sub    { color: rgba(0,0,0,0.42); }
+[data-theme="light"] .all-cases-body-heading   { border-bottom-color: rgba(0,0,0,0.07); }
+
+/* AllCasesPage — live feed section */
+[data-theme="light"] .live-feed-section    { background: #fff; border-color: rgba(0,0,0,0.09); }
+[data-theme="light"] .live-feed-eyebrow    { color: rgba(0,0,0,0.38); }
+[data-theme="light"] .live-feed-sub        { color: rgba(0,0,0,0.42); }
+[data-theme="light"] .live-refresh-btn     { color: rgba(0,0,0,0.48); }
+[data-theme="light"] .live-refresh-btn:hover { color: rgba(0,0,0,0.8); }
+[data-theme="light"] .live-search-icon     { color: rgba(0,0,0,0.3); }
+[data-theme="light"] .live-search-input    { background: rgba(0,0,0,0.04); border-color: rgba(0,0,0,0.1); color: rgba(0,0,0,0.85); }
+[data-theme="light"] .live-search-input::placeholder { color: rgba(0,0,0,0.3); }
+[data-theme="light"] .live-search-input:focus { border-color: rgba(0,0,0,0.2); }
+[data-theme="light"] .live-search-clear svg  { color: rgba(0,0,0,0.3); }
+[data-theme="light"] .live-filter-note      { color: rgba(0,0,0,0.35); }
+[data-theme="light"] .live-docket-row       { border-bottom-color: rgba(0,0,0,0.06); }
+[data-theme="light"] .live-docket-number    { color: rgba(0,0,0,0.82); }
+[data-theme="light"] .live-docket-type--unknown { color: rgba(0,0,0,0.4); background: rgba(0,0,0,0.04); border-color: rgba(0,0,0,0.1); }
+[data-theme="light"] .live-docket-link      { color: rgba(0,0,0,0.45); background: rgba(0,0,0,0.04); border-color: rgba(0,0,0,0.1); }
+[data-theme="light"] .live-docket-link:hover { color: rgba(0,0,0,0.85); background: rgba(0,0,0,0.07); border-color: rgba(0,0,0,0.18); }
+[data-theme="light"] .live-load-more        { color: rgba(0,0,0,0.4); }
+[data-theme="light"] .live-load-more:hover  { color: rgba(0,0,0,0.75); }
+[data-theme="light"] .live-no-results       { color: rgba(0,0,0,0.38); }
+[data-theme="light"] .live-skeleton         { background: rgba(0,0,0,0.07); }
+
+/* AllCasesPage — issue groups */
+[data-theme="light"] .issue-group-header  { border-bottom-color: rgba(0,0,0,0.07); }
+[data-theme="light"] .issue-group-title   { color: rgba(0,0,0,0.78); }
+[data-theme="light"] .issue-group-count   { color: rgba(0,0,0,0.3); }
+
+/* AllCasesPage — filter chips */
+[data-theme="light"] .filter-row-label    { color: rgba(0,0,0,0.32); }
+[data-theme="light"] .filter-chip         { background: rgba(0,0,0,0.04); border-color: rgba(0,0,0,0.1); color: rgba(0,0,0,0.58); }
+[data-theme="light"] .filter-chip:hover   { color: rgba(0,0,0,0.85); background: rgba(0,0,0,0.07); border-color: rgba(0,0,0,0.18); }
+[data-theme="light"] .filter-clear-all    { color: rgba(0,0,0,0.38); border-color: rgba(0,0,0,0.1); }
+[data-theme="light"] .filter-clear-all:hover { color: rgba(0,0,0,0.72); border-color: rgba(0,0,0,0.2); }
+[data-theme="light"] .no-results          { color: rgba(0,0,0,0.38); }
+
+/* AllCasesPage — case rows */
+[data-theme="light"] .case-row--clickable       { background: #fff; border-color: rgba(0,0,0,0.09); }
+[data-theme="light"] .case-row--clickable:hover { background: rgba(0,0,0,0.02); }
+[data-theme="light"] .case-name                 { color: rgba(0,0,0,0.88); }
+[data-theme="light"] .case-row-arrow            { color: rgba(0,0,0,0.2); }
+[data-theme="light"] .case-row--clickable:hover .case-row-arrow { color: rgba(0,0,0,0.5); }
+[data-theme="light"] .case-meta-item            { color: rgba(0,0,0,0.38); }
+[data-theme="light"] .case-meta-divider         { color: rgba(0,0,0,0.15); }
+[data-theme="light"] .case-id-label             { background: rgba(0,0,0,0.05); border-color: rgba(0,0,0,0.08); color: rgba(0,0,0,0.5); }
+[data-theme="light"] .case-description          { color: rgba(0,0,0,0.45); }
+[data-theme="light"] .case-issue-label          { color: rgba(0,0,0,0.4) !important; }
+
+/* Footer */
+[data-theme="light"] .footer a        { color: rgba(0,0,0,0.6); }
+[data-theme="light"] .footer-small    { color: rgba(0,0,0,0.3) !important; }
+
+/* CasePage — section headings */
+[data-theme="light"] .section-heading { color: rgba(0,0,0,0.38); }
+
+/* CasePage — Appeals Tracker: outer container */
+[data-theme="light"] .courts-section {
+  background: #e8ebf2;
+  border: 1px solid rgba(0,0,0,0.09);
+  border-radius: 14px;
+  padding: 1.5rem 1.75rem;
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.04);
+}
+
+/* CasePage — court node boxes
+ * .court-node--clickable uses "all: unset" which strips border/padding/radius.
+ * We must use the full border shorthand (not just border-color) and re-state
+ * padding + border-radius so our higher-specificity rules win back those props. */
+[data-theme="light"] .courts-tier-bracket   { border-color: rgba(0,0,0,0.12); }
+[data-theme="light"] .courts-tier-arrow     { color: rgba(0,0,0,0.25); }
+[data-theme="light"] .court-node {
+  background: #fff;
+  border: 1px solid rgba(0,0,0,0.13);
+  border-radius: 8px;
+  padding: 0.65rem 1rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  text-align: center;
+}
+[data-theme="light"] .court-node--active {
+  border: 1px solid rgba(0,0,0,0.2);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.11);
+}
+/* Clickable variant (GeminiCasePage) uses "all: unset" — re-apply box + layout */
+[data-theme="light"] .court-node--clickable {
+  background: #fff;
+  border: 1px solid rgba(0,0,0,0.13);
+  border-radius: 8px;
+  padding: 0.65rem 1rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+}
+[data-theme="light"] .court-node--active.court-node--clickable {
+  border: 1px solid rgba(0,0,0,0.2);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.11);
+}
+[data-theme="light"] .court-node--clickable:hover {
+  background: rgba(0,0,0,0.02);
+}
+[data-theme="light"] .court-node-name       { color: rgba(0,0,0,0.85); }
+[data-theme="light"] .court-node-type       { color: rgba(0,0,0,0.38); }
+[data-theme="light"] .court-status--anticipated { color: rgba(0,0,0,0.32); background: rgba(0,0,0,0.04); border: 1px solid rgba(0,0,0,0.1); }
+
+/* CasePage — Timeline */
+[data-theme="light"] .timeline-line         { background: rgba(0,0,0,0.1); }
+[data-theme="light"] .timeline-date         { color: rgba(0,0,0,0.38); }
+[data-theme="light"] .timeline-court        { color: rgba(0,0,0,0.32); background: rgba(0,0,0,0.04); border-color: rgba(0,0,0,0.09); }
+[data-theme="light"] .timeline-event-title  { color: rgba(0,0,0,0.88); }
+[data-theme="light"] .timeline-event-desc   { color: rgba(0,0,0,0.48); }
+
+/* CasePage — Actions section */
+[data-theme="light"] .actions-toggle       { background: rgba(0,0,0,0.04); border-color: rgba(0,0,0,0.09); }
+[data-theme="light"] .toggle-seg           { color: rgba(0,0,0,0.38); }
+[data-theme="light"] .toggle-seg:hover:not(.toggle-seg--on) { color: rgba(0,0,0,0.65); }
+[data-theme="light"] .toggle-seg--on       { background: rgba(0,0,0,0.1); color: rgba(0,0,0,0.88); }
+[data-theme="light"] .toggle-seg-count     { background: rgba(0,0,0,0.07); color: rgba(0,0,0,0.45); }
+[data-theme="light"] .toggle-seg--on .toggle-seg-count { background: rgba(0,0,0,0.1); color: rgba(0,0,0,0.6); }
+[data-theme="light"] .action-row           { background: #fff; border-color: rgba(0,0,0,0.09); }
+[data-theme="light"] .action-row:hover     { background: rgba(0,0,0,0.02); }
+[data-theme="light"] .action-date          { color: rgba(0,0,0,0.38); }
+[data-theme="light"] .action-court         { color: rgba(0,0,0,0.32); background: rgba(0,0,0,0.04); border-color: rgba(0,0,0,0.09); }
+[data-theme="light"] .action-title         { color: rgba(0,0,0,0.88); }
+[data-theme="light"] .action-desc          { color: rgba(0,0,0,0.48); }
+
+/* CasePage — Abuses/Spotlight section */
+[data-theme="light"] .abuses-intro             { color: rgba(0,0,0,0.48); }
+[data-theme="light"] .abuse-date               { color: rgba(0,0,0,0.38); }
+[data-theme="light"] .abuse-title              { color: rgba(0,0,0,0.88); }
+[data-theme="light"] .abuse-desc               { color: rgba(0,0,0,0.5); }
+[data-theme="light"] .abuse-source--article,
+[data-theme="light"] .abuse-source--document   { color: rgba(0,0,0,0.5); border-color: rgba(0,0,0,0.1); background: rgba(0,0,0,0.04); }
+[data-theme="light"] .abuse-source--article:hover,
+[data-theme="light"] .abuse-source--document:hover { color: rgba(0,0,0,0.82); background: rgba(0,0,0,0.07); }
+
+/* CasePage / ClCasePage */
+[data-theme="light"] .case-title             { color: #111827; }
+[data-theme="light"] .case-meta span         { color: rgba(0,0,0,0.45); }
+[data-theme="light"] .case-meta-divider      { color: rgba(0,0,0,0.15) !important; }
+[data-theme="light"] .case-id                { background: rgba(0,0,0,0.05); border-color: rgba(0,0,0,0.09); }
+[data-theme="light"] .case-description       { color: rgba(0,0,0,0.5); }
+[data-theme="light"] .share-btn              { color: rgba(0,0,0,0.45); border-color: rgba(0,0,0,0.12); }
+[data-theme="light"] .share-btn:hover        { color: rgba(0,0,0,0.8); border-color: rgba(0,0,0,0.22); background: rgba(0,0,0,0.04); }
+
+[data-theme="light"] .cl-skeleton           { background: linear-gradient(90deg, rgba(0,0,0,0.05) 25%, rgba(0,0,0,0.09) 50%, rgba(0,0,0,0.05) 75%); background-size: 600px 100%; }
+[data-theme="light"] .cl-loading-label      { color: rgba(0,0,0,0.32); }
+[data-theme="light"] .cl-tag--juris,
+[data-theme="light"] .cl-tag--jury          { color: rgba(0,0,0,0.48); background: rgba(0,0,0,0.05); border-color: rgba(0,0,0,0.1); }
+[data-theme="light"] .cl-judge              { color: rgba(0,0,0,0.55); }
+[data-theme="light"] .cl-judge-label        { color: rgba(0,0,0,0.28); }
+[data-theme="light"] .cl-parties-list       { color: rgba(0,0,0,0.55); }
+[data-theme="light"] .cl-curation-section   { background: #fff; border-color: rgba(0,0,0,0.09); }
+[data-theme="light"] .cl-curation-intro     { color: rgba(0,0,0,0.45); }
+[data-theme="light"] .cl-field--filled      { background: rgba(0,0,0,0.03); border-color: rgba(0,0,0,0.08); }
+[data-theme="light"] .cl-field-label        { color: rgba(0,0,0,0.3); }
+[data-theme="light"] .cl-field-value        { color: rgba(0,0,0,0.72); }
+[data-theme="light"] .cl-ext-btn            { color: rgba(0,0,0,0.6); border-color: rgba(0,0,0,0.12); background: rgba(0,0,0,0.03); }
+[data-theme="light"] .cl-ext-btn:hover      { color: rgba(0,0,0,0.88); background: rgba(0,0,0,0.06); border-color: rgba(0,0,0,0.2); }
+[data-theme="light"] .cl-ext-btn--secondary { color: rgba(0,0,0,0.38); border-color: rgba(0,0,0,0.08); background: transparent; }
+
+/* CaseFunnel */
+[data-theme="light"] .funnel-subtitle        { color: rgba(0,0,0,0.48); }
+[data-theme="light"] .funnel-stage           { background: #fff; border-color: rgba(0,0,0,0.09); }
+[data-theme="light"] .funnel-stage:hover     { background: rgba(0,0,0,0.02); }
+[data-theme="light"] .funnel-stage-label     { color: rgba(0,0,0,0.78); }
+[data-theme="light"] .funnel-stage-sublabel  { color: rgba(0,0,0,0.38); }
+[data-theme="light"] .funnel-arrow-badge     { color: rgba(0,0,0,0.38); background: rgba(0,0,0,0.04); border-color: rgba(0,0,0,0.09); }
+[data-theme="light"] .funnel-arrow-line      { background: rgba(0,0,0,0.12); }
+[data-theme="light"] .scotus-card            { background: #fff; border-color: rgba(0,0,0,0.09); }
+[data-theme="light"] .scotus-card-eyebrow    { color: rgba(0,0,0,0.32); }
+[data-theme="light"] .scotus-big-label       { color: rgba(0,0,0,0.62); }
+[data-theme="light"] .scotus-decided-note    { color: rgba(0,0,0,0.3); }
+[data-theme="light"] .scotus-legend-item     { color: rgba(0,0,0,0.55); }
+[data-theme="light"] .scotus-legend-item strong { color: rgba(0,0,0,0.85); }
+[data-theme="light"] .scotus-dot--pending    { background: rgba(0,0,0,0.15); }
+[data-theme="light"] .scotus-split-bar       { background: rgba(0,0,0,0.07); }
+[data-theme="light"] .scotus-bar-pending     { background: rgba(0,0,0,0.18); }
+
+/* CourtMap */
+[data-theme="light"] .court-map-subtitle  { color: rgba(0,0,0,0.48); }
+[data-theme="light"] .court-map-wrap      { background: rgba(0,0,0,0.02); border-color: rgba(0,0,0,0.08); }
+[data-theme="light"] .legend-label        { color: rgba(0,0,0,0.38); }
+
+/* JudgesViz */
+[data-theme="light"] .judges-subtitle         { color: rgba(0,0,0,0.48); }
+[data-theme="light"] .judges-stage            { background: rgba(0,0,0,0.02); border-color: rgba(0,0,0,0.08); }
+[data-theme="light"] .judges-col-name         { color: rgba(0,0,0,0.38); }
+[data-theme="light"] .judges-divider          { background: linear-gradient(to bottom, transparent, rgba(0,0,0,0.12) 20%, rgba(0,0,0,0.12) 80%, transparent); }
+[data-theme="light"] .judges-breakdown        { background: rgba(0,0,0,0.02); border-color: rgba(0,0,0,0.08); }
+[data-theme="light"] .breakdown-group--against { border-right-color: rgba(0,0,0,0.07); }
+[data-theme="light"] .breakdown-label         { color: rgba(0,0,0,0.32); }
+[data-theme="light"] .breakdown-row           { color: rgba(0,0,0,0.55); }
+[data-theme="light"] .bd-count                { color: rgba(0,0,0,0.82); }
+[data-theme="light"] .breakdown-divider       { background: rgba(0,0,0,0.07); }
+[data-theme="light"] .jl-item                 { color: rgba(0,0,0,0.5); }
+[data-theme="light"] .jl-note                 { color: rgba(0,0,0,0.28); }
+
+/* SpotlightFeed */
+[data-theme="light"] .spotlight-subtitle       { color: rgba(0,0,0,0.45); }
+[data-theme="light"] .sf-date                  { color: rgba(0,0,0,0.35); }
+[data-theme="light"] .sf-title                 { color: rgba(0,0,0,0.88); }
+[data-theme="light"] .sf-desc                  { color: rgba(0,0,0,0.48); }
+[data-theme="light"] .sf-card-footer           { border-top-color: rgba(0,0,0,0.07); }
+[data-theme="light"] .sf-case-name             { color: rgba(0,0,0,0.62); }
+[data-theme="light"] .sf-view-arrow            { color: rgba(0,0,0,0.28); }
+[data-theme="light"] .sf-card:hover .sf-view-arrow { color: rgba(0,0,0,0.65); }
+[data-theme="light"] .sf-source--article,
+[data-theme="light"] .sf-source--document      { color: rgba(0,0,0,0.5); border-color: rgba(0,0,0,0.1); background: rgba(0,0,0,0.04); }
+[data-theme="light"] .sf-source--article:hover,
+[data-theme="light"] .sf-source--document:hover { color: rgba(0,0,0,0.82); background: rgba(0,0,0,0.07); }
+
+/* ── GeminiCasePage light mode ───────────────────────────── */
+
+/* Header badges */
+[data-theme="light"] .court-tag-badge           { color: rgba(0,0,0,0.55); border-color: rgba(0,0,0,0.12); background: rgba(0,0,0,0.04); }
+[data-theme="light"] .case-judge-chip           { background: rgba(0,0,0,0.04); border-color: rgba(0,0,0,0.09); }
+[data-theme="light"] .case-judge-role           { color: rgba(0,0,0,0.32); }
+[data-theme="light"] .favorability-badge--neutral { color: rgba(0,0,0,0.45); border-color: rgba(0,0,0,0.12); background: rgba(0,0,0,0.04); }
+[data-theme="light"] .case-status-label-chip    { color: rgba(0,0,0,0.5); border-color: rgba(0,0,0,0.12); background: rgba(0,0,0,0.04); }
+
+/* Share popover */
+[data-theme="light"] .share-popover            { background: #fff; border-color: rgba(0,0,0,0.12); box-shadow: 0 8px 32px rgba(0,0,0,0.14); }
+[data-theme="light"] .share-popover-title      { color: rgba(0,0,0,0.32); }
+[data-theme="light"] .share-option             { color: rgba(0,0,0,0.7); }
+[data-theme="light"] .share-option:hover       { background: rgba(0,0,0,0.05); color: rgba(0,0,0,0.88); }
+[data-theme="light"] .share-option-icon        { color: rgba(0,0,0,0.35); }
+[data-theme="light"] .share-option:hover .share-option-icon { color: rgba(0,0,0,0.6); }
+
+/* Case Background / context card */
+[data-theme="light"] .gemini-context-card      { background: #fff; border-color: rgba(0,0,0,0.09); }
+[data-theme="light"] .gemini-context-divider   { background: rgba(0,0,0,0.06); }
+[data-theme="light"] .gemini-context-label     { color: rgba(0,0,0,0.32); }
+[data-theme="light"] .gemini-context-text      { color: rgba(0,0,0,0.6); }
+
+/* Doc link */
+[data-theme="light"] .gemini-doc-link          { color: rgba(0,0,0,0.42); border-color: rgba(0,0,0,0.1); }
+[data-theme="light"] .gemini-doc-link:hover    { color: rgba(0,0,0,0.82); border-color: rgba(0,0,0,0.2); background: rgba(0,0,0,0.04); }
+[data-theme="light"] .gemini-doc-link--cl      { color: rgba(0,0,0,0.3); }
+[data-theme="light"] .gemini-doc-link--cl:hover { color: rgba(0,0,0,0.65); }
+
+/* Header plaintiffs sidebar */
+[data-theme="light"] .gemini-header-plaintiffs { background: rgba(0,0,0,0.03); border-color: rgba(0,0,0,0.09); }
+[data-theme="light"] .ghp-name                 { color: rgba(0,0,0,0.7); }
+[data-theme="light"] .ghp-wiki                 { color: rgba(0,0,0,0.7); }
+
+/* News section */
+[data-theme="light"] .gemini-news-sub          { color: rgba(0,0,0,0.38); }
+[data-theme="light"] .gemini-news-card         { background: #fff; border-color: rgba(0,0,0,0.09); }
+[data-theme="light"] .gemini-news-card:hover   { background: rgba(0,0,0,0.02); border-color: rgba(0,0,0,0.14); }
+[data-theme="light"] .gemini-news-date         { color: rgba(0,0,0,0.32); }
+[data-theme="light"] .gemini-news-title        { color: rgba(0,0,0,0.85); }
+[data-theme="light"] .gemini-news-desc         { color: rgba(0,0,0,0.48); }
+[data-theme="light"] .gemini-news-arrow        { color: rgba(0,0,0,0.28); }
+
+/* Parties section */
+[data-theme="light"] .parties-col-count        { background: rgba(0,0,0,0.07); color: rgba(0,0,0,0.42); }
+[data-theme="light"] .parties-more-btn         { color: rgba(0,0,0,0.38); border-bottom-color: rgba(0,0,0,0.14); }
+[data-theme="light"] .parties-more-btn:hover   { color: rgba(0,0,0,0.7); }
+[data-theme="light"] .parties-col              { background: rgba(0,0,0,0.03); border-color: rgba(0,0,0,0.09); }
+[data-theme="light"] .parties-name             { color: rgba(0,0,0,0.75); }
+[data-theme="light"] .parties-wiki-link        { color: rgba(0,0,0,0.75); }
+[data-theme="light"] .parties-desc             { color: rgba(0,0,0,0.38); }
+[data-theme="light"] .parties-show-more        { color: rgba(0,0,0,0.35); }
+[data-theme="light"] .parties-show-more:hover  { color: rgba(0,0,0,0.65); }
+
+/* Laws section */
+[data-theme="light"] .law-card                 { background: rgba(0,0,0,0.03); border-color: rgba(0,0,0,0.08); }
+[data-theme="light"] .law-short-name           { color: rgba(0,0,0,0.42); }
+[data-theme="light"] .law-claim                { color: rgba(0,0,0,0.58); }
+
+/* Courts hint + court node hover */
+[data-theme="light"] .courts-hint             { color: rgba(0,0,0,0.32); }
+[data-theme="light"] .court-node--clickable:hover { background: rgba(0,0,0,0.04); }
+[data-theme="light"] .court-node-filter-hint   { color: rgba(0,0,0,0.25); }
+
+/* Badge doc popup */
+[data-theme="light"] .badge-doc-popup          { background: #fff; border-color: rgba(0,0,0,0.12); box-shadow: 0 4px 16px rgba(0,0,0,0.12); }
+[data-theme="light"] .badge-doc-popup::after   { border-top-color: rgba(0,0,0,0.12); }
+[data-theme="light"] .bdp-icon                 { color: rgba(0,0,0,0.38); }
+[data-theme="light"] .bdp-link                 { color: rgba(0,0,0,0.65); }
+[data-theme="light"] .bdp-link:hover           { color: rgba(0,0,0,0.9); }
+
+/* Defendant groups */
+[data-theme="light"] .def-group                { border-bottom-color: rgba(0,0,0,0.07); }
+
+/* Executive Action Status card */
+[data-theme="light"] .exec-status-as-of        { color: rgba(0,0,0,0.35); }
+[data-theme="light"] .exec-status-headline     { color: rgba(0,0,0,0.88); }
+[data-theme="light"] .exec-status-summary      { color: rgba(0,0,0,0.65); }
+[data-theme="light"] .exec-status-detail       { color: rgba(0,0,0,0.48); border-top-color: rgba(0,0,0,0.08); }
+[data-theme="light"] .exec-status-next-label   { color: rgba(0,0,0,0.28); }
+[data-theme="light"] .exec-status-next-list li { color: rgba(0,0,0,0.5); }
+[data-theme="light"] .exec-status-cite         { color: rgba(0,0,0,0.4); border-color: rgba(0,0,0,0.1); }
+[data-theme="light"] .exec-status-cite:hover   { color: rgba(0,0,0,0.75); border-color: rgba(0,0,0,0.2); background: rgba(0,0,0,0.04); }
+
+/* Favorability row in Current Status */
+[data-theme="light"] .exec-status-favorability         { background: rgba(0,0,0,0.03); border-left-color: rgba(0,0,0,0.18); }
+[data-theme="light"] .exec-status-favorability--neutral { border-left-color: rgba(0,0,0,0.18); }
+[data-theme="light"] .exec-status-fav-label            { color: rgba(0,0,0,0.85); }
+[data-theme="light"] .exec-status-fav-reasoning        { color: rgba(0,0,0,0.5); }
+
+/* Timeline tooltip hint */
+[data-theme="light"] .timeline-tooltip-hint   { color: rgba(0,0,0,0.32); }
+[data-theme="light"] .timeline-tooltip-sample { color: rgba(0,0,0,0.48); }
+
+/* Judicial officers cards */
+[data-theme="light"] .judicial-card            { background: #fff; border-color: rgba(0,0,0,0.09); }
+[data-theme="light"] .judicial-name            { color: rgba(0,0,0,0.88); }
+[data-theme="light"] .judicial-title           { color: rgba(0,0,0,0.52); }
+[data-theme="light"] .judicial-court           { color: rgba(0,0,0,0.35); }
+[data-theme="light"] .judicial-appt            { color: rgba(0,0,0,0.38); }
+[data-theme="light"] .judicial-bio             { color: rgba(0,0,0,0.45); }
+
+/* Action rows — neutral badge */
+[data-theme="light"] .action-class-badge--neutral { color: rgba(0,0,0,0.38); border-color: rgba(0,0,0,0.1); background: rgba(0,0,0,0.04); }
+
+/* CL docket link */
+[data-theme="light"] .cl-docket-link          { color: rgba(0,0,0,0.45); border-color: rgba(0,0,0,0.1); }
+[data-theme="light"] .cl-docket-link:hover    { color: rgba(0,0,0,0.82); border-color: rgba(0,0,0,0.2); background: rgba(0,0,0,0.05); }
+
+/* Enrich section */
+[data-theme="light"] .enrich-title             { color: rgba(0,0,0,0.85); }
+[data-theme="light"] .enrich-subtitle          { color: rgba(0,0,0,0.48); }
+[data-theme="light"] .enrich-btn--running      { color: rgba(0,0,0,0.5); }
+[data-theme="light"] .enrich-spinner           { border-color: rgba(0,0,0,0.12); border-top-color: rgba(0,0,0,0.5); }
+[data-theme="light"] .enrich-setup-note        { color: rgba(0,0,0,0.35); border-top-color: rgba(0,0,0,0.07); }
+[data-theme="light"] .enrich-cmd               { background: rgba(0,0,0,0.05); border-color: rgba(0,0,0,0.1); color: rgba(0,0,0,0.55); }
+[data-theme="light"] .enrich-log               { background: rgba(0,0,0,0.04); border-color: rgba(0,0,0,0.09); }
+[data-theme="light"] .enrich-log-line          { color: rgba(0,0,0,0.5); }
+[data-theme="light"] .enrich-log-line--pulse   { color: rgba(0,0,0,0.55); }
+[data-theme="light"] .enrich-result-title      { color: rgba(0,0,0,0.82); }
+[data-theme="light"] .enrich-result-meta       { color: rgba(0,0,0,0.5); }
+
+/* Admin section */
+[data-theme="light"] .admin-toggle             { background: rgba(0,0,0,0.03); border-color: rgba(0,0,0,0.09); }
+[data-theme="light"] .admin-toggle:hover       { background: rgba(0,0,0,0.05); border-color: rgba(0,0,0,0.14); }
+[data-theme="light"] .admin-toggle-label       { color: rgba(0,0,0,0.45); }
+[data-theme="light"] .admin-toggle-chevron     { color: rgba(0,0,0,0.28); }
+[data-theme="light"] .admin-box                { background: #f8f9fb; border-color: rgba(0,0,0,0.1); }
+[data-theme="light"] .admin-box-intro          { color: rgba(0,0,0,0.35); }
+[data-theme="light"] .admin-block              { border-top-color: rgba(0,0,0,0.07); }
+[data-theme="light"] .admin-block--note        { background: rgba(0,0,0,0.02); }
+[data-theme="light"] .admin-block-title        { color: rgba(0,0,0,0.52); }
+[data-theme="light"] .admin-block-note         { color: rgba(0,0,0,0.38); }
+[data-theme="light"] .admin-block-note strong  { color: rgba(0,0,0,0.58); }
+[data-theme="light"] .admin-pricing-ref        { color: rgba(0,0,0,0.35); border-bottom-color: rgba(0,0,0,0.07); }
+[data-theme="light"] .admin-pricing-ref strong { color: rgba(0,0,0,0.58); }
+[data-theme="light"] .admin-tier-toggle        { border-color: rgba(0,0,0,0.1); }
+[data-theme="light"] .admin-tier-seg           { color: rgba(0,0,0,0.32); }
+[data-theme="light"] .admin-tier-seg + .admin-tier-seg { border-left-color: rgba(0,0,0,0.1); }
+[data-theme="light"] .admin-tier-seg--on       { background: rgba(0,0,0,0.07); color: rgba(0,0,0,0.72); }
+[data-theme="light"] .admin-phase              { background: rgba(0,0,0,0.025); border-color: rgba(0,0,0,0.07); }
+[data-theme="light"] .admin-phase-title        { color: rgba(0,0,0,0.62); }
+[data-theme="light"] .admin-phase-desc         { color: rgba(0,0,0,0.32); }
+[data-theme="light"] .admin-phase-stat--subtotal { border-top-color: rgba(0,0,0,0.07); }
+[data-theme="light"] .aps-label                { color: rgba(0,0,0,0.32); }
+[data-theme="light"] .aps-val                  { color: rgba(0,0,0,0.48); }
+[data-theme="light"] .aps-cost                 { color: rgba(0,0,0,0.55); }
+[data-theme="light"] .admin-row                { border-bottom-color: rgba(0,0,0,0.04); }
+[data-theme="light"] .admin-row--total         { border-top-color: rgba(0,0,0,0.09); }
+[data-theme="light"] .admin-row--grand         { border-top-color: rgba(0,0,0,0.14); }
+[data-theme="light"] .admin-row-label          { color: rgba(0,0,0,0.42); }
+[data-theme="light"] .admin-row--total .admin-row-label,
+[data-theme="light"] .admin-row--grand .admin-row-label { color: rgba(0,0,0,0.6); }
+[data-theme="light"] .admin-row-val            { color: rgba(0,0,0,0.48); }
+[data-theme="light"] .admin-row-cost           { color: rgba(0,0,0,0.55); }
+[data-theme="light"] .admin-row-val--mono      { color: rgba(0,0,0,0.35); }
+[data-theme="light"] .admin-pacer-bar          { background: rgba(0,0,0,0.07); }
+[data-theme="light"] .apr-cases                { color: rgba(0,0,0,0.55); }
+[data-theme="light"] .apr-reqs                 { color: rgba(0,0,0,0.42); }
+[data-theme="light"] .apr-pct                  { color: rgba(0,0,0,0.42); }
+[data-theme="light"] .apr-bar-wrap             { background: rgba(0,0,0,0.07); }
+[data-theme="light"] .admin-footer             { color: rgba(0,0,0,0.28); border-top-color: rgba(0,0,0,0.07); }
+
+/* Sidebar */
+[data-theme="light"] .case-sidebar-inner       { background: rgba(255,255,255,0.95); border-color: rgba(0,0,0,0.1); }
+[data-theme="light"] .case-sidebar-title       { color: rgba(0,0,0,0.28); }
+[data-theme="light"] .case-sidebar-link        { color: rgba(0,0,0,0.45); }
+[data-theme="light"] .case-sidebar-link:hover  { color: rgba(0,0,0,0.75); background: rgba(0,0,0,0.04); }
+
+/* ── Official Notre Dame theme ───────────────────────────── */
+[data-theme="official"] {
+  --bg: #0c2340;
+  --surface: rgba(174,145,66,0.06);
+  --border: rgba(174,145,66,0.2);
+  --text: rgba(255,255,255,0.93);
+  --muted: rgba(255,255,255,0.5);
+}
+
+[data-theme="official"] .bg-gradient {
+  background:
+    radial-gradient(ellipse 70% 50% at 15% 0%, rgba(174,145,66,0.2) 0%, transparent 55%),
+    radial-gradient(ellipse 60% 50% at 85% 100%, rgba(28,79,143,0.3) 0%, transparent 55%);
+}
+
+[data-theme="official"] .bottom-banner {
+  background: rgba(12,35,64,0.95);
+  border-color: rgba(174,145,66,0.2);
+}
+
+[data-theme="official"] .hero-highlight { color: #d39f10; }
+[data-theme="official"] .dot            { background: #ae9142; }
+
 body {
   background: var(--bg);
   color: var(--text);
