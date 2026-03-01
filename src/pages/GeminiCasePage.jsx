@@ -37,7 +37,7 @@ function ShareWidget({ caseData }) {
   const ref = useRef(null)
   useOutsideClick(ref, useCallback(() => setOpen(false), []))
 
-  const url   = window.location.href
+  const url   = window.location.origin + window.location.pathname
   const title = `${caseData.name} | Legal Challenges Tracker`
   const text  = `Track this case: ${caseData.name} — ${caseData.court}`
 
@@ -415,7 +415,7 @@ export default function GeminiCasePage() {
       entries.forEach(entry => {
         if (entry.isIntersecting) setActiveSection(entry.target.id)
       })
-    }, { rootMargin: '-10% 0px -80% 0px', threshold: 0 })
+    }, { rootMargin: '-68px 0px -80% 0px', threshold: 0 })
     els.forEach(el => obs.observe(el))
     return () => obs.disconnect()
   }, [caseId])
@@ -480,7 +480,12 @@ export default function GeminiCasePage() {
                   className={`case-sidebar-link${activeSection === s.id ? ' case-sidebar-link--active' : ''}`}
                   onClick={e => {
                     e.preventDefault()
-                    document.getElementById(s.id)?.scrollIntoView({ behavior: 'smooth' })
+                    const el = document.getElementById(s.id)
+                    if (el) {
+                      const navH = document.querySelector('.navbar')?.offsetHeight ?? 52
+                      const y = el.getBoundingClientRect().top + window.scrollY - navH - 16
+                      window.scrollTo({ top: y, behavior: 'smooth' })
+                    }
                   }}
                 >
                   {s.label}
@@ -577,8 +582,8 @@ export default function GeminiCasePage() {
                 <ul className="parties-list">
                   {visPlaintiffs.map((p, i) => (
                     <li key={i} className="parties-item">
-                      {p.wikipediaUrl ? (
-                        <a href={p.wikipediaUrl} target="_blank" rel="noopener noreferrer" className="parties-name parties-wiki-link">{p.name}</a>
+                      {p.wikipedia_url ? (
+                        <a href={p.wikipedia_url} target="_blank" rel="noopener noreferrer" className="parties-name parties-wiki-link">{p.name}</a>
                       ) : (
                         <span className="parties-name">{p.name}</span>
                       )}
@@ -608,8 +613,8 @@ export default function GeminiCasePage() {
                       <ul className="parties-list">
                         {grp.members.map((d, i) => (
                           <li key={i} className="parties-item">
-                            {d.wikipediaUrl ? (
-                              <a href={d.wikipediaUrl} target="_blank" rel="noopener noreferrer" className="parties-name parties-wiki-link">{d.name}</a>
+                            {d.wikipedia_url ? (
+                              <a href={d.wikipedia_url} target="_blank" rel="noopener noreferrer" className="parties-name parties-wiki-link">{d.name}</a>
                             ) : (
                               <span className="parties-name">{d.name}</span>
                             )}
@@ -641,8 +646,8 @@ export default function GeminiCasePage() {
                         {d._group && (
                           <span className="parties-group-tag" style={{ color: d._color }}>{d._group}</span>
                         )}
-                        {d.wikipediaUrl ? (
-                          <a href={d.wikipediaUrl} target="_blank" rel="noopener noreferrer" className="parties-name parties-wiki-link">{d.name}</a>
+                        {d.wikipedia_url ? (
+                          <a href={d.wikipedia_url} target="_blank" rel="noopener noreferrer" className="parties-name parties-wiki-link">{d.name}</a>
                         ) : (
                           <span className="parties-name">{d.name}</span>
                         )}
@@ -945,23 +950,29 @@ export default function GeminiCasePage() {
                   </div>
                 )}
 
-                {entry.pdfUrl ? (
-                  <a href={entry.pdfUrl} target="_blank" rel="noopener noreferrer" className="gemini-doc-link">
-                    <svg viewBox="0 0 14 14" fill="none" className="gemini-doc-icon">
-                      <path d="M2 2h7l3 3v7H2V2z" stroke="currentColor" strokeWidth="1.3" strokeLinejoin="round"/>
-                      <path d="M9 2v3h3M5 7h4M5 9.5h3" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round"/>
-                    </svg>
-                    View Document
-                  </a>
-                ) : clSearchUrl ? (
-                  <a href={clSearchUrl} target="_blank" rel="noopener noreferrer" className="gemini-doc-link gemini-doc-link--cl">
-                    <svg viewBox="0 0 14 14" fill="none" className="gemini-doc-icon">
-                      <circle cx="7" cy="7" r="5.5" stroke="currentColor" strokeWidth="1.3"/>
-                      <path d="M4.5 7h5M7 4.5v5" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round"/>
-                    </svg>
-                    View on CourtListener
-                  </a>
-                ) : null}
+                {(() => {
+                  const href = entry.pdfUrl || entry.clEntryUrl || clSearchUrl
+                  const isPdf = !!entry.pdfUrl
+                  if (!href) return null
+                  return (
+                    <a href={href} target="_blank" rel="noopener noreferrer"
+                      className={`gemini-doc-link${isPdf ? '' : ' gemini-doc-link--cl'}`}>
+                      {isPdf ? (
+                        <svg viewBox="0 0 14 14" fill="none" className="gemini-doc-icon">
+                          <path d="M2 2h7l3 3v7H2V2z" stroke="currentColor" strokeWidth="1.3" strokeLinejoin="round"/>
+                          <path d="M9 2v3h3M5 7h4M5 9.5h3" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round"/>
+                        </svg>
+                      ) : (
+                        <svg viewBox="0 0 14 14" fill="none" className="gemini-doc-icon">
+                          <path d="M2 2h7l3 3v7H2V2z" stroke="currentColor" strokeWidth="1.3" strokeLinejoin="round"/>
+                          <path d="M9 2v3h3M5 7h3" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round"/>
+                          <path d="M11.5 10.5l1.5 1.5M10.5 11a1.5 1.5 0 100-3 1.5 1.5 0 000 3z" stroke="currentColor" strokeWidth="1.1" strokeLinecap="round"/>
+                        </svg>
+                      )}
+                      {isPdf ? 'View Filing' : 'View on CourtListener'}
+                    </a>
+                  )
+                })()}
               </div>
             )
           })}

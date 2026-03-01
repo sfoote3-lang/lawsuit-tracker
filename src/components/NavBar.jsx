@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { ISSUES, ALL_CASES } from '../data/issues'
+import { GEMINI_CASES_ALL } from '../data/casesRegistry'
 import { useTheme } from '../hooks/useTheme'
 import './NavBar.css'
 
@@ -29,6 +30,12 @@ function useOutsideClick(ref, handler) {
   }, [ref, handler])
 }
 
+// Featured Gemini cases shown before typing (first 4 by date filed)
+const FEATURED_GEMINI = GEMINI_CASES_ALL
+  .slice()
+  .sort((a, b) => (a.dateFiled ?? '').localeCompare(b.dateFiled ?? ''))
+  .slice(0, 4)
+
 function searchAll(query) {
   const q = query.toLowerCase().trim()
   if (!q) return { issues: [], cases: [] }
@@ -38,7 +45,7 @@ function searchAll(query) {
     issue.description.toLowerCase().includes(q)
   )
 
-  const matchedCases = ALL_CASES.filter(c =>
+  const matchedStandard = ALL_CASES.filter(c =>
     c.id.toLowerCase().includes(q) ||
     c.name.toLowerCase().includes(q) ||
     c.description.toLowerCase().includes(q) ||
@@ -46,7 +53,21 @@ function searchAll(query) {
     c.issueTitle.toLowerCase().includes(q)
   )
 
-  return { issues: matchedIssues, cases: matchedCases }
+  const matchedGemini = GEMINI_CASES_ALL.filter(c =>
+    c.id.toLowerCase().includes(q) ||
+    c.name.toLowerCase().includes(q) ||
+    (c.description ?? '').toLowerCase().includes(q) ||
+    c.court.toLowerCase().includes(q)
+  )
+
+  // Merge, dedup by id (Gemini cases take precedence for display)
+  const geminiIds = new Set(matchedGemini.map(c => c.id))
+  const merged = [
+    ...matchedGemini,
+    ...matchedStandard.filter(c => !geminiIds.has(c.id)),
+  ]
+
+  return { issues: matchedIssues, cases: merged }
 }
 
 const THEME_OPTIONS = [
@@ -98,7 +119,7 @@ export default function NavBar() {
 
   const results    = searchAll(query)
   const hasResults = results.issues.length > 0 || results.cases.length > 0
-  const showPanel  = searchOpen && query.trim().length > 0
+  const showPanel  = searchOpen && (query.trim().length > 0 || FEATURED_GEMINI.length > 0)
 
   function go(path) {
     setIssueOpen(false)
@@ -217,11 +238,34 @@ export default function NavBar() {
 
             {showPanel && (
               <div className="search-panel">
-                {!hasResults && (
+                {/* No-query state: show featured Gemini cases */}
+                {!query.trim() && FEATURED_GEMINI.length > 0 && (
+                  <div className="search-group">
+                    <div className="search-group-label">Featured Cases</div>
+                    {FEATURED_GEMINI.map(c => (
+                      <button
+                        key={c.id}
+                        className="search-result"
+                        onClick={() => go(`/case/gemini/${c.id}`)}
+                      >
+                        <span className="result-dot" style={{ background: '#c77dff' }} />
+                        <div className="result-text">
+                          <span className="result-primary">{c.name}</span>
+                          <span className="result-secondary">
+                            <span className="result-gemini-badge">✦ Gemini</span>
+                            {c.court}
+                          </span>
+                        </div>
+                      </button>
+                    ))}
+                  </div>
+                )}
+
+                {query.trim() && !hasResults && (
                   <div className="search-empty">No results for &ldquo;{query}&rdquo;</div>
                 )}
 
-                {results.issues.length > 0 && (
+                {query.trim() && results.issues.length > 0 && (
                   <div className="search-group">
                     <div className="search-group-label">Issues</div>
                     {results.issues.map(issue => (
@@ -240,7 +284,7 @@ export default function NavBar() {
                   </div>
                 )}
 
-                {results.cases.length > 0 && (
+                {query.trim() && results.cases.length > 0 && (
                   <div className="search-group">
                     <div className="search-group-label">
                       Cases
@@ -252,21 +296,25 @@ export default function NavBar() {
                       <button
                         key={c.id}
                         className="search-result"
-                        onClick={() => go(`/case/${c.id}`)}
+                        onClick={() => go(c.geminiCase ? `/case/gemini/${c.id}` : `/case/${c.id}`)}
                       >
                         <span
                           className="result-dot"
-                          style={{ background: STATUS_COLORS[c.status] ?? 'rgba(255,255,255,0.3)' }}
+                          style={{ background: c.geminiCase ? '#c77dff' : (STATUS_COLORS[c.status] ?? 'rgba(255,255,255,0.3)') }}
                         />
                         <div className="result-text">
                           <span className="result-primary">{c.name}</span>
                           <span className="result-secondary">
-                            <span
-                              className="result-status-badge"
-                              style={{ color: STATUS_COLORS[c.status], borderColor: `${STATUS_COLORS[c.status]}40`, background: `${STATUS_COLORS[c.status]}14` }}
-                            >
-                              {STATUS_LABELS[c.status] ?? c.status}
-                            </span>
+                            {c.geminiCase ? (
+                              <span className="result-gemini-badge">✦ Gemini</span>
+                            ) : (
+                              <span
+                                className="result-status-badge"
+                                style={{ color: STATUS_COLORS[c.status], borderColor: `${STATUS_COLORS[c.status]}40`, background: `${STATUS_COLORS[c.status]}14` }}
+                              >
+                                {STATUS_LABELS[c.status] ?? c.status}
+                              </span>
+                            )}
                             {c.court}
                             <span className="result-id">{c.id}</span>
                           </span>
@@ -276,8 +324,8 @@ export default function NavBar() {
                   </div>
                 )}
 
-                {/* View all / filter in cases page */}
-                {hasResults && (
+                {/* View all */}
+                {query.trim() && hasResults && (
                   <button
                     className="search-view-all"
                     onClick={() => go(`/cases?q=${encodeURIComponent(query.trim())}`)}

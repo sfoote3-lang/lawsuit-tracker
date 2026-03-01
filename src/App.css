@@ -500,6 +500,17 @@
 [data-theme="official"] .hero-highlight { color: #d39f10; }
 [data-theme="official"] .dot            { background: #ae9142; }
 
+/* GeminiCasePage sidebar — Official mode gold accent */
+[data-theme="official"] .case-sidebar-inner    { background: rgba(12,35,64,0.96); border-color: rgba(174,145,66,0.22); }
+[data-theme="official"] .case-sidebar-title    { color: rgba(174,145,66,0.5); }
+[data-theme="official"] .case-sidebar-link     { color: rgba(255,255,255,0.42); }
+[data-theme="official"] .case-sidebar-link:hover { color: rgba(174,145,66,0.85); background: rgba(174,145,66,0.07); }
+[data-theme="official"] .case-sidebar-link--active {
+  color: #ae9142;
+  border-left-color: #ae9142;
+  background: rgba(174,145,66,0.1);
+}
+
 body {
   background: var(--bg);
   color: var(--text);
