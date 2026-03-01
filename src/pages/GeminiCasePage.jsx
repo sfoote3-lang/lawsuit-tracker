@@ -37,7 +37,7 @@ function ShareWidget({ caseData }) {
   const ref = useRef(null)
   useOutsideClick(ref, useCallback(() => setOpen(false), []))
 
-  const url   = window.location.origin + window.location.pathname
+  const url   = `${window.location.origin}/case/gemini/${caseData.id}`
   const title = `${caseData.name} | Legal Challenges Tracker`
   const text  = `Track this case: ${caseData.name} — ${caseData.court}`
 
