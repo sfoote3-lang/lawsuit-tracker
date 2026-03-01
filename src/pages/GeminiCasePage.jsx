@@ -554,7 +554,7 @@ export default function GeminiCasePage() {
             </span>
           )}
         </div>
-        <ShareWidget caseData={{ name: c.case_name, court: c.court }} />
+        <ShareWidget caseData={{ name: c.case_name, court: c.court, id: caseId }} />
         <p className="case-description">{c.plaintiff_summary}</p>
       </header>
 
