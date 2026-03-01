@@ -420,13 +420,16 @@ export default function GeminiCasePage() {
     return () => obs.disconnect()
   }, [caseId])
 
-  const keyEntries     = c.docketEntries.filter(e => e.isKey)
-  const visibleEntries = showAll ? c.docketEntries : keyEntries
+  const docketEntries  = c.docketEntries ?? []
+  const timeline       = c.timeline ?? []
+  const keyEntries     = docketEntries.filter(e => e.isKey)
+  const visibleEntries = showAll ? docketEntries : keyEntries
 
   // Cost calculations
-  const costs       = calcGeminiCosts(TOKEN_USAGE.gemini.calls, costTier, GEMINI_PRICING)
-  const totalInput  = TOKEN_USAGE.gemini.calls.reduce((s, x) => s + x.inputTokens, 0)
-  const totalOutput = TOKEN_USAGE.gemini.calls.reduce((s, x) => s + x.outputTokens, 0)
+  const geminiCalls = TOKEN_USAGE?.gemini?.calls ?? []
+  const costs       = calcGeminiCosts(geminiCalls, costTier, GEMINI_PRICING)
+  const totalInput  = geminiCalls.reduce((s, x) => s + x.inputTokens, 0)
+  const totalOutput = geminiCalls.reduce((s, x) => s + x.outputTokens, 0)
   const totalCost   = costs.reduce((s, x) => s + x.total, 0)
 
   // Defendant grouping
@@ -442,12 +445,20 @@ export default function GeminiCasePage() {
 
   const statusInfo = deriveStatusInfo(CASE_STATUS_LABEL)
 
+  // Construct CourtListener search URL from docket number
+  const clDocketNum = c.id
+    ? c.id.replace(/^(\d+)-(\d{2}-[a-z]+-\d+)$/, '$1:$2')
+    : null
+  const clSearchUrl = clDocketNum
+    ? `https://www.courtlistener.com/?q=%22${encodeURIComponent(clDocketNum)}%22&type=r`
+    : null
+
   const sidebarSections = SIDEBAR_DEFS.filter(s => {
     if (s.id === 'sec-parties')    return plaintiffs.length > 0 || allDefFlat.length > 0
-    if (s.id === 'sec-laws')       return LAWS_AT_ISSUE.length > 0
+    if (s.id === 'sec-laws')       return (LAWS_AT_ISSUE ?? []).length > 0
     if (s.id === 'sec-news')       return c.backgroundArticles?.length > 0
     if (s.id === 'sec-appeals')    return c.courts?.length > 0
-    if (s.id === 'sec-timeline')   return c.timeline?.length > 0
+    if (s.id === 'sec-timeline')   return timeline.length > 0
     if (s.id === 'sec-actions')    return keyEntries.length > 0
     return true
   })
@@ -718,7 +729,7 @@ export default function GeminiCasePage() {
           <div className="exec-status-next">
             <div className="exec-status-next-label">Likely next steps</div>
             <ul className="exec-status-next-list">
-              {EXECUTIVE_STATUS.nextSteps.map((step, i) => (
+              {(EXECUTIVE_STATUS.nextSteps ?? []).map((step, i) => (
                 <li key={i}>{step}</li>
               ))}
             </ul>
@@ -798,7 +809,7 @@ export default function GeminiCasePage() {
       )}
 
       {/* ── Timeline — key moments ────────────────────────────────── */}
-      {c.timeline.length > 0 && (
+      {timeline.length > 0 && (
         <section id="sec-timeline" className="timeline-section">
           <div className="timeline-header-row">
             <h2 className="section-heading" style={{ margin: 0 }}>Key Moments</h2>
@@ -815,8 +826,8 @@ export default function GeminiCasePage() {
             Type badges with a document icon are hoverable to open the source.
           </p>
           <div className="timeline">
-            {c.timeline.map((event, i) => {
-              const isLast = i === c.timeline.length - 1
+            {timeline.map((event, i) => {
+              const isLast = i === timeline.length - 1
               const docUrl = TIMELINE_DOCS[event.entry_number]
               return (
                 <div key={i} className={`timeline-item ${isLast ? 'timeline-item--last' : ''}`}>
@@ -861,9 +872,25 @@ export default function GeminiCasePage() {
       {/* ── Docket Entry Summaries: Key / All Actions ─────────────── */}
       <section id="sec-actions" className="actions-section">
         <div className="actions-header">
-          <h2 className="section-heading">
-            {showAll ? 'All Actions' : 'Key Actions'}
-          </h2>
+          <div className="actions-header-top">
+            <h2 className="section-heading" style={{ margin: 0 }}>
+              {showAll ? 'All Actions' : 'Key Actions'}
+            </h2>
+            {clSearchUrl && (
+              <a
+                href={clSearchUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="cl-docket-link"
+              >
+                <svg viewBox="0 0 14 14" fill="none" className="cl-docket-icon">
+                  <path d="M2 2h7l3 3v7H2V2z" stroke="currentColor" strokeWidth="1.3" strokeLinejoin="round"/>
+                  <path d="M9 2v3h3M5 7h4M5 9.5h3" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round"/>
+                </svg>
+                View full docket on CourtListener
+              </a>
+            )}
+          </div>
           <div className="actions-toggle" role="group" aria-label="Actions filter">
             <button
               className={`toggle-seg ${!showAll ? 'toggle-seg--on' : ''}`}
@@ -876,7 +903,7 @@ export default function GeminiCasePage() {
               onClick={() => setShowAll(true)}
             >
               All Actions
-              <span className="toggle-seg-count">{c.docketEntries.length}</span>
+              <span className="toggle-seg-count">{docketEntries.length}</span>
             </button>
           </div>
         </div>
@@ -918,7 +945,7 @@ export default function GeminiCasePage() {
                   </div>
                 )}
 
-                {entry.pdfUrl && (
+                {entry.pdfUrl ? (
                   <a href={entry.pdfUrl} target="_blank" rel="noopener noreferrer" className="gemini-doc-link">
                     <svg viewBox="0 0 14 14" fill="none" className="gemini-doc-icon">
                       <path d="M2 2h7l3 3v7H2V2z" stroke="currentColor" strokeWidth="1.3" strokeLinejoin="round"/>
@@ -926,7 +953,15 @@ export default function GeminiCasePage() {
                     </svg>
                     View Document
                   </a>
-                )}
+                ) : clSearchUrl ? (
+                  <a href={clSearchUrl} target="_blank" rel="noopener noreferrer" className="gemini-doc-link gemini-doc-link--cl">
+                    <svg viewBox="0 0 14 14" fill="none" className="gemini-doc-icon">
+                      <circle cx="7" cy="7" r="5.5" stroke="currentColor" strokeWidth="1.3"/>
+                      <path d="M4.5 7h5M7 4.5v5" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round"/>
+                    </svg>
+                    View on CourtListener
+                  </a>
+                ) : null}
               </div>
             )
           })}

@@ -1784,7 +1784,7 @@
 /* ── Sidebar navigation ─────────────────────────────────────────── */
 .case-sidebar {
   position: fixed;
-  right: 1.25rem;
+  left: 0.75rem;
   top: 50%;
   transform: translateY(-50%);
   z-index: 100;
@@ -1899,4 +1899,51 @@
 /* ── Why It Matters label accent ────────────────────────────────── */
 .why-it-matters-label {
   color: #f4a261 !important;
+}
+
+/* ── Actions header layout ──────────────────────────────────────── */
+.actions-header-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+/* ── CourtListener docket link ──────────────────────────────────── */
+.cl-docket-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.76rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.45);
+  text-decoration: none;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  padding: 0.28rem 0.65rem;
+  transition: color 0.15s, border-color 0.15s, background 0.15s;
+  white-space: nowrap;
+}
+
+.cl-docket-link:hover {
+  color: rgba(255, 255, 255, 0.8);
+  border-color: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.cl-docket-icon {
+  width: 12px;
+  height: 12px;
+  flex-shrink: 0;
+}
+
+/* CourtListener fallback link on entry rows */
+.gemini-doc-link--cl {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.gemini-doc-link--cl:hover {
+  color: rgba(255, 255, 255, 0.6);
 }
